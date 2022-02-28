@@ -1,12 +1,49 @@
 <mvc:View controllerName="murphy.mdm.costProfit.mdmCostProfitCenter.controller.App" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-	xmlns="sap.m">
-	<Shell id="shell">
-		<App id="app">
-			<pages>
-				<Page id="page" title="{i18n>title}">
-					<content></content>
-				</Page>
-			</pages>
-		</App>
-	</Shell>
+	xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:f="sap.f">
+	<App id="app">
+		<tnt:ToolPage id="toolPage" sideExpanded="{App>/sideNavExp}">
+			<tnt:header>
+				<tnt:ToolHeader>
+					<Button tooltip="{= ${App>/sideNavExp} ? 'Small Size Navigation' : 'Large Size Navigation'}"
+						icon="{= ${App>/sideNavExp} ? 'sap-icon://close-command-field' : 'sap-icon://open-command-field'}" type="Transparent" press="onSideNavPress">
+						<layoutData>
+							<OverflowToolbarLayoutData priority="NeverOverflow"/>
+						</layoutData>
+					</Button>
+					<ToolbarSpacer width="20px"/>
+					<Title text="{App>/appTitle}">
+						<layoutData>
+							<OverflowToolbarLayoutData priority="Low"/>
+						</layoutData>
+					</Title>
+				</tnt:ToolHeader>
+			</tnt:header>
+			<tnt:sideContent >
+				<tnt:SideNavigation selectedKey="CostCenterSearch" itemSelect="onSideItemSelect">
+					<tnt:NavigationList>
+						<tnt:NavigationListItem text="Search" icon="sap-icon://detail-view">
+							<tnt:NavigationListItem text="Cost Center" key="CostCenterSearch"/>
+							<tnt:NavigationListItem text="Profit Center" key="ProfitCenterSearch"/>
+						</tnt:NavigationListItem>
+						<tnt:NavigationListItem text="Create" icon="sap-icon://create">
+							<tnt:NavigationListItem text="Cost Center" key="CreateCostCenter"/>
+							<tnt:NavigationListItem text="Profit Center" key="CreateProfitCenter"/>
+						</tnt:NavigationListItem>
+						<tnt:NavigationListItem text="Change" icon="sap-icon://request">
+							<tnt:NavigationListItem text="All Change Request" key="AllChangeRequests"/>
+							<tnt:NavigationListItem text="Mass Change Request" key="MassChangeRequests"/>
+						</tnt:NavigationListItem>
+					</tnt:NavigationList>
+					<tnt:fixedItem>
+						<tnt:NavigationList>
+							<tnt:NavigationListItem text="Lock Menu" icon="sap-icon://unlocked" key="unlock"/>
+						</tnt:NavigationList>
+					</tnt:fixedItem>
+				</tnt:SideNavigation>
+			</tnt:sideContent>
+			<tnt:mainContents>
+				<NavContainer id="pageContainer"></NavContainer>
+			</tnt:mainContents>
+		</tnt:ToolPage>
+	</App>
 </mvc:View>
