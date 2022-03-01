@@ -1,10 +1,79 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout"
 	controllerName="murphy.mdm.costProfit.mdmCostProfitCenter.controller.ProfitCenterCreate" xmlns:html="http://www.w3.org/1999/xhtml">
-	<App>
-		<pages>
-			<Page title="Title">
-				<content></content>
-			</Page>
-		</pages>
-	</App>
+	<Page showHeader="false" showNavButton="false" showFooter="true">
+		<content>
+			<Toolbar>
+				<Title text="" level="H2"></Title>
+			</Toolbar>
+			<l:DynamicSideContent class="sapUiDSCExplored createPageHeight" containerQuery="true" sideContentFallDown="BelowM"
+				breakpointChanged="handleBreakpointChangeEvent">
+				<VBox>
+					<Panel expandable="true" expanded="true" headerText="Change Request">
+						<content>
+							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.profitCenter.ChangeRequests" type="XML"/>
+						</content>
+					</Panel>
+					<Panel expandable="true" expanded="true" headerText="Validity">
+						<content>
+							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.profitCenter.ChangeRequests" type="XML"/>
+						</content>
+					</Panel>
+					<Panel expandable="true" expanded="true" headerText="Profit Center Details">
+						<content>
+							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.profitCenter.Details" type="XML"/>
+						</content>
+					</Panel>
+					<Panel expandable="true" expanded="true" headerText="Profit Center Description">
+						<content>
+							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.profitCenter.Description" type="XML"/>
+						</content>
+					</Panel>
+					<Panel expandable="true" expanded="true" headerText="Profit Center Assignments in Profit Center Group Hierarchies">
+						<content>
+							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.profitCenter.Assignments" type="XML"/>
+						</content>
+					</Panel>
+					<Panel expandable="true" expanded="true" headerText="Profit Center Indicators">
+						<content>
+							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.profitCenter.Indicators" type="XML"/>
+						</content>
+					</Panel>
+					<Panel expandable="true" expanded="true" headerText="Profit Center Address">
+						<content>
+							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.profitCenter.Address" type="XML"/>
+						</content>
+					</Panel>
+					<Panel expandable="true" expanded="true" headerText="Profit Center Communication Data">
+						<content>
+							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.profitCenter.CommunicationData" type="XML"/>
+						</content>
+					</Panel>
+					<Panel expandable="true" expanded="true" headerText="Profit Center Attachments">
+						<content>
+							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.profitCenter.Attachments" type="XML"/>
+						</content>
+					</Panel>
+				</VBox>
+				<l:sideContent>
+					<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.changeRequest.CRSideContent" type="XML"/>
+				</l:sideContent>
+			</l:DynamicSideContent>
+		</content>
+		<footer>
+			<Toolbar>
+				<Button visible="true" text="Error Log" type="Transparent" press="onErrorLog"/>
+				<ToolbarSpacer/>
+				<Button text="Save" type="Transparent" press="onSaveCR" visible="{App>/saveButton}"/>
+				<Button text="Edit" type="Transparent" press="onEditClick" visible="{App>/editButton}"/>
+				<Button text="Submit" type="Transparent" press="onSubmitCR" visible="{App>/submitButton}"/>
+				<Button text="Check" type="Transparent" press="onCheckCR" visible="{App>/saveButton}"/>
+				<Button text="Approve" type="Accept" press="onApproveClick" visible="{App>/approveButton}"/>
+				<Button text="Reject" type="Reject" press="onRejectClick" visible="{App>/rejectButton}"/>
+				<Button text="All Change Request" icon="sap-icon://navigation-left-arrow" type="Transparent" press="onBackToAllChangeReq"
+					visible="{= ${App>/previousPage} === 'ALL_CHANGE_REQ'}"/>
+				<Button text="Business Partner Master List" icon="sap-icon://navigation-left-arrow" type="Transparent" press="onBackToAllCust"
+					visible="{= ${App>/previousPage} === 'ALL_CUST'}"/>
+			</Toolbar>
+		</footer>
+	</Page>
 </mvc:View>
