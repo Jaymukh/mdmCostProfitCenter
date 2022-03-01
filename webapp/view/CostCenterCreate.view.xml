@@ -10,52 +10,52 @@
 				<VBox>
 					<Panel expandable="true" expanded="true" headerText="Change Request">
 						<content>
-							<!--<core:Fragment fragmentName="murphy.mdm.customer.murphymdmcustomer.fragments.createCustomer.ChangeRequests" type="XML"/>-->
+							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.createCC.ChangeRequests" type="XML"/>
 						</content>
 					</Panel>
 					<Panel expandable="true" expanded="true" headerText="Validity">
 						<content>
-							<!--<core:Fragment fragmentName="murphy.mdm.customer.murphymdmcustomer.fragments.createCustomer.ChangeRequests" type="XML"/>-->
+							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.createCC.Validity" type="XML"/>
 						</content>
 					</Panel>
 					<Panel expandable="true" expanded="true" headerText="Cost Center Details">
 						<content>
-							<!--<core:Fragment fragmentName="murphy.mdm.customer.murphymdmcustomer.fragments.createCustomer.ChangeRequests" type="XML"/>-->
+							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.createCC.CCDetails" type="XML"/>
 						</content>
 					</Panel>
 					<Panel expandable="true" expanded="true" headerText="Cost Center Description">
 						<content>
-							<!--<core:Fragment fragmentName="murphy.mdm.customer.murphymdmcustomer.fragments.createCustomer.ChangeRequests" type="XML"/>-->
+							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.createCC.CCDescriptions" type="XML"/>
 						</content>
 					</Panel>
 					<Panel expandable="true" expanded="true" headerText="Cost Center Indicators">
 						<content>
-							<!--<core:Fragment fragmentName="murphy.mdm.customer.murphymdmcustomer.fragments.createCustomer.ChangeRequests" type="XML"/>-->
+							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.createCC.CCIndicators" type="XML"/>
 						</content>
 					</Panel>
 					<Panel expandable="true" expanded="true" headerText="Cost Center Address">
 						<content>
-							<!--<core:Fragment fragmentName="murphy.mdm.customer.murphymdmcustomer.fragments.createCustomer.ChangeRequests" type="XML"/>-->
+						<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.createCC.CCAddress" type="XML"/>
 						</content>
 					</Panel>
 					<Panel expandable="true" expanded="true" headerText="Cost Center Communication Data">
 						<content>
-							<!--<core:Fragment fragmentName="murphy.mdm.customer.murphymdmcustomer.fragments.createCustomer.ChangeRequests" type="XML"/>-->
+							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.createCC.CCCommunicationData" type="XML"/>
 						</content>
 					</Panel>
 					<Panel expandable="true" expanded="true" headerText="Cost Center Attachments">
 						<content>
-							<!--<core:Fragment fragmentName="murphy.mdm.customer.murphymdmcustomer.fragments.createCustomer.ChangeRequests" type="XML"/>-->
+							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.createCC.CCAttachments" type="XML"/>
 						</content>
 					</Panel>
 					<Panel expandable="true" expanded="true" headerText="Joint Venture Accounting">
 						<content>
-							<!--<core:Fragment fragmentName="murphy.mdm.customer.murphymdmcustomer.fragments.createCustomer.ChangeRequests" type="XML"/>-->
+						<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.createCC.CCJointVentureAccounting" type="XML"/>
 						</content>
 					</Panel>
 					<Panel expandable="true" expanded="true" headerText="Cost Center Additional Fields">
 						<content>
-							<!--<core:Fragment fragmentName="murphy.mdm.customer.murphymdmcustomer.fragments.createCustomer.ChangeRequests" type="XML"/>-->
+							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.createCC.CCAdditionalFields" type="XML"/>
 						</content>
 					</Panel>
 				</VBox>

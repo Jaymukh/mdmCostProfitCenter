@@ -1,0 +1,28 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+	<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+		adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+		singleContainerFullSize="false">
+		<form:content>
+			<core:Title text="Control Indicators"/>
+			<Label text="Record Quantity"/>
+			<CheckBox/>
+			<core:Title text=""/>
+			<core:Title text="Actual Primary Costs"/>
+			<Label text="Record Quantity"/>
+			<CheckBox/>
+			<Label text="Plan Primary Costs"/>
+			<CheckBox/>
+			<Label text="Actual Revenues"/>
+			<CheckBox/>
+			<Label text="Commitment Update"/>
+			<CheckBox/>
+			<core:Title text=""/>
+			<Label text="Actual Secondary Costs"/>
+			<CheckBox/>
+			<Label text="Plan Secondary Costs"/>
+			<CheckBox/>
+			<Label text="Plan Revenues"/>
+			<CheckBox/>
+		</form:content>
+	</form:SimpleForm>
+</core:FragmentDefinition>

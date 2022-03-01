@@ -1,0 +1,28 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+	<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+		adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+		singleContainerFullSize="false">
+		<form:content>
+			<core:Title text="Communication Data"/>
+			<Label text="Language"/>
+			<ComboBox>
+				<items></items>
+			</ComboBox>
+			<Label text="Telephone 1"/>
+			<Input value=""/>
+			<Label text="Telephone 2"/>
+			<Input value=""/>
+			<Label text="Fax Number"/>
+			<Input value=""/>
+			<Label text="Telebox Number"/>
+			<Input value=""/>
+			<core:Title text=""/>
+			<Label text="Teletex Number"/>
+			<Input value=""/>
+			<Label text="Printer Name"/>
+			<Input value=""/>
+			<Label text="Data Line"/>
+			<Input value=""/>
+		</form:content>
+	</form:SimpleForm>
+</core:FragmentDefinition>

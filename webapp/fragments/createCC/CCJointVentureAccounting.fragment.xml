@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+	<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+		adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+		singleContainerFullSize="false">
+		<form:content>
+			<core:Title text="Joint Venture Accounting"/>
+			<Label text="Joint Venture" required="true"/>
+			<Input showValueHelp="true" valueHelpOnly="true" required="true"/>
+			<Label text="Equity Type" required="true"/>
+			<Input showValueHelp="true" valueHelpOnly="true" required="true"/>
+			<Label text="Joint Venture Object Type" required="true"/>
+			<Input showValueHelp="true" valueHelpOnly="true" required="true"/>
+			<core:Title text=""/>
+			<Label text="Recovery Indicator" required="true"/>
+			<Input showValueHelp="true" valueHelpOnly="true" required="true"/>
+			<Label text="JIB/JIBE Class"/>
+			<Input showValueHelp="true" valueHelpOnly="true"/>
+			<Label text="JIB/JIBE Subclass A"/>
+			<Input showValueHelp="true" valueHelpOnly="true"/>
+		</form:content>
+	</form:SimpleForm>
+</core:FragmentDefinition>
