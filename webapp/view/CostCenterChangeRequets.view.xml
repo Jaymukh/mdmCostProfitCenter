@@ -1,0 +1,30 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:uxap="sap.uxap" xmlns:filterbar="sap.ui.comp.filterbar"
+	controllerName="murphy.mdm.costProfit.mdmCostProfitCenter.controller.CostCenterChangeRequets" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page id="myReq" showHeader="false" showNavButton="false">
+		<content>
+			<IconTabBar id="changeRequestPage" expanded="true">
+				<items>
+					<IconTabFilter text="All Change Request" key="changeRequestMassIdIcon">
+						<uxap:ObjectPageLayout>
+							<uxap:headerContent>
+								<!--<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.search.CRStatistics" type="XML"/>-->
+							</uxap:headerContent>
+							<uxap:sections>
+								<uxap:ObjectPageSection showTitle="false">
+									<uxap:ObjectPageSubSection >
+										<uxap:blocks>
+											<!--<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.search.ChangeRequest" type="XML"/>-->
+										</uxap:blocks>
+									</uxap:ObjectPageSubSection>
+								</uxap:ObjectPageSection>
+							</uxap:sections>
+						</uxap:ObjectPageLayout>
+					</IconTabFilter>
+					<IconTabFilter text="Mass Change Request" key="changeRequestAllIdIcon">
+						<Text text="Mass Change Request go here ..."/>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</content>
+	</Page>
+</mvc:View>

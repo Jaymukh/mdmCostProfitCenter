@@ -78,9 +78,11 @@
 			}
 		},
 		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
 		},
 		"routing": {
 			"config": {
@@ -92,13 +94,15 @@
 				"controlId": "pageContainer",
 				"clearControlAggregation": false
 			},
-			"routes": [{
-				"name": "AppRoute",
-				"pattern": "",
-				"target": [
-					"CostCenterSearch"
-				]
-			}],
+			"routes": [
+				{
+					"name": "AppRoute",
+					"pattern": "",
+					"target": [
+						"CostCenterSearch"
+					]
+				}
+			],
 			"targets": {
 				"TargetApp": {
 					"viewType": "XML",
@@ -111,6 +115,18 @@
 				"ProfitCenterSearch": {
 					"viewType": "XML",
 					"viewName": "ProfitCenterSearch"
+				},
+				"CostCenterCreate": {
+					"viewType": "XML",
+					"viewName": "CostCenterCreate"
+				},
+				"ProfitCenterCreate": {
+					"viewType": "XML",
+					"viewName": "ProfitCenterCreate"
+				},
+				"CostCenterChangeRequets": {
+					"viewType": "XML",
+					"viewName": "CostCenterChangeRequets"
 				}
 			}
 		}
