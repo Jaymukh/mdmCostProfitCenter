@@ -12,6 +12,12 @@
 		"sourceTemplate": {
 			"id": "ui5template.basicSAPUI5ApplicationProject",
 			"version": "1.38.11"
+		},
+		"dataSources": {
+			"CostCenterDataSource": {
+				"uri": "model/local.json",
+				"type": "JSON"
+			}
 		}
 	},
 	"sap.ui": {
@@ -71,18 +77,28 @@
 			},
 			"App": {
 				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "CostCenterDataSource",
 				"settings": {
-					"appTitle": "Search Cost Center",
-					"sideNavExp": false
+					"defaultBindingMode": "TwoWay"
 				}
+			},
+			"userManagementModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"role": [],
+					"accountGroups": [],
+					"data": {}
+				}
+			},
+			"CostCenter": {
+				"type": "sap.ui.model.json.JSONModel"
 			}
 		},
 		"resources": {
-			"css": [
-				{
-					"uri": "css/style.css"
-				}
-			]
+			"css": [{
+				"uri": "css/style.css"
+			}]
 		},
 		"routing": {
 			"config": {
@@ -94,15 +110,13 @@
 				"controlId": "pageContainer",
 				"clearControlAggregation": false
 			},
-			"routes": [
-				{
-					"name": "AppRoute",
-					"pattern": "",
-					"target": [
-						"CostCenterSearch"
-					]
-				}
-			],
+			"routes": [{
+				"name": "AppRoute",
+				"pattern": "",
+				"target": [
+					"CostCenterSearch"
+				]
+			}],
 			"targets": {
 				"TargetApp": {
 					"viewType": "XML",
@@ -127,6 +141,10 @@
 				"CostCenterChangeRequets": {
 					"viewType": "XML",
 					"viewName": "CostCenterChangeRequets"
+				},
+				"ProfitCenterChangeRequest": {
+					"viewType": "XML",
+					"viewName": "ProfitCenterChangeRequest"
 				}
 			}
 		}

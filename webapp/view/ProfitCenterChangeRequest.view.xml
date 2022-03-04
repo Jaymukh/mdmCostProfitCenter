@@ -1,5 +1,5 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:uxap="sap.uxap" xmlns:filterbar="sap.ui.comp.filterbar"
-	xmlns:l="sap.ui.layout" controllerName="murphy.mdm.costProfit.mdmCostProfitCenter.controller.CostCenterChangeRequets"
+	xmlns:l="sap.ui.layout" controllerName="murphy.mdm.costProfit.mdmCostProfitCenter.controller.ProfitCenterChangeRequest"
 	xmlns:html="http://www.w3.org/1999/xhtml">
 	<Page id="myReq" showHeader="false" showNavButton="false">
 		<content>
@@ -58,7 +58,7 @@
 													</ComboBox>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
-											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="ChangeReq" name="costCenter" label="Cost Center">
+											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="ChangeReq" name="profitCenter" label="Profit Center">
 												<filterbar:control>
 													<Input value="{ChangeRequestsModel>/Customer}"/>
 												</filterbar:control>

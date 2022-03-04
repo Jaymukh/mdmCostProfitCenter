@@ -1,0 +1,48 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+	<form:SimpleForm id="idChangeReqForm" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+		labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+		singleContainerFullSize="false">
+		<form:content>
+			<core:Title text="General Data"/>
+			<Label text="Change Request ID"/>
+			<Input value="{ parts: [ 'CostCenter>/createCRCCData/crID', 'CostCenter>/csks/entity_id'], formatter: '.formatCR_Entiry_ID' }"
+				editable="false"/>
+			<Label text="Description"/>
+			<TextArea required="true" value="{CostCenter>/ChangeRequest/desc}"/>
+			<Label text="Priority"/>
+			<ComboBox selectedKey="{CostCenter>/ChangeRequest/priority}" showSecondaryValues="true"
+				items="{path:'Dropdowns>/TAXONOMY',filters : [{ path : 'taxonomyType', operator : 'EQ', value1 : 'CR_PRIORITY' }]}" editable="{App>/edit}">
+				<items>
+					<core:ListItem key="{Dropdowns>taxonomyId}" additionalText="{Dropdowns>taxonomyId}" text="{Dropdowns>taxonomyName}"/>
+				</items>
+			</ComboBox>
+			<Label text="Due Date"/>
+			<DatePicker displayFormat="{App>/dateFormat}" valueFormat="{App>/dateValueFormat}" value="{CostCenter>/ChangeRequest/dueDate}"/>
+			<Label text="Reason"/>
+			<ComboBox required="true" selectedKey="{CostCenter>/ChangeRequest/reason}" showSecondaryValues="true"
+				items="{path:'Dropdowns>/TAXONOMY',filters : [{ path : 'taxonomyType', operator : 'EQ', value1 : 'CUSTOMER_CR_REASON' }]}"
+				editable="{App>/edit}">
+				<items>
+					<core:ListItem key="{Dropdowns>taxonomyId}" additionalText="{Dropdowns>taxonomyId}" text="{Dropdowns>taxonomyName}"/>
+				</items>
+			</ComboBox>
+			<Label text="Replication Timing"/>
+			<Input editable="false"/>
+			<core:Title text="Process Data"/>
+			<Label text="Status"/>
+			<Input value="{CostCenter>/ChangeRequest/status}" editable="false"/>
+			<Label text="Current Work Item"/>
+			<Input value="{CostCenter>/ChangeRequest/currWrkItem}" editable="false"/>
+			<Label text="Created By"/>
+			<Input value="{CostCenter>/ChangeRequest/change_request_by/firstname} {CostCenter>/ChangeRequest/change_request_by/lastname}"
+				editable="false"/>
+			<Label text="Date/Time of Creation"/>
+			<Input value="{CostCenter>/ChangeRequest/dateCreation}" editable="false"/>
+			<Input value="{CostCenter>/ChangeRequest/timeCreation}" editable="false">
+				<layoutData>
+					<l:GridData span="XL4 L4 M4 S4"/>
+				</layoutData>
+			</Input>
+		</form:content>
+	</form:SimpleForm>
+</core:FragmentDefinition>

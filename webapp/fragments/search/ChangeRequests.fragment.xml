@@ -1,21 +1,15 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form"
-	xmlns:commons="sap.suite.ui.commons">
-	<l:DynamicSideContent id="idCRDynamicSideContent" class="sapUiDSCExplored" containerQuery="true" sideContentFallDown="BelowM"
-		showSideContent="false" breakpointChanged="handleBreakpointChangeEvent">
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:uxap="sap.uxap" xmlns:filterbar="sap.ui.comp.filterbar"
+	xmlns:l="sap.ui.layout">
+	<l:DynamicSideContent class="sapUiDSCExplored" containerQuery="true" sideContentFallDown="BelowM" showSideContent="false"
+		breakpointChanged="handleBreakpointChangeEvent">
 		<VBox>
-			<Table id="idCRList" mode="SingleSelectLeft" fixedLayout="false" items="{ChangeRequestsModel>/ChangeRequests}"
-				selectionChange="onSelectCRinTable" noDataText="No Chnage Request available, Please adjust filter or Try Again.">
+			<Table mode="SingleSelectLeft" fixedLayout="false" items="{ChangeRequestsModel>/ChangeRequests}" selectionChange="onSelectCRinTable"
+				noDataText="No Chnage Request available, Please adjust filter or Try Again.">
 				<headerToolbar>
 					<Toolbar>
-						<Label id="idAllChangeRequest" text="All Change Request({ChangeRequestsModel>/TotalCount})" design="Bold"></Label>
+						<Label text="All Change Request({ChangeRequestsModel>/TotalCount})" design="Bold"></Label>
 						<ToolbarSpacer/>
 						<Button icon="sap-icon://sort" tooltip="Sort Change Requests" press="onSortChangeReq"/>
-						<!--<SegmentedButton selectionChange="onGetCRListbyUser" selectedKey="{ChangeRequestsModel>/ReqType}">
-							<items>
-								<SegmentedButtonItem text="All Change Request" key="ALL_REQ"/>
-								<SegmentedButtonItem text="My Change Request" key="MY_REQ"/>
-							</items>
-						</SegmentedButton>-->
 						<Label text="Page No."/>
 						<Select forceSelection="true" items="{ChangeRequestsModel>/PageData}" selectedKey="{ChangeRequestsModel>/SelectedPageKey}"
 							change="onSelectChnageReqPage">
@@ -70,7 +64,7 @@
 			</Table>
 		</VBox>
 		<l:sideContent>
-			<core:Fragment fragmentName="murphy.mdm.customer.murphymdmcustomer.fragments.changeRequest.CRSideContent" type="XML"/>
+			<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.changeRequest.CRSideContent" type="XML"/>
 		</l:sideContent>
 	</l:DynamicSideContent>
 </core:FragmentDefinition>

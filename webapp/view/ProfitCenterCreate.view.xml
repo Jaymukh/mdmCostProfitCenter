@@ -15,7 +15,7 @@
 					</Panel>
 					<Panel expandable="true" expanded="true" headerText="Validity">
 						<content>
-							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.profitCenter.ChangeRequests" type="XML"/>
+							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.profitCenter.Validity" type="XML"/>
 						</content>
 					</Panel>
 					<Panel expandable="true" expanded="true" headerText="Profit Center Details">
@@ -48,9 +48,9 @@
 							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.profitCenter.CommunicationData" type="XML"/>
 						</content>
 					</Panel>
-					<Panel expandable="true" expanded="true" headerText="Profit Center Attachments">
+					<Panel expandable="true" expanded="true" headerText="Profit Center to Company Code Assignments">
 						<content>
-							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.profitCenter.Attachments" type="XML"/>
+							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.profitCenter.CompanyCodes" type="XML"/>
 						</content>
 					</Panel>
 				</VBox>

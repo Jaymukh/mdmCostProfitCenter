@@ -1,1 +1,51 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form"></core:FragmentDefinition>
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+	<Table>
+		<columns>
+			<Column >
+				<header>
+					<Label text="Hierarchy" design="Bold"></Label>
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Label text="Description" design="Bold"></Label>
+				</header>
+			</Column>
+			<Column >
+				<header>
+					<Label text="Parent Type" design="Bold"></Label>
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Label text="Parent Node" design="Bold"></Label>
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Label text="Description" design="Bold"></Label>
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Label text="Previous Type" design="Bold"></Label>
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Label text="Previous Node" design="Bold"></Label>
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Label text="Description" design="Bold"></Label>
+				</header>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells></cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

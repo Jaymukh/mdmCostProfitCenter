@@ -3,22 +3,17 @@
 		<columns>
 			<Column >
 				<header>
-					<Label text="Actions" design="Bold"></Label>
+					<Label text="Company Code" design="Bold"></Label>
 				</header>
 			</Column>
 			<Column>
 				<header>
-					<Label text="Language" design="Bold"></Label>
+					<Label text="Company Code Description" design="Bold"></Label>
 				</header>
 			</Column>
 			<Column >
 				<header>
-					<Label text="Name" design="Bold"></Label>
-				</header>
-			</Column>
-			<Column>
-				<header>
-					<Label text="Medium Text" design="Bold"></Label>
+					<Label text="Postable" design="Bold"></Label>
 				</header>
 			</Column>
 		</columns>

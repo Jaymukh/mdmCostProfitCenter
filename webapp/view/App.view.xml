@@ -31,7 +31,7 @@
 						</tnt:NavigationListItem>
 						<tnt:NavigationListItem text="Change" icon="sap-icon://request">
 							<tnt:NavigationListItem text="Cost Center Change Request" key="CostCenterChangeRequets"/>
-							<tnt:NavigationListItem text="Profit Center Change Request" key="MassChangeRequests"/>
+							<tnt:NavigationListItem text="Profit Center Change Request" key="ProfitCenterChangeRequest"/>
 						</tnt:NavigationListItem>
 					</tnt:NavigationList>
 					<tnt:fixedItem>

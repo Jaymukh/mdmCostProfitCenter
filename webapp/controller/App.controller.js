@@ -9,7 +9,16 @@ sap.ui.define([
 		},
 
 		onSideItemSelect: function (oEvent) {
-			this.getRouter().getTargets().display(oEvent.getParameter("item").getKey());
+			let oAppModel = this.getModel("App"),
+				sKey = oEvent.getParameter("item").getKey();
+			this.getRouter().getTargets().display(sKey);
+			oAppModel.setProperty("/appTitle", this.getText(sKey));
+
+			switch (sKey) {
+			case "CostCenterCreate":
+				this.createCCEntity();
+				break;
+			}
 		},
 
 		onSideNavPress: function (oEvent) {

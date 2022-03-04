@@ -1,12 +1,7 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
 	<VBox>
-		<Table>
+		<Table items="{Customer>/Cskt}">
 			<columns>
-				<Column >
-					<header>
-						<Label text="Actions" design="Bold"></Label>
-					</header>
-				</Column>
 				<Column>
 					<header>
 						<Label text="Language" design="Bold"></Label>
@@ -22,10 +17,23 @@
 						<Label text="Medium Text" design="Bold"></Label>
 					</header>
 				</Column>
+				<Column width="5%">
+					<header>
+						<Label design="Bold"></Label>
+					</header>
+				</Column>
 			</columns>
 			<items>
 				<ColumnListItem>
-					<cells></cells>
+					<cells>
+						<ComboBox selectedKey="{Customer>spras}"/>
+						<Input value="{Customer>ktext}"/>
+						<Input value="{Customer>ltext}"/>
+						<HBox>
+							<core:Icon src="sap-icon://edit" hoverBackgroundColor="#346187" hoverColor="#ffffff" class="sapUiSmallMarginEnd" press="onEditCompCode"/>
+							<core:Icon src="sap-icon://delete" color="Negative" class="sapUiSmallMarginEnd" press="onDeleteCompCode"/>
+						</HBox>
+					</cells>
 				</ColumnListItem>
 			</items>
 		</Table>

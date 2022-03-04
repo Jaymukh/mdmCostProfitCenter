@@ -1,0 +1,62 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+	<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+		adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+		singleContainerFullSize="false">
+		<form:content>
+			<core:Title text="General Data"/>
+			<Label text="Controlling Area"/>
+			<Input editable="false" value="{Customer>/Csks/kokrs}">
+				<layoutData>
+					<l:GridData span="XL2 L2 M3 S4"/>
+				</layoutData>
+			</Input>
+			<Input value="" editable="false"/>
+			<Label text="Cost Center / Name"/>
+			<Input required="true" value="{Customer>/Csks/koskl}">
+				<layoutData>
+					<l:GridData span="XL2 L2 M3 S4"/>
+				</layoutData>
+			</Input value="{Customer>/Cskt/ktext}">
+			<Input required="true"/>
+			<Label text="Medium Text"/>
+			<Input value="{Customer>/Cskt/ltext}"/>
+			<Label text="Department"/>
+			<Input value="{Customer>/Csks/abtei}"/>
+			<Label text="Cost Center Category" required="true"/>
+			<Input required="true" valueHelpOnly="true" showValueHelp="true" value="{Customer>/Cskt/kosar}"/>
+			<Label text="Company Code" required="true"/>
+			<ComboBox required="true" selectedKey="{Customer>/Cskt/kosar}"></ComboBox>
+			<core:Title text=""/>
+			<Label text="Business Area"/>
+			<Input editable="false" value="{Customer>/Cskt/gsber}"/>
+			<Label text="Functional Area"/>
+			<Input valueHelpOnly="true" showValueHelp="true" value="{Customer>/Cskt/fkber}"/>
+			<Label text="Currency" required="true"/>
+			<Input editable="false" required="true" value="{Customer>/Cskt/waers}"/>
+			<Label text="Profit Center" required="true"/>
+			<Input valueHelpOnly="true" showValueHelp="true" required="true" value="{Customer>/Cskt/prctr}"/>
+			<Label text="Logical System"/>
+			<Input editable="false" value="{Customer>/Cskt/logsystem}"/>
+			<core:Title text="Administrative Data"/>
+			<Label text="New Cost Center"/>
+			<Input valueHelpOnly="true" showValueHelp="true" value=""/>
+			<Label text="User Responsible"/>
+			<Input valueHelpOnly="true" showValueHelp="true" value="{Customer>/Cskt/verak_user}"/>
+			<Label text=" Person Responsible"/>
+			<Input required="true" value="{Customer>/Cskt/verak}"/>
+			<core:Title text="Audit Information"/>
+			<Label text="Created On/By"/>
+			<Input editable="false" value="{Customer>/Cskt/ersad}/{Customer>/Cskt/usnam}"/>
+			<Label text="Changed On/By"/>
+			<Input editable="false" value=""/>
+			<Label text="SAP Hierarchy"/>
+			<Input value="{Customer>/Cskt/zsap_hier}"/>
+			<Label text="Hyperion Hierarchy"/>
+			<Input value="{Customer>/Cskt/zhyp_hier}"/>
+			<Label text="Business Unit (Old/New)"/>
+			<Input showValueHelp="true" valueHelpOnly="true" value="{Customer>/Cskt/zbus_unit}"/>
+			<Label text="Department (Hyperion)"/>
+			<Input showValueHelp="true" valueHelpOnly="true" value="{Customer>/Cskt/zdept_hyp}"/>
+		</form:content>
+	</form:SimpleForm>
+</core:FragmentDefinition>

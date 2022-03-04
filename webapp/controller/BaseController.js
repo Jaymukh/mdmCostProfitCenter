@@ -54,5 +54,57 @@ sap.ui.define([
 			});
 		},
 
+		createCCEntity: function () {
+			var oCCModel = this.getModel("CostCenter"),
+				oAppModel = this.getModel("App"),
+				oChangeRequest = Object.assign({}, oAppModel.getProperty("/changeReq")),
+				oCsks = Object.assign({}, oAppModel.getProperty("/csks")),
+				sUserId = this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
+				oDate = new Date(),
+				sDate = `${oDate.getFullYear()}-${("0" + (oDate.getMonth() + 1) ).slice(-2)}-${("0" + oDate.getDate()).slice(-2)}`;
+
+			var objParam = {
+				url: "/murphyCustom/entity-service/entities/entity/create",
+				hasPayload: true,
+				type: "POST",
+				data: {
+					"entityType": "COST_CENTER",
+					"parentDTO": {
+						"customData": {
+							"business_entity": {
+								"entity_type_id": "41004",
+								"created_by": sUserId,
+								"modified_by": sUserId,
+								"is_draft": true
+							}
+						}
+					}
+				}
+			};
+
+			this.serviceCall.handleServiceRequest(objParam).then(
+				//Success Handler
+				oData => {
+					var oBusinessEntity = oData.result.customerDTOs[0].businessEntityDTO;
+					oCsks.entity_id = oBusinessEntity.entity_id;
+					oChangeRequest.change_request_id = 50001;
+					oChangeRequest.reason = "";
+					oChangeRequest.timeCreation = `${("0" + oDate.getHours()).slice(-2)}-${("0" + oDate.getMinutes()).slice(-2)}`;
+					oChangeRequest.dateCreation = sDate;
+					oChangeRequest.change_request_by = oBusinessEntity.hasOwnProperty("created_by") ? oBusinessEntity.created_by : {};
+					oChangeRequest.modified_by = oBusinessEntity.hasOwnProperty("modified_by") ? oBusinessEntity.modified_by : {};
+
+					oCCModel.setData({
+						ChangeRequest: oChangeRequest,
+						Csks: oCsks,
+						Cskt: []
+					});
+				},
+				//Error Handler 
+				oError => {
+
+				});
+		}
+
 	});
 });

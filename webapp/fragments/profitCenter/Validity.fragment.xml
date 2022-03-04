@@ -1,1 +1,24 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form"></core:FragmentDefinition>
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+	<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+		adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+		singleContainerFullSize="false">
+		<form:content>
+			<core:Title text="Validity Data"/>
+			<Label text="Valid-From Date"/>
+			<Text text=""/>
+			<Label text="Valid-To-Date"/>
+			<Text text=""/>
+			<Label text="Next Change"/>
+			<Text text=""/>
+			<Label text="Pending Change"/>
+			<Text text=""/>
+			<core:Title text="Edittion Data"/>
+			<Label text="From Edition"/>
+			<Text text=""/>
+			<Label text="To Edition"/>
+			<Text text=""/>
+			<Label text="Next Change Edition"/>
+			<Text text=""/>
+		</form:content>
+	</form:SimpleForm>
+</core:FragmentDefinition>
