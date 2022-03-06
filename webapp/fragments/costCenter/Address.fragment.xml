@@ -5,46 +5,49 @@
 		<form:content>
 			<core:Title text="Address"/>
 			<Label text="Title"/>
-			<ComboBox>
-				<items></items>
+			<ComboBox items="{Dropdowns>/TSAD3}" selectedKey="{Customer>/Csks/anred}" editable="{App>/edit}">
+				<items>
+					<core:Item text="{Dropdowns>title_MEDI}" key="{Dropdowns>title}"/>
+				</items>
 			</ComboBox>
 			<Label text="Name1" required="true"/>
-			<Input required="true" value=""/>
+			<Input required="true" value="{Customer>/Csks/name1}"/>
 			<Label text="Name2"/>
-			<Input value=""/>
+			<Input value="{Customer>/Csks/name2}"/>
 			<Label text="Name3"/>
-			<Input value=""/>
-			<Label text="Legal Name (Name4)"/>
-			<Input value=""/>
+			<Input value="{Customer>/Csks/name3}"/>
+			<Label text="Name4"/>
+			<Input value="{Customer>/Csks/name4}"/>
 			<core:Title text=""/>
 			<Label text="Street"/>
-			<Input value=""/>
+			<Input value="{Customer>/Csks/stras}"/>
 			<Label text="Postal Code / City" required="true"/>
-			<Input required="true" value="" maxLength="10">
+			<Input required="true" value="{Customer>/Csks/pstlz}" maxLength="10">
 				<layoutData>
 					<l:GridData span="XL2 L3 M3 S4"/>
 				</layoutData>
 			</Input>
-			<Input required="true" value="" maxLength="35"/>
+			<Input required="true" value="{Customer>/Csks/ort01}" maxLength="35"/>
 			<Label text="District"/>
-			<Input value=""/>
+			<Input value="{Customer>/Csks/ort02}"/>
 			<Label text="Country" required="true"/>
-			<ComboBox required="true">
-				<!--	<core:Item key="{Dropdowns>land1}" text="{Dropdowns>landx}"/>-->
+			<ComboBox required="true" items="{Dropdowns>/T005}" selectionChange="onChangeCountry" selectedKey="{Customer>/Csks/land1}"
+				editable="{App>/edit}">
+				<core:Item key="{Dropdowns>land1}" text="{Dropdowns>landx}"/>
 			</ComboBox>
 			<Label text="Region" required="true"/>
-			<ComboBox required="true">
-				<!--	<core:Item key="{Dropdowns>bland}" text="{Dropdowns>bland} - {Dropdowns>bezei}"/>-->
+			<ComboBox id="idCustRegion" required="true" items="{Dropdowns>/T005S}" selectedKey="{Customer>/Csks/regio}" editable="{App>/edit}">
+				<core:Item key="{Dropdowns>bland}" text="{Dropdowns>bland} - {Dropdowns>bezei}"/>
 			</ComboBox>
 			<Label text="PO Box Postal Code/ PO Box"/>
-			<Input>
+			<Input value="{Customer>/Csks/pstl2}">
 				<layoutData>
 					<l:GridData span="XL2 L3 M3 S4"/>
 				</layoutData>
 			</Input>
-			<Input/>
+			<Input value="{Customer>/Csks/pfach}"/>
 			<Label text="Tax Jurisdiction"/>
-			<Input value="" editable="false"/>
+			<Input value="{Customer>/Csks/txjcd}" editable="false"/>
 		</form:content>
 	</form:SimpleForm>
 </core:FragmentDefinition>

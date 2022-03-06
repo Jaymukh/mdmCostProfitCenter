@@ -5,24 +5,56 @@
 		<form:content>
 			<core:Title text="Control Indicators"/>
 			<Label text="Record Quantity"/>
-			<CheckBox/>
+			<CheckBox select="onSelectCheckBox" selected="{= ${Customer>/Csks/mgefl} === 'X'}">
+				<customData>
+					<core:CustomData key="Customer>/Csks/mgefl"/>
+				</customData>
+			</CheckBox>
 			<core:Title text=""/>
-			<core:Title text="Actual Primary Costs"/>
-			<Label text="Record Quantity"/>
-			<CheckBox/>
+			<core:Title text="Lock Indicators"/>
+			<Label text="Actual Primary Costs"/>
+			<CheckBox select="onSelectCheckBox" selected="{= ${Customer>/Csks/bkzkp} === 'X'}">
+				<customData>
+					<core:CustomData key="Customer>/Csks/bkzkp"/>
+				</customData>
+			</CheckBox>
 			<Label text="Plan Primary Costs"/>
-			<CheckBox/>
+			<CheckBox select="onSelectCheckBox" selected="{= ${Customer>/Csks/pkzkp} === 'X'}">
+				<customData>
+					<core:CustomData key="Customer>/Csks/pkzkp"/>
+				</customData>
+			</CheckBox>
 			<Label text="Actual Revenues"/>
-			<CheckBox/>
+			<CheckBox select="onSelectCheckBox" selected="{= ${Customer>/Csks/bkzer} === 'X'}">
+				<customData>
+					<core:CustomData key="Customer>/Csks/bkzer"/>
+				</customData>
+			</CheckBox>
 			<Label text="Commitment Update"/>
-			<CheckBox/>
+			<CheckBox select="onSelectCheckBox" selected="{= ${Customer>/Csks/bkzob} === 'X'}">
+				<customData>
+					<core:CustomData key="Customer>/Csks/bkzob"/>
+				</customData>
+			</CheckBox>
 			<core:Title text=""/>
 			<Label text="Actual Secondary Costs"/>
-			<CheckBox/>
+			<CheckBox select="onSelectCheckBox" selected="{= ${Customer>/Csks/bkzks} === 'X'}">
+				<customData>
+					<core:CustomData key="Customer>/Csks/bkzks"/>
+				</customData>
+			</CheckBox>
 			<Label text="Plan Secondary Costs"/>
-			<CheckBox/>
+			<CheckBox select="onSelectCheckBox" selected="{= ${Customer>/Csks/pkzks} === 'X'}">
+				<customData>
+					<core:CustomData key="Customer>/Csks/pkzks"/>
+				</customData>
+			</CheckBox>
 			<Label text="Plan Revenues"/>
-			<CheckBox/>
+			<CheckBox select="onSelectCheckBox" selected="{= ${Customer>/Csks/pkzer} === 'X'}">
+				<customData>
+					<core:CustomData key="Customer>/Csks/pkzer"/>
+				</customData>
+			</CheckBox>
 		</form:content>
 	</form:SimpleForm>
 </core:FragmentDefinition>

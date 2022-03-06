@@ -1,6 +1,12 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
 	<VBox>
 		<Table items="{Customer>/Cskt}">
+			<headerToolbar>
+				<Toolbar>
+					<ToolbarSpacer></ToolbarSpacer>
+					<Button text="Add" press="onAddDescription" type="Emphasized" visible="{App>/edit}"></Button>
+				</Toolbar>
+			</headerToolbar>
 			<columns>
 				<Column>
 					<header>
@@ -26,7 +32,9 @@
 			<items>
 				<ColumnListItem>
 					<cells>
-						<ComboBox selectedKey="{Customer>spras}"/>
+						<ComboBox required="true" selectedKey="{Customer>spras}" items="{Dropdowns>/T002}" editable="{App>/edit}">
+							<core:Item key="{Dropdowns>spras}" text="{Dropdowns>sptxt}"/>
+						</ComboBox>
 						<Input value="{Customer>ktext}"/>
 						<Input value="{Customer>ltext}"/>
 						<HBox>

@@ -16,7 +16,8 @@
 				<layoutData>
 					<l:GridData span="XL2 L2 M3 S4"/>
 				</layoutData>
-			</Input value="{Customer>/Cskt/ktext}">
+			</Input>
+			<Input value="{Customer>/Cskt/ktext}"/>
 			<Input required="true"/>
 			<Label text="Medium Text"/>
 			<Input value="{Customer>/Cskt/ltext}"/>
