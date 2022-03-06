@@ -93,6 +93,9 @@
 			},
 			"CostCenter": {
 				"type": "sap.ui.model.json.JSONModel"
+			},
+			"ProfitCenter": {
+				"type": "sap.ui.model.json.JSONModel"
 			}
 		},
 		"resources": {

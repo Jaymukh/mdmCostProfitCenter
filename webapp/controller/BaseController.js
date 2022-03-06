@@ -104,6 +104,22 @@ sap.ui.define([
 				oError => {
 
 				});
+		},
+
+		createPCEntity: function () {
+			var oPCModel = this.getModel("ProfitCenter"),
+				oAppModel = this.getModel("App"),
+				oChangeRequest = Object.assign({}, oAppModel.getProperty("/changeReq")),
+				oCepc = Object.assign({}, oAppModel.getProperty("/cepc")),
+				sUserId = this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
+				oDate = new Date(),
+				sDate = `${oDate.getFullYear()}-${("0" + (oDate.getMonth() + 1) ).slice(-2)}-${("0" + oDate.getDate()).slice(-2)}`;
+
+			oPCModel.setData({
+				ChangeRequest: oChangeRequest,
+				Cepc: oCepc,
+				Cepct: []
+			});
 		}
 
 	});
