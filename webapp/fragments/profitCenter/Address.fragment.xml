@@ -18,7 +18,7 @@
 			<Input value=""/>
 			<core:Title text=""/>
 			<Label text="Street"/>
-			<Input value=""/>
+			<Input value="{ProfitCenter>/Cepc/stras}"/>
 			<Label text="Postal Code / City" required="true"/>
 			<Input required="true" value="" maxLength="10">
 				<layoutData>
