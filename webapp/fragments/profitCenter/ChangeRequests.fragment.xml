@@ -5,27 +5,30 @@
 		<form:content>
 			<core:Title text="General Data"/>
 			<Label text="Change Request ID"/>
-			<Input value="" editable="false"/>
+			<Input  editable="false" value="{ parts: [ 'ProfitCenter>/createCRCCData/crID', 'ProfitCenter>/csks/entity_id'], formatter: '.formatCR_Entiry_ID' }"
+				/>
 			<Label text="Description"/>
-			<TextArea required="true" value=""/>
+			<TextArea required="true" value="{ProfitCenter>/ChangeRequest/desc}"/>
 			<Label text="Priority"/>
-			<ComboBox showSecondaryValues="true"></ComboBox>
+			<ComboBox showSecondaryValues="true" selectedKey="{ProfitCenter>/ChangeRequest/priority}"></ComboBox>
 			<Label text="Due Date"/>
-			<DatePicker displayFormat="{App>/dateFormat}" valueFormat="{App>/dateValueFormat}"/>
+			<DatePicker displayFormat="{App>/dateFormat}" valueFormat="{App>/dateValueFormat}"
+			value="{ProfitCenter>/ChangeRequest/dueDate}"/>
 			<Label text="Reason"/>
-			<ComboBox required="true" showSecondaryValues="true" editable="{App>/edit}"></ComboBox>
+			<ComboBox required="true" showSecondaryValues="true" editable="{App>/edit}"
+			selectedKey="{ProfitCenter>/ChangeRequest/reason}"></ComboBox>
 			<Label text="Replication Timing"/>
 			<Input editable="false"/>
 			<core:Title text="Process Data"/>
 			<Label text="Status"/>
-			<Input value="" editable="false"/>
+			<Input value="{ProfitCenter>/ChangeRequest/status}" editable="false"/>
 			<Label text="Current Work Item"/>
-			<Input value="" editable="false"/>
+			<Input value="{ProfitCenter>/ChangeRequest/currWrkItem}" editable="false"/>
 			<Label text="Created By"/>
-			<Input value="" editable="false"/>
+			<Input value="{ProfitCenter>/ChangeRequest/change_request_by/firstname} {ProfitCenter>/ChangeRequest/change_request_by/lastname}" editable="false"/>
 			<Label text="Date/Time of Creation"/>
-			<Input value="" editable="false"/>
-			<Input value="" editable="false">
+			<Input value="{ProfitCenter>/ChangeRequest/dateCreation}" editable="false"/>
+			<Input value="{ProfitCenter>/ChangeRequest/timeCreation}" editable="false">
 				<layoutData>
 					<l:GridData span="XL4 L4 M4 S4"/>
 				</layoutData>

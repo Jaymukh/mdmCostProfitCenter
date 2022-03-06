@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
-	<Table>
+	<Table items="{ProfitCenter>/Cepct}">
 		<columns>
 			<Column >
 				<header>
@@ -24,7 +24,13 @@
 		</columns>
 		<items>
 			<ColumnListItem>
-				<cells></cells>
+				<cells>
+					<Text text=""></Text>
+					<Text text="{ProfitCenter>ktext}"></Text>
+					<Text text="{ProfitCenter>ktext}"></Text>
+					<Text text="{ProfitCenter>ltext}"></Text>
+					
+				</cells>
 			</ColumnListItem>
 		</items>
 	</Table>

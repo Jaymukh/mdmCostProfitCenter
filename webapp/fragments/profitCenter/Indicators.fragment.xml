@@ -5,7 +5,7 @@
 		<form:content>
 			<core:Title text="Indicators"/>
 			<Label text="Lock Indicator"/>
-			<CheckBox/>
+			<CheckBox selected="{ProfitCenter>/Cepc/lock_ind}"/>
 		</form:content>
 	</form:SimpleForm>
 </core:FragmentDefinition>

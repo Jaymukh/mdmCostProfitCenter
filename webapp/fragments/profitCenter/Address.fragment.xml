@@ -5,46 +5,46 @@
 		<form:content>
 			<core:Title text="Address"/>
 			<Label text="Title"/>
-			<ComboBox>
+			<ComboBox selectedKey="{ProfitCenter>/Cepc/anred}">
 				<items></items>
 			</ComboBox>
 			<Label text="Name1" required="true"/>
-			<Input required="true" value=""/>
+			<Input required="true" value="{ProfitCenter>/Cepc/name1}"/>
 			<Label text="Name2"/>
-			<Input value=""/>
+			<Input value="{ProfitCenter>/Cepc/name2}"/>
 			<Label text="Name3"/>
-			<Input value=""/>
+			<Input value="{ProfitCenter>/Cepc/name3}"/>
 			<Label text="Name4"/>
-			<Input value=""/>
+			<Input value="{ProfitCenter>/Cepc/name4}"/>
 			<core:Title text=""/>
 			<Label text="Street"/>
 			<Input value="{ProfitCenter>/Cepc/stras}"/>
 			<Label text="Postal Code / City" required="true"/>
-			<Input required="true" value="" maxLength="10">
+			<Input required="true" value="{ProfitCenter>/Cepc/pstlz}" maxLength="10">
 				<layoutData>
 					<l:GridData span="XL2 L3 M3 S4"/>
 				</layoutData>
 			</Input>
-			<Input required="true" value="" maxLength="35"/>
+			<Input required="true" value="{ProfitCenter>/Cepc/ort01}" maxLength="35"/>
 			<Label text="District"/>
-			<Input value=""/>
+			<Input value="{ProfitCenter>/Cepc/ort02}"/>
 			<Label text="Country" required="true"/>
-			<ComboBox required="true">
+			<ComboBox required="true" selectedKey="{ProfitCenter>/Cepc/land1}">
 				<!--	<core:Item key="{Dropdowns>land1}" text="{Dropdowns>landx}"/>-->
 			</ComboBox>
 			<Label text="Region" required="true"/>
-			<ComboBox required="true">
+			<ComboBox required="true" selectedKey="{ProfitCenter>/Cepc/regio}">
 				<!--	<core:Item key="{Dropdowns>bland}" text="{Dropdowns>bland} - {Dropdowns>bezei}"/>-->
 			</ComboBox>
 			<Label text="PO Box Postal Code/ PO Box"/>
-			<Input>
+			<Input value="{ProfitCenter>/Cepc/pfach}">
 				<layoutData>
 					<l:GridData span="XL2 L3 M3 S4"/>
 				</layoutData>
 			</Input>
-			<Input/>
+			<Input value="{ProfitCenter>/Cepc/pstl2}"/>
 			<Label text="Tax Jurisdiction"/>
-			<Input value="" editable="false"/>
+			<Input value="{ProfitCenter>/Cepc/txjcd}" editable="false"/>
 		</form:content>
 	</form:SimpleForm>
 </core:FragmentDefinition>

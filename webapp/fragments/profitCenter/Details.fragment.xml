@@ -5,49 +5,49 @@
 		<form:content>
 			<core:Title text="General Data"/>
 			<Label text="Controlling Area"/>
-			<Input editable="false">
+			<Input editable="false" value="{ProfitCenter>/Cepc/kokrs}">
 				<layoutData>
 					<l:GridData span="XL2 L2 M3 S4"/>
 				</layoutData>
 			</Input>
-			<Input/>
+			<Input value="{ProfitCenter>/Cepc/kokrs}"/>
 			<Label text="Profit Center / Name"/>
-			<Input required="true">
+			<Input required="true" value="{ProfitCenter>/Cepc/prctr}">
 				<layoutData>
 					<l:GridData span="XL2 L2 M3 S4"/>
 				</layoutData>
 			</Input>
-			<Input required="true"/>
+			<Input required="true" value="{ProfitCenter>/Cepc/prctr}"/>
 			<Label text="Long Text"/>
-			<Input value=""/>
+			<Input value="{ProfitCenter>/Cepct/ltext}"/>
 			<Label text="Department"/>
-			<Input value=""/>
+			<Input value="{ProfitCenter>/Cepc/abtei}"/>
 			<Label text="Segment" required="true"/>
-			<Input required="true" valueHelpOnly="true" showValueHelp="true">
+			<Input required="true" valueHelpOnly="true" showValueHelp="true" value="{ProfitCenter>/Cepc/segment}">
 				<layoutData>
 					<l:GridData span="XL2 L2 M3 S4"/>
 				</layoutData>
 			</Input>
-			<Input required="true"/>
+			<Input required="true" value="{ProfitCenter>/Cepc/segment}"/>
 			<Label text="Logical System"/>
-			<Input editable="false">
+			<Input editable="false" value="{ProfitCenter>/Cepc/logsystem}">
 				<layoutData>
 					<l:GridData span="XL2 L2 M3 S4"/>
 				</layoutData>
 			</Input>
-			<Input editable="false"/>
+			<Input editable="false" value="{ProfitCenter>/Cepc/logsystem}"/>
 			<core:Title text=""/>
 			<Label text="New Profit Center"/>
-			<Input value="" valueHelpOnly="true" showValueHelp="true"/>
+			<Input value="" valueHelpOnly="true" showValueHelp="true" value=""/>
 			<Label text="User Responsible"/>
-			<Input valueHelpOnly="true" showValueHelp="true"/>
+			<Input valueHelpOnly="true" showValueHelp="true" value="{ProfitCenter>/Cepc/verak_user}"/>
 			<Label text="Person Responsible" required="true"/>
-			<Input required="true"/>
+			<Input required="true" value="{ProfitCenter>/Cepc/verak}"/>
 			<core:Title text="Audit Information"/>
 			<Label text="Created On/By"/>
-			<Input editable="false"/>
+			<Input editable="false" value="{ProfitCenter>/Cepc/ersda}"/>
 			<Label text="Changed On/By"/>
-			<Input editable="false"/>
+			<Input editable="false" value=""/>
 		</form:content>
 	</form:SimpleForm>
 </core:FragmentDefinition>

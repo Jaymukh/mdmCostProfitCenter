@@ -5,24 +5,24 @@
 		<form:content>
 			<core:Title text="Communication Data"/>
 			<Label text="Language"/>
-			<ComboBox>
+			<ComboBox selectedKey="{ProfitCenter>/Cepc/spras}">
 				<items></items>
 			</ComboBox>
 			<Label text="Telephone 1"/>
-			<Input value=""/>
+			<Input value="{ProfitCenter>/Cepc/anred}{ProfitCenter>/Cepc/telf1}"/>
 			<Label text="Telephone 2"/>
-			<Input value=""/>
+			<Input value="{ProfitCenter>/Cepc/telf2}"/>
 			<Label text="Fax Number"/>
-			<Input value=""/>
+			<Input value="{ProfitCenter>/Cepc/telfx}"/>
 			<Label text="Telebox Number"/>
-			<Input value=""/>
+			<Input value="{ProfitCenter>/Cepc/telbx}"/>
 			<core:Title text=""/>
 			<Label text="Teletex Number"/>
-			<Input value=""/>
+			<Input value="{ProfitCenter>/Cepc/teltx}"/>
 			<Label text="Printer Name"/>
-			<Input value=""/>
+			<Input value="{ProfitCenter>/Cepc/drnam}"/>
 			<Label text="Data Line"/>
-			<Input value=""/>
+			<Input value="{ProfitCenter>/Cepc/datlt}"/>
 		</form:content>
 	</form:SimpleForm>
 </core:FragmentDefinition>
