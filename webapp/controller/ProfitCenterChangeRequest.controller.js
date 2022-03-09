@@ -7,6 +7,10 @@ sap.ui.define([
 		onInit: function () {
 
 		},
+
+		onSearchPCCR: function () {
+			this.getAllPCChangeRequests(1);
+		}
 	});
 
 });

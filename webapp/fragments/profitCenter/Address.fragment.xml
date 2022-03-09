@@ -5,39 +5,42 @@
 		<form:content>
 			<core:Title text="Address"/>
 			<Label text="Title"/>
-			<ComboBox selectedKey="{ProfitCenter>/Cepc/anred}">
-				<items></items>
+			<ComboBox items="{Dropdowns>/TSAD3}" selectedKey="{ProfitCenter>/Cepc/anred}" editable="{App>/edit}">
+				<items>
+					<core:Item text="{Dropdowns>title_MEDI}" key="{Dropdowns>title}"/>
+				</items>
 			</ComboBox>
 			<Label text="Name1" required="true"/>
-			<Input required="true" value="{ProfitCenter>/Cepc/name1}"/>
+			<Input required="true" value="{ProfitCenter>/Cepc/name1}" editable="{App>/edit}"/>
 			<Label text="Name2"/>
-			<Input value="{ProfitCenter>/Cepc/name2}"/>
+			<Input value="{ProfitCenter>/Cepc/name2}" editable="{App>/edit}"/>
 			<Label text="Name3"/>
-			<Input value="{ProfitCenter>/Cepc/name3}"/>
+			<Input value="{ProfitCenter>/Cepc/name3}" editable="{App>/edit}"/>
 			<Label text="Name4"/>
-			<Input value="{ProfitCenter>/Cepc/name4}"/>
+			<Input value="{ProfitCenter>/Cepc/name4}" editable="{App>/edit}"/>
 			<core:Title text=""/>
 			<Label text="Street"/>
-			<Input value="{ProfitCenter>/Cepc/stras}"/>
+			<Input value="{ProfitCenter>/Cepc/stras}" editable="{App>/edit}"/>
 			<Label text="Postal Code / City" required="true"/>
-			<Input required="true" value="{ProfitCenter>/Cepc/pstlz}" maxLength="10">
+			<Input required="true" value="{ProfitCenter>/Cepc/pstlz}" maxLength="10" editable="{App>/edit}">
 				<layoutData>
 					<l:GridData span="XL2 L3 M3 S4"/>
 				</layoutData>
 			</Input>
-			<Input required="true" value="{ProfitCenter>/Cepc/ort01}" maxLength="35"/>
+			<Input required="true" value="{ProfitCenter>/Cepc/ort01}" maxLength="35" editable="{App>/edit}"/>
 			<Label text="District"/>
-			<Input value="{ProfitCenter>/Cepc/ort02}"/>
+			<Input value="{ProfitCenter>/Cepc/ort02}" editable="{App>/edit}"/>
 			<Label text="Country" required="true"/>
-			<ComboBox required="true" selectedKey="{ProfitCenter>/Cepc/land1}">
-				<!--	<core:Item key="{Dropdowns>land1}" text="{Dropdowns>landx}"/>-->
+			<ComboBox required="true" items="{Dropdowns>/T005}" selectionChange="onChangeCountry" selectedKey="{ProfitCenter>/Cepc/land1}"
+				editable="{App>/edit}">
+				<core:Item key="{Dropdowns>land1}" text="{Dropdowns>landx}"/>
 			</ComboBox>
 			<Label text="Region" required="true"/>
-			<ComboBox required="true" selectedKey="{ProfitCenter>/Cepc/regio}">
-				<!--	<core:Item key="{Dropdowns>bland}" text="{Dropdowns>bland} - {Dropdowns>bezei}"/>-->
+			<ComboBox id="idPCRegion" required="true" items="{Dropdowns>/T005S}" selectedKey="{ProfitCenter>/Cepc/regio}" editable="{App>/edit}">
+				<core:Item key="{Dropdowns>bland}" text="{Dropdowns>bland} - {Dropdowns>bezei}"/>
 			</ComboBox>
 			<Label text="PO Box Postal Code/ PO Box"/>
-			<Input value="{ProfitCenter>/Cepc/pfach}">
+			<Input value="{ProfitCenter>/Cepc/pfach}" editable="{App>/edit}">
 				<layoutData>
 					<l:GridData span="XL2 L3 M3 S4"/>
 				</layoutData>

@@ -94,12 +94,7 @@
 				<columns>
 					<Column>
 						<header>
-							<Label text="Profit Center" design="Bold"></Label>
-						</header>
-					</Column>
-					<Column>
-						<header>
-							<Label text="Name" design="Bold"></Label>
+							<Label text="CC Number" design="Bold"></Label>
 						</header>
 					</Column>
 					<Column>
@@ -109,22 +104,32 @@
 					</Column>
 					<Column>
 						<header>
-							<Label text="Valid Form" design="Bold"></Label>
+							<Label text="Overdue" design="Bold"></Label>
 						</header>
 					</Column>
 					<Column>
 						<header>
-							<Label text="Valid To" design="Bold"></Label>
+							<Label text="Date" design="Bold"></Label>
 						</header>
 					</Column>
 					<Column>
 						<header>
-							<Label text="Medium Text" design="Bold"></Label>
+							<Label text="Profit Center Name" design="Bold"></Label>
 						</header>
 					</Column>
 					<Column>
 						<header>
-							<Label text="User Responsible" design="Bold"></Label>
+							<Label text="Profit Center" design="Bold"></Label>
+						</header>
+					</Column>
+					<Column>
+						<header>
+							<Label text="Segment" design="Bold"></Label>
+						</header>
+					</Column>
+					<Column>
+						<header>
+							<Label text="User/Person Responsible" design="Bold"></Label>
 						</header>
 					</Column>
 					<Column width="5%" visible="{= ${userManagementModel>/role}.indexOf('req')!== -1 ? true : false }">

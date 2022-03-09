@@ -1,53 +1,53 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
-	<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
-		adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+	<form:SimpleForm id="idCCAddress" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+		labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
 		singleContainerFullSize="false">
 		<form:content>
 			<core:Title text="Address"/>
 			<Label text="Title"/>
-			<ComboBox items="{Dropdowns>/TSAD3}" selectedKey="{Customer>/Csks/anred}" editable="{App>/edit}">
+			<ComboBox items="{Dropdowns>/TSAD3}" selectedKey="{CostCenter>/Csks/anred}" editable="{App>/edit}">
 				<items>
 					<core:Item text="{Dropdowns>title_MEDI}" key="{Dropdowns>title}"/>
 				</items>
 			</ComboBox>
 			<Label text="Name1" required="true"/>
-			<Input required="true" value="{Customer>/Csks/name1}"/>
+			<Input required="true" value="{CostCenter>/Csks/name1}" editable="{App>/edit}"/>
 			<Label text="Name2"/>
-			<Input value="{Customer>/Csks/name2}"/>
+			<Input value="{CostCenter>/Csks/name2}" editable="{App>/edit}"/>
 			<Label text="Name3"/>
-			<Input value="{Customer>/Csks/name3}"/>
+			<Input value="{CostCenter>/Csks/name3}" editable="{App>/edit}"/>
 			<Label text="Name4"/>
-			<Input value="{Customer>/Csks/name4}"/>
+			<Input value="{CostCenter>/Csks/name4}" editable="{App>/edit}"/>
 			<core:Title text=""/>
 			<Label text="Street"/>
-			<Input value="{Customer>/Csks/stras}"/>
+			<Input value="{CostCenter>/Csks/stras}" editable="{App>/edit}"/>
 			<Label text="Postal Code / City" required="true"/>
-			<Input required="true" value="{Customer>/Csks/pstlz}" maxLength="10">
+			<Input required="true" value="{CostCenter>/Csks/pstlz}" maxLength="10" editable="{App>/edit}">
 				<layoutData>
 					<l:GridData span="XL2 L3 M3 S4"/>
 				</layoutData>
 			</Input>
-			<Input required="true" value="{Customer>/Csks/ort01}" maxLength="35"/>
+			<Input required="true" value="{CostCenter>/Csks/ort01}" maxLength="35" editable="{App>/edit}"/>
 			<Label text="District"/>
-			<Input value="{Customer>/Csks/ort02}"/>
+			<Input value="{CostCenter>/Csks/ort02}" editable="{App>/edit}"/>
 			<Label text="Country" required="true"/>
-			<ComboBox required="true" items="{Dropdowns>/T005}" selectionChange="onChangeCountry" selectedKey="{Customer>/Csks/land1}"
+			<ComboBox required="true" items="{Dropdowns>/T005}" selectionChange="onChangeCountry" selectedKey="{CostCenter>/Csks/land1}"
 				editable="{App>/edit}">
 				<core:Item key="{Dropdowns>land1}" text="{Dropdowns>landx}"/>
 			</ComboBox>
 			<Label text="Region" required="true"/>
-			<ComboBox id="idCustRegion" required="true" items="{Dropdowns>/T005S}" selectedKey="{Customer>/Csks/regio}" editable="{App>/edit}">
+			<ComboBox id="idCCRegion" required="true" items="{Dropdowns>/T005S}" selectedKey="{CostCenter>/Csks/regio}" editable="{App>/edit}">
 				<core:Item key="{Dropdowns>bland}" text="{Dropdowns>bland} - {Dropdowns>bezei}"/>
 			</ComboBox>
 			<Label text="PO Box Postal Code/ PO Box"/>
-			<Input value="{Customer>/Csks/pstl2}">
+			<Input value="{CostCenter>/Csks/pstl2}" editable="{App>/edit}">
 				<layoutData>
 					<l:GridData span="XL2 L3 M3 S4"/>
 				</layoutData>
 			</Input>
-			<Input value="{Customer>/Csks/pfach}"/>
+			<Input value="{CostCenter>/Csks/pfach}" editable="{App>/edit}"/>
 			<Label text="Tax Jurisdiction"/>
-			<Input value="{Customer>/Csks/txjcd}" editable="false"/>
+			<Input value="{CostCenter>/Csks/txjcd}" editable="false"/>
 		</form:content>
 	</form:SimpleForm>
 </core:FragmentDefinition>

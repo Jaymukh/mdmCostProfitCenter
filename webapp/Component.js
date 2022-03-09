@@ -59,7 +59,7 @@ sap.ui.define([
 							oUserManagementModel.setProperty("/accountGroups", aAccountGroup);
 							oUserManagementModel.refresh(true);
 							var oObjParam = {
-								url: "/murphyCustom/usermgmt-service/users/user/create",
+								url: "/mdmccpc/usermgmt-service/users/user/create",
 								hasPayload: true,
 								type: "POST",
 								data: {
@@ -67,14 +67,14 @@ sap.ui.define([
 										"email_id": oUserModelResources.emails[0].value,
 										"firstname": oUserModelResources.name.givenName,
 										"lastname": oUserModelResources.name.familyName,
-										"display_name": oUserModelResources.displayName,
+										"display_name": oUserModelResources.name.givenName + " " + oUserModelResources.name.familyName,
 										"external_id": oUserModelResources.id,
 										"created_by": 1,
 										"modified_by": 1,
 										"roles": [{
 											"role_code_btp": "DA_MDM_ADMIN"
 										}],
-										"_active": true
+										"is_active": true
 									}]
 								}
 							};

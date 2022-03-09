@@ -10,25 +10,23 @@
 					<l:GridData span="XL2 L2 M3 S4"/>
 				</layoutData>
 			</Input>
-			<Input value="{ProfitCenter>/Cepc/kokrs}"/>
+			<Input value="Murphy Controlling Area" editable="false"/>
 			<Label text="Profit Center / Name"/>
-			<Input required="true" value="{ProfitCenter>/Cepc/prctr}">
+			<Input required="true" value="{ProfitCenter>/Cepc/prctr}" editable="{App>/edit}">
 				<layoutData>
 					<l:GridData span="XL2 L2 M3 S4"/>
 				</layoutData>
 			</Input>
-			<Input required="true" value="{ProfitCenter>/Cepc/prctr}"/>
+			<Input required="true" value="{ProfitCenter>/Cepct/ktext}" liveChange="onChangeName" editable="{App>/edit}"/>
 			<Label text="Long Text"/>
-			<Input value="{ProfitCenter>/Cepct/ltext}"/>
+			<Input value="{ProfitCenter>/Cepct/ltext}" liveChange="onChangeMText" editable="{App>/edit}"/>
 			<Label text="Department"/>
-			<Input value="{ProfitCenter>/Cepc/abtei}"/>
+			<Input value="{ProfitCenter>/Cepc/abtei}" editable="{App>/edit}"/>
 			<Label text="Segment" required="true"/>
-			<Input required="true" valueHelpOnly="true" showValueHelp="true" value="{ProfitCenter>/Cepc/segment}">
-				<layoutData>
-					<l:GridData span="XL2 L2 M3 S4"/>
-				</layoutData>
-			</Input>
-			<Input required="true" value="{ProfitCenter>/Cepc/segment}"/>
+			<ComboBox required="true" selectedKey="{CostCenter>/Cepc/segment}" items="{Dropdowns>/FAGL_SEGM}" editable="{App>/edit}"
+				showSecondaryValues="true">
+				<core:ListItem key="{Dropdowns>segment}" text="{Dropdowns>text}" additionalText="{Dropdowns>segment}"/>
+			</ComboBox>
 			<Label text="Logical System"/>
 			<Input editable="false" value="{ProfitCenter>/Cepc/logsystem}">
 				<layoutData>
@@ -36,13 +34,33 @@
 				</layoutData>
 			</Input>
 			<Input editable="false" value="{ProfitCenter>/Cepc/logsystem}"/>
-			<core:Title text=""/>
+			<core:Title text="Administrative Data"/>
 			<Label text="New Profit Center"/>
-			<Input value="" valueHelpOnly="true" showValueHelp="true" value=""/>
+			<Input required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true" value="{ProfitCenter>/Cepc/nprctr}"
+				editable="{App>/edit}">
+				<customData>
+					<core:CustomData key="title" value="Profit Center"></core:CustomData>
+					<core:CustomData key="table" value="vw_cepct"></core:CustomData>
+					<core:CustomData key="inputKey" value="prctr"></core:CustomData>
+					<core:CustomData key="inputText" value="prctr"></core:CustomData>
+					<core:CustomData key="prctr" value="Profit Center"></core:CustomData>
+					<core:CustomData key="ktext" value="Name"></core:CustomData>
+					<core:CustomData key="ltext" value="Medium Text"></core:CustomData>
+				</customData>
+			</Input>
 			<Label text="User Responsible"/>
-			<Input valueHelpOnly="true" showValueHelp="true" value="{ProfitCenter>/Cepc/verak_user}"/>
+			<Input valueHelpOnly="true" showValueHelp="true" value="{ProfitCenter>/Cepc/verak_user}" editable="{App>/edit}">
+				<customData>
+					<core:CustomData key="title" value="User Details"></core:CustomData>
+					<core:CustomData key="table" value="user_addrp"></core:CustomData>
+					<core:CustomData key="inputKey" value="prctr"></core:CustomData>
+					<core:CustomData key="inputText" value="prctr"></core:CustomData>
+					<core:CustomData key="userid" value="User Id"></core:CustomData>
+					<core:CustomData key="name" value="Name"></core:CustomData>
+				</customData>
+			</Input>
 			<Label text="Person Responsible" required="true"/>
-			<Input required="true" value="{ProfitCenter>/Cepc/verak}"/>
+			<Input required="true" value="{ProfitCenter>/Cepc/verak}" editable="{App>/edit}"/>
 			<core:Title text="Audit Information"/>
 			<Label text="Created On/By"/>
 			<Input editable="false" value="{ProfitCenter>/Cepc/ersda}"/>

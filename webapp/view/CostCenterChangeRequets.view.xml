@@ -39,8 +39,8 @@
 										<SearchField/>
 										<ToggleButton id="slideToggleButtonID" icon="sap-icon://arrow-left" pressed="false" text="Side Menu" press="handleCRSideMenu"></ToggleButton>
 									</Toolbar>
-									<filterbar:FilterBar id="idFbChangeRequests" showFilterConfiguration="false" useToolbar="false" showGoOnFB="true" search="onSearchCrList"
-										class="noBorderFilterBar">
+									<filterbar:FilterBar id="idFbChangeRequests" showFilterConfiguration="false" useToolbar="false" showGoOnFB="true"
+										search="onSearchCCCR" class="noBorderFilterBar">
 										<filterbar:filterGroupItems >
 											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="ChangeReq" name="dateRange" label="Date Range">
 												<filterbar:control>

@@ -5,7 +5,7 @@
 		<f:title>
 			<f:DynamicPageTitle>
 				<f:heading>
-					<vm:VariantManagement select="onHandleVMSelect" standardItemText="Address Data" defaultVariantKey="addressData">
+					<vm:VariantManagement id="idCCVm" select="onHandleVMSelect" standardItemText="Address Data" defaultVariantKey="addressData">
 						<vm:variantItems>
 							<vm:VariantItem text="General Data" key="generalData"></vm:VariantItem>
 						</vm:variantItems>
@@ -16,7 +16,7 @@
 		<f:header>
 			<f:DynamicPageHeader>
 				<f:content>
-					<filterbar:FilterBar id="idCCSearchFB" reset="onReset" search="onSearchCustomer" useToolbar="false" showGoOnFB="true">
+					<filterbar:FilterBar id="idCCSearchFB" reset="onReset" search="costCenterSearch" useToolbar="false" showGoOnFB="true">
 						<filterbar:filterGroupItems >
 							<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="*standard*" name="name1" label="Name 1">
 								<filterbar:control>
@@ -28,17 +28,17 @@
 									<Input/>
 								</filterbar:control>
 							</filterbar:FilterGroupItem>
-							<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="*standard*" name="street" label="Street">
+							<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="*standard*" name="stras" label="Street">
 								<filterbar:control>
 									<Input/>
 								</filterbar:control>
 							</filterbar:FilterGroupItem>
-							<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="*standard*" name="city" label="City">
+							<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="*standard*" name="ort01" label="City">
 								<filterbar:control>
 									<Input/>
 								</filterbar:control>
 							</filterbar:FilterGroupItem>
-							<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="*standard*" name="country" label="Country">
+							<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="*standard*" name="land1" label="Country">
 								<filterbar:control>
 									<ComboBox items="{Dropdowns>/T005}">
 										<core:ListItem key="{Dropdowns>land1}" text="{Dropdowns>landx}" additionalText="{Dropdowns>land1}"/>
@@ -47,44 +47,70 @@
 							</filterbar:FilterGroupItem>
 						</filterbar:filterGroupItems>
 						<filterbar:filterGroupItems>
-							<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="generalData" name="kunnr" label="Name">
+							<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="generalData" name="ktext" label="Name">
 								<filterbar:control>
 									<Input/>
 								</filterbar:control>
 							</filterbar:FilterGroupItem>
-							<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="generalData" name="bankAccount" label="Cost Centre">
+							<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="generalData" name="kostl" label="Cost Centre">
+								<filterbar:control>
+									<Input showValueHelp="true" valueHelpRequest="onValueHelpRequested" valueHelpOnly="true" value="">
+										<customData>
+											<core:CustomData key="title" value="Cost Center"></core:CustomData>
+											<core:CustomData key="table" value="vw_cskt"></core:CustomData>
+											<core:CustomData key="inputKey" value="kostl"></core:CustomData>
+											<core:CustomData key="inputText" value="kostl"></core:CustomData>
+											<core:CustomData key="kostl" value="Cost Center"></core:CustomData>
+											<core:CustomData key="ktext" value="Name"></core:CustomData>
+											<core:CustomData key="ltext" value="Medium Text"></core:CustomData>
+										</customData>
+									</Input>
+								</filterbar:control>
+							</filterbar:FilterGroupItem>
+							<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="generalData" name="kosar" label="Cost Centre Category">
+								<filterbar:control>
+									<ComboBox items="{Dropdowns>/TKA05}" showSecondaryValues="true">
+										<core:ListItem key="{Dropdowns>kosar}" text="{Dropdowns>butxt}" additionalText="{Dropdowns>kosar}"/>
+									</ComboBox>
+								</filterbar:control>
+							</filterbar:FilterGroupItem>
+							<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="generalData" name="bukrs" label="Company code">
+								<filterbar:control>
+									<ComboBox items="{Dropdowns>/T001}" showSecondaryValues="true">
+										<core:ListItem key="{Dropdowns>bukrs}" text="{Dropdowns>butxt}" additionalText="{Dropdowns>bukrs}"/>
+									</ComboBox>
+								</filterbar:control>
+							</filterbar:FilterGroupItem>
+							<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="generalData" name="fkber" label="Functional Area">
+								<filterbar:control>
+									<ComboBox items="{Dropdowns>/TFKB}" showSecondaryValues="true">
+										<core:ListItem key="{Dropdowns>fkber}" text="{Dropdowns>butxt}" additionalText="{Dropdowns>fkber}"/>
+									</ComboBox>
+								</filterbar:control>
+							</filterbar:FilterGroupItem>
+							<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="generalData" name="prctr" label="Profit Centre">
+								<filterbar:control>
+									<Input showValueHelp="true" valueHelpRequest="onValueHelpRequested" valueHelpOnly="true" value="">
+										<customData>
+											<core:CustomData key="title" value="Profit Center"></core:CustomData>
+											<core:CustomData key="table" value="vw_cepct"></core:CustomData>
+											<core:CustomData key="inputKey" value="prctr"></core:CustomData>
+											<core:CustomData key="inputText" value="prctr"></core:CustomData>
+											<core:CustomData key="prctr" value="Profit Center"></core:CustomData>
+											<core:CustomData key="ktext" value="Name"></core:CustomData>
+											<core:CustomData key="ltext" value="Medium Text"></core:CustomData>
+										</customData>
+									</Input>
+								</filterbar:control>
+							</filterbar:FilterGroupItem>
+							<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="generalData" name="ltext" label="Medium Text">
 								<filterbar:control>
 									<Input/>
 								</filterbar:control>
 							</filterbar:FilterGroupItem>
-							<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="generalData" name="bankKey" label="Cost Centre Category">
+							<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="generalData" name="verak" label="Person Responsible">
 								<filterbar:control>
 									<Input/>
-								</filterbar:control>
-							</filterbar:FilterGroupItem>
-							<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="generalData" name="bankStreet" label="Company code">
-								<filterbar:control>
-									<Input/>
-								</filterbar:control>
-							</filterbar:FilterGroupItem>
-							<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="generalData" name="taxNo" label="Functional Area">
-								<filterbar:control>
-									<Input maxLength="18"/>
-								</filterbar:control>
-							</filterbar:FilterGroupItem>
-							<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="generalData" name="profitCenter" label="Profit Centre">
-								<filterbar:control>
-									<Input maxLength="18"/>
-								</filterbar:control>
-							</filterbar:FilterGroupItem>
-							<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="generalData" name="mediumText" label="Medium Text">
-								<filterbar:control>
-									<Input maxLength="18"/>
-								</filterbar:control>
-							</filterbar:FilterGroupItem>
-							<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="generalData" name="personRes" label="Person Responsible">
-								<filterbar:control>
-									<Input maxLength="18"/>
 								</filterbar:control>
 							</filterbar:FilterGroupItem>
 						</filterbar:filterGroupItems>
@@ -93,33 +119,27 @@
 			</f:DynamicPageHeader>
 		</f:header>
 		<f:content>
-			<Table sticky="ColumnHeaders" items="{SearchCustomerModel>/searchAllModelData/customerDTOs}">
+			<Table sticky="ColumnHeaders" items="{SearchCCModel>/CostCenters}">
 				<headerToolbar>
 					<Toolbar>
-						<Label text="Cost Center Master List({SearchCustomerModel>/searchAllModelData/totalRecords})" design="Bold"></Label>
+						<Label text="Cost Center Master List({SearchCCModel>/TotalCount})" design="Bold"></Label>
 						<ToolbarSpacer></ToolbarSpacer>
 						<Button text="Create Cost Center" visible="{= ${userManagementModel>/role}.indexOf('req')!== -1 ? true : false }" type="Emphasized"
 							press="onNavtoCreateCC"></Button>
 						<Label text="Page No."/>
-						<Select id="searchAllVendorPageSelectID" items="{SearchCustomerModel>/PageData}" selectedKey="{SearchCustomerModel>/selectedPageKey}"
-							change="onSelectSearchAllVendorPage">
-							<core:Item text="{SearchCustomerModel>text}" key="{SearchCustomerModel>key}"/>
+						<Select items="{SearchCCModel>/PageData}" selectedKey="{SearchCCModel>/SelectedPageKey}" change="onSelectSearchAllVendorPage">
+							<core:Item text="{SearchCCModel>text}" key="{SearchCCModel>key}"/>
 						</Select>
-						<Button icon="sap-icon://navigation-left-arrow" type="Transparent" enabled="{SearchCustomerModel>/leftEnabled}"
+						<Button icon="sap-icon://navigation-left-arrow" type="Transparent" enabled="{SearchCCModel>/LeftEnabled}"
 							press="onSelectSearchAllVendorPageLeft"></Button>
-						<Button icon="sap-icon://navigation-right-arrow" type="Transparent" enabled="{SearchCustomerModel>/rightEnabled}"
+						<Button icon="sap-icon://navigation-right-arrow" type="Transparent" enabled="{SearchCCModel>/RightEnabled}"
 							press="onSelectSearchAllVendorPageRight"></Button>
 					</Toolbar>
 				</headerToolbar>
 				<columns>
 					<Column>
 						<header>
-							<Label text="Cost Center" design="Bold"></Label>
-						</header>
-					</Column>
-					<Column>
-						<header>
-							<Label text="Name" design="Bold"></Label>
+							<Label text="CC Number" design="Bold"></Label>
 						</header>
 					</Column>
 					<Column>
@@ -129,22 +149,32 @@
 					</Column>
 					<Column>
 						<header>
-							<Label text="Valid Form" design="Bold"></Label>
+							<Label text="Overdue" design="Bold"></Label>
 						</header>
 					</Column>
 					<Column>
 						<header>
-							<Label text="Valid To" design="Bold"></Label>
+							<Label text="Date" design="Bold"></Label>
 						</header>
 					</Column>
 					<Column>
 						<header>
-							<Label text="Medium Text" design="Bold"></Label>
+							<Label text="Cost Center Name" design="Bold"></Label>
 						</header>
 					</Column>
 					<Column>
 						<header>
-							<Label text="User Responsible" design="Bold"></Label>
+							<Label text="Cost Center" design="Bold"></Label>
+						</header>
+					</Column>
+					<Column>
+						<header>
+							<Label text="Cost Center Category" design="Bold"></Label>
+						</header>
+					</Column>
+					<Column>
+						<header>
+							<Label text="User/Person Responsible" design="Bold"></Label>
 						</header>
 					</Column>
 					<Column width="5%" visible="{= ${userManagementModel>/role}.indexOf('req')!== -1 ? true : false }">
@@ -156,13 +186,12 @@
 				<items>
 					<ColumnListItem >
 						<cells>
-							<Link text="{SearchCustomerModel>customCustomerCustKna1DTO/kunnr}" press="onGetCustomerDetails"></Link>
-							<ObjectStatus state="{path :'SearchCustomerModel>pendingRequest', formatter : '.handlePendingRequest'}"
-								text="{SearchCustomerModel>pendingRequest}"/>
+							<Link text="{SearchCCModel>customCustomerCustKna1DTO/kunnr}" press="onGetCustomerDetails"></Link>
+							<ObjectStatus state="{path :'SearchCCModel>pendingRequest', formatter : '.handlePendingRequest'}" text="{SearchCCModel>pendingRequest}"/>
 							<Text
-								text="{ parts:[ {path:'SearchCustomerModel>customVendorLFA1DTO/name1'}, {path:'SearchCustomerModel>customVendorLFA1DTO/name2'}, {path:'SearchCustomerModel>customVendorLFA1DTO/name3'}, {path:'SearchCustomerModel>customVendorLFA1DTO/name4'} ], formatter:'.handleDescription' }"></Text>
-							<Text text="{SearchCustomerModel>customVendorLFA1DTO/vbund}"></Text>
-							<Text text="{SearchCustomerModel>customVendorLFA1DTO/land1}"></Text>
+								text="{ parts:[ {path:'SearchCCModel>customVendorLFA1DTO/name1'}, {path:'SearchCCModel>customVendorLFA1DTO/name2'}, {path:'SearchCCModel>customVendorLFA1DTO/name3'}, {path:'SearchCCModel>customVendorLFA1DTO/name4'} ], formatter:'.handleDescription' }"></Text>
+							<Text text="{SearchCCModel>customVendorLFA1DTO/vbund}"></Text>
+							<Text text="{SearchCCModel>customVendorLFA1DTO/land1}"></Text>
 							<Text text=""/>
 							<Text text=""/>
 							<core:Icon src="sap-icon://overflow" press="handleOverFlowButton"></core:Icon>

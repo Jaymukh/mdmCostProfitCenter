@@ -5,9 +5,9 @@
 		<form:content>
 			<core:Title text="Validity Data"/>
 			<Label text="Valid-From Date"/>
-			<Text text="{Customer>/Csks/datab}"/>
+			<Text text="{CostCenter>/Csks/datab}"/>
 			<Label text="Valid-To-Date"/>
-			<Text text="{Customer>/Csks/datbi}"/>
+			<Text text="{CostCenter>/Csks/datbi}"/>
 			<Label text="Next Change"/>
 			<Text text=""/>
 			<Label text="Pending Change"/>

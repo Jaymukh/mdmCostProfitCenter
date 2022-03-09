@@ -5,54 +5,54 @@
 		<form:content>
 			<core:Title text="Control Indicators"/>
 			<Label text="Record Quantity"/>
-			<CheckBox select="onSelectCheckBox" selected="{= ${Customer>/Csks/mgefl} === 'X'}">
+			<CheckBox select="onSelectCheckBox" selected="{= ${CostCenter>/Csks/mgefl} === 'X'}" editable="{App>/edit}">
 				<customData>
-					<core:CustomData key="Customer>/Csks/mgefl"/>
+					<core:CustomData key="CostCenter>/Csks/mgefl"/>
 				</customData>
 			</CheckBox>
 			<core:Title text=""/>
 			<core:Title text="Lock Indicators"/>
 			<Label text="Actual Primary Costs"/>
-			<CheckBox select="onSelectCheckBox" selected="{= ${Customer>/Csks/bkzkp} === 'X'}">
+			<CheckBox select="onSelectCheckBox" selected="{= ${CostCenter>/Csks/bkzkp} === 'X'}" editable="{App>/edit}">
 				<customData>
-					<core:CustomData key="Customer>/Csks/bkzkp"/>
+					<core:CustomData key="CostCenter>/Csks/bkzkp"/>
 				</customData>
 			</CheckBox>
 			<Label text="Plan Primary Costs"/>
-			<CheckBox select="onSelectCheckBox" selected="{= ${Customer>/Csks/pkzkp} === 'X'}">
+			<CheckBox select="onSelectCheckBox" selected="{= ${CostCenter>/Csks/pkzkp} === 'X'}" editable="{App>/edit}">
 				<customData>
-					<core:CustomData key="Customer>/Csks/pkzkp"/>
+					<core:CustomData key="CostCenter>/Csks/pkzkp"/>
 				</customData>
 			</CheckBox>
 			<Label text="Actual Revenues"/>
-			<CheckBox select="onSelectCheckBox" selected="{= ${Customer>/Csks/bkzer} === 'X'}">
+			<CheckBox select="onSelectCheckBox" selected="{= ${CostCenter>/Csks/bkzer} === 'X'}" editable="{App>/edit}">
 				<customData>
-					<core:CustomData key="Customer>/Csks/bkzer"/>
+					<core:CustomData key="CostCenter>/Csks/bkzer"/>
 				</customData>
 			</CheckBox>
 			<Label text="Commitment Update"/>
-			<CheckBox select="onSelectCheckBox" selected="{= ${Customer>/Csks/bkzob} === 'X'}">
+			<CheckBox select="onSelectCheckBox" selected="{= ${CostCenter>/Csks/bkzob} === 'X'}" editable="{App>/edit}">
 				<customData>
-					<core:CustomData key="Customer>/Csks/bkzob"/>
+					<core:CustomData key="CostCenter>/Csks/bkzob"/>
 				</customData>
 			</CheckBox>
 			<core:Title text=""/>
 			<Label text="Actual Secondary Costs"/>
-			<CheckBox select="onSelectCheckBox" selected="{= ${Customer>/Csks/bkzks} === 'X'}">
+			<CheckBox select="onSelectCheckBox" selected="{= ${CostCenter>/Csks/bkzks} === 'X'}" editable="{App>/edit}">
 				<customData>
-					<core:CustomData key="Customer>/Csks/bkzks"/>
+					<core:CustomData key="CostCenter>/Csks/bkzks"/>
 				</customData>
 			</CheckBox>
 			<Label text="Plan Secondary Costs"/>
-			<CheckBox select="onSelectCheckBox" selected="{= ${Customer>/Csks/pkzks} === 'X'}">
+			<CheckBox select="onSelectCheckBox" selected="{= ${CostCenter>/Csks/pkzks} === 'X'}" editable="{App>/edit}">
 				<customData>
-					<core:CustomData key="Customer>/Csks/pkzks"/>
+					<core:CustomData key="CostCenter>/Csks/pkzks"/>
 				</customData>
 			</CheckBox>
 			<Label text="Plan Revenues"/>
-			<CheckBox select="onSelectCheckBox" selected="{= ${Customer>/Csks/pkzer} === 'X'}">
+			<CheckBox select="onSelectCheckBox" selected="{= ${CostCenter>/Csks/pkzer} === 'X'}" editable="{App>/edit}">
 				<customData>
-					<core:CustomData key="Customer>/Csks/pkzer"/>
+					<core:CustomData key="CostCenter>/Csks/pkzer"/>
 				</customData>
 			</CheckBox>
 		</form:content>

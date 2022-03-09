@@ -7,6 +7,10 @@ sap.ui.define([
 
 		onInit: function () {
 
+		},
+
+		onSearchCCCR: function () {
+			this.getAllCCChangeRequests(1);
 		}
 
 	});

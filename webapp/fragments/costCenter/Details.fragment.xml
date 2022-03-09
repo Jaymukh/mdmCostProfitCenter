@@ -1,63 +1,72 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
-	<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
-		adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+	<form:SimpleForm id="idCCDetails" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+		labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
 		singleContainerFullSize="false">
 		<form:content>
 			<core:Title text="General Data"/>
 			<Label text="Controlling Area"/>
-			<Input editable="false" value="{Customer>/Csks/kokrs}">
+			<Input editable="false" value="{CostCenter>/Csks/kokrs}">
 				<layoutData>
 					<l:GridData span="XL2 L2 M3 S4"/>
 				</layoutData>
 			</Input>
-			<Input value="" editable="false"/>
+			<Input value="Murphy Controlling Area" editable="false"/>
 			<Label text="Cost Center / Name"/>
-			<Input required="true" value="{Customer>/Csks/koskl}">
+			<Input required="true" value="{CostCenter>/Csks/kostl}" editable="{App>/edit}">
 				<layoutData>
 					<l:GridData span="XL2 L2 M3 S4"/>
 				</layoutData>
 			</Input>
-			<Input value="{Customer>/Cskt/ktext}"/>
-			<Input required="true"/>
+			<Input value="{CostCenter>/Cskt/ktext}" liveChange="onChangeName" editable="{App>/edit}"/>
 			<Label text="Medium Text"/>
-			<Input value="{Customer>/Cskt/ltext}"/>
+			<Input value="{CostCenter>/Cskt/ltext}" liveChange="onChangeMText" editable="{App>/edit}"/>
 			<Label text="Department"/>
-			<Input value="{Customer>/Csks/abtei}"/>
+			<Input value="{CostCenter>/Csks/abtei}" editable="{App>/edit}"/>
 			<Label text="Cost Center Category" required="true"/>
-			<Input required="true" valueHelpOnly="true" showValueHelp="true" value="{Customer>/Cskt/kosar}"/>
+			<ComboBox required="true" selectedKey="{CostCenter>/Cskt/kosar}" items="{Dropdowns>/TKA05}" editable="{App>/edit}"
+				showSecondaryValues="true">
+				<core:ListItem key="{Dropdowns>kosar}" text="{Dropdowns>butxt}" additionalText="{Dropdowns>kosar}"/>
+			</ComboBox>
 			<Label text="Company Code" required="true"/>
-			<ComboBox required="true" selectedKey="{Customer>/Cskt/kosar}"></ComboBox>
+			<ComboBox required="true" selectedKey="{CostCenter>/Cskt/kosar}" items="{Dropdowns>/T001}" editable="{App>/edit}"
+				selectionChange="onSelectBukrs" showSecondaryValues="true">
+				<core:ListItem key="{Dropdowns>bukrs}" text="{Dropdowns>butxt}" additionalText="{Dropdowns>bukrs}"/>
+			</ComboBox>
 			<core:Title text=""/>
 			<Label text="Business Area"/>
-			<Input editable="false" value="{Customer>/Cskt/gsber}"/>
+			<Input editable="false" value="{CostCenter>/Cskt/gsber}"/>
 			<Label text="Functional Area"/>
-			<Input valueHelpOnly="true" showValueHelp="true" value="{Customer>/Cskt/fkber}"/>
+			<ComboBox required="true" selectedKey="{CostCenter>/Cskt/fkber}" items="{Dropdowns>/TFKB}" editable="{App>/edit}" showSecondaryValues="true">
+				<core:ListItem key="{Dropdowns>fkber}" text="{Dropdowns>butxt}" additionalText="{Dropdowns>fkber}"/>
+			</ComboBox>
 			<Label text="Currency" required="true"/>
-			<Input editable="false" required="true" value="{Customer>/Cskt/waers}"/>
+			<ComboBox required="true" selectedKey="{CostCenter>/Cskt/waers}" items="{Dropdowns>/TCURC}" editable="false" showSecondaryValues="true">
+				<core:ListItem key="{Dropdowns>waers}" text="{Dropdowns>ltext}" additionalText="{Dropdowns>waers}"/>
+			</ComboBox>
 			<Label text="Profit Center" required="true"/>
-			<Input valueHelpOnly="true" showValueHelp="true" required="true" value="{Customer>/Cskt/prctr}"/>
+			<Input valueHelpOnly="true" showValueHelp="true" required="true" value="{CostCenter>/Cskt/prctr}" editable="{App>/edit}"/>
 			<Label text="Logical System"/>
-			<Input editable="false" value="{Customer>/Cskt/logsystem}"/>
+			<Input editable="false" value="{CostCenter>/Cskt/logsystem}"/>
 			<core:Title text="Administrative Data"/>
 			<Label text="New Cost Center"/>
-			<Input valueHelpOnly="true" showValueHelp="true" value=""/>
+			<Input valueHelpOnly="true" showValueHelp="true" value="" editable="{App>/edit}"/>
 			<Label text="User Responsible"/>
-			<Input valueHelpOnly="true" showValueHelp="true" value="{Customer>/Cskt/verak_user}"/>
+			<Input valueHelpOnly="true" showValueHelp="true" value="{CostCenter>/Cskt/verak_user}" editable="{App>/edit}"/>
 			<Label text=" Person Responsible"/>
-			<Input required="true" value="{Customer>/Cskt/verak}"/>
+			<Input required="true" value="{CostCenter>/Cskt/verak}" editable="{App>/edit}"/>
 			<core:Title text="Audit Information"/>
 			<Label text="Created On/By"/>
-			<Input editable="false" value="{Customer>/Cskt/ersad}/{Customer>/Cskt/usnam}"/>
+			<Input editable="false" value="{CostCenter>/Cskt/ersad}/{CostCenter>/Cskt/usnam}"/>
 			<Label text="Changed On/By"/>
 			<Input editable="false" value=""/>
 			<Label text="SAP Hierarchy"/>
-			<Input value="{Customer>/Cskt/zsap_hier}"/>
+			<Input value="{CostCenter>/Cskt/zsap_hier}" editable="{App>/edit}"/>
 			<Label text="Hyperion Hierarchy"/>
-			<Input value="{Customer>/Cskt/zhyp_hier}"/>
+			<Input value="{CostCenter>/Cskt/zhyp_hier}" editable="{App>/edit}"/>
 			<Label text="Business Unit (Old/New)"/>
-			<Input showValueHelp="true" valueHelpOnly="true" value="{Customer>/Cskt/zbus_unit}"/>
+			<Input showValueHelp="true" valueHelpOnly="true" value="{CostCenter>/Cskt/zbus_unit}" editable="{App>/edit}"/>
 			<Label text="Department (Hyperion)"/>
-			<Input showValueHelp="true" valueHelpOnly="true" value="{Customer>/Cskt/zdept_hyp}"/>
+			<Input showValueHelp="true" valueHelpOnly="true" value="{CostCenter>/Cskt/zdept_hyp}" editable="{App>/edit}"/>
 		</form:content>
 	</form:SimpleForm>
 </core:FragmentDefinition>

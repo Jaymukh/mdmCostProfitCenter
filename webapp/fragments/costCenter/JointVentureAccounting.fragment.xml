@@ -1,22 +1,74 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
-	<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
-		adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+	<form:SimpleForm id="idCCJointVenture" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+		labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
 		singleContainerFullSize="false">
 		<form:content>
 			<core:Title text="Joint Venture Accounting"/>
 			<Label text="Joint Venture" required="true"/>
-			<Input showValueHelp="true" valueHelpOnly="true" required="true" value="{Customer>/Csks/vname}"/>
+			<Input required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true" value="{CostCenter>/Csks/vname}"
+				editable="{App>/edit}">
+				<customData>
+					<core:CustomData key="title" value="Joint Venture"></core:CustomData>
+					<core:CustomData key="table" value="T8JV"></core:CustomData>
+					<core:CustomData key="inputKey" value="vname"></core:CustomData>
+					<core:CustomData key="inputText" value="vname"></core:CustomData>
+					<core:CustomData key="bukrs" value="Company Code"></core:CustomData>
+					<core:CustomData key="vname" value="Joint Venture"></core:CustomData>
+				</customData>
+			</Input>
 			<Label text="Equity Type" required="true"/>
-			<Input showValueHelp="true" valueHelpOnly="true" required="true" value="{Customer>/Csks/etype}"/>
+			<Input required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true" value="{CostCenter>/Csks/etype}"
+				editable="{App>/edit}">
+				<customData>
+					<core:CustomData key="title" value="Equity Type"></core:CustomData>
+					<core:CustomData key="table" value="T8JG"></core:CustomData>
+					<core:CustomData key="inputKey" value="etype"></core:CustomData>
+					<core:CustomData key="inputText" value="etype"></core:CustomData>
+					<core:CustomData key="bukrs" value="Company Code"></core:CustomData>
+					<core:CustomData key="vname" value="Joint Venture"></core:CustomData>
+					<core:CustomData key="etype" value="Equity Type"></core:CustomData>
+				</customData>
+			</Input>
 			<Label text="Joint Venture Object Type" required="true"/>
-			<Input showValueHelp="true" valueHelpOnly="true" required="true" value="{Customer>/Csks/jv_otype}"/>
+			<Input showValueHelp="true" valueHelpOnly="true" required="true" value="{CostCenter>/Csks/jv_otype}" editable="{App>/edit}"/>
 			<core:Title text=""/>
 			<Label text="Recovery Indicator" required="true"/>
-			<Input showValueHelp="true" valueHelpOnly="true" required="true" value="{Customer>/Csks/recid}"/>
+			<Input required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true" value="{CostCenter>/Csks/recid}"
+				editable="{App>/edit}">
+				<customData>
+					<core:CustomData key="title" value="Recovery Indicator"></core:CustomData>
+					<core:CustomData key="table" value="T8JJ"></core:CustomData>
+					<core:CustomData key="inputKey" value="recid"></core:CustomData>
+					<core:CustomData key="inputText" value="recid"></core:CustomData>
+					<core:CustomData key="bukrs" value="Company Code"></core:CustomData>
+					<core:CustomData key="recid" value="Recovery Indicator"></core:CustomData>
+				</customData>
+			</Input>
 			<Label text="JIB/JIBE Class"/>
-			<Input showValueHelp="true" valueHelpOnly="true" value="{Customer>/Csks/jv_jibcl}"/>
+			<Input required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
+				value="{CostCenter>/Csks/jv_jibcl}" editable="{App>/edit}">
+				<customData>
+					<core:CustomData key="title" value="JIB/JIBE Class"></core:CustomData>
+					<core:CustomData key="table" value="T8J6A"></core:CustomData>
+					<core:CustomData key="inputKey" value="class"></core:CustomData>
+					<core:CustomData key="inputText" value="class"></core:CustomData>
+					<core:CustomData key="bukrs" value="Company Code"></core:CustomData>
+					<core:CustomData key="class" value="Class"></core:CustomData>
+				</customData>
+			</Input>
 			<Label text="JIB/JIBE Subclass A"/>
-			<Input showValueHelp="true" valueHelpOnly="true" value="{Customer>/Csks/jv_jibsa}"/>
+			<Input required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
+				value="{CostCenter>/Csks/jv_jibsa}" editable="{App>/edit}">
+				<customData>
+					<core:CustomData key="title" value="JIB/JIBE Subclass A"></core:CustomData>
+					<core:CustomData key="table" value="T8J6C"></core:CustomData>
+					<core:CustomData key="inputKey" value="subclass"></core:CustomData>
+					<core:CustomData key="inputText" value="subclass"></core:CustomData>
+					<core:CustomData key="bukrs" value="Company Code"></core:CustomData>
+					<core:CustomData key="class" value="Class"></core:CustomData>
+					<core:CustomData key="subclass" value="Sub Class"></core:CustomData>
+				</customData>
+			</Input>
 		</form:content>
 	</form:SimpleForm>
 </core:FragmentDefinition>

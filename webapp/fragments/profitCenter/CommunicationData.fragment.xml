@@ -5,24 +5,24 @@
 		<form:content>
 			<core:Title text="Communication Data"/>
 			<Label text="Language"/>
-			<ComboBox selectedKey="{ProfitCenter>/Cepc/spras}">
-				<items></items>
+			<ComboBox required="true" selectedKey="{ProfitCenter>/Cepc/spras}" items="{Dropdowns>/T002}" editable="{App>/edit}">
+				<core:Item key="{Dropdowns>spras}" text="{Dropdowns>sptxt}"/>
 			</ComboBox>
 			<Label text="Telephone 1"/>
-			<Input value="{ProfitCenter>/Cepc/anred}{ProfitCenter>/Cepc/telf1}"/>
+			<Input value="{ProfitCenter>/Cepc/anred}{ProfitCenter>/Cepc/telf1}" editable="{App>/edit}"/>
 			<Label text="Telephone 2"/>
-			<Input value="{ProfitCenter>/Cepc/telf2}"/>
+			<Input value="{ProfitCenter>/Cepc/telf2}" editable="{App>/edit}"/>
 			<Label text="Fax Number"/>
-			<Input value="{ProfitCenter>/Cepc/telfx}"/>
+			<Input value="{ProfitCenter>/Cepc/telfx}" editable="{App>/edit}"/>
 			<Label text="Telebox Number"/>
-			<Input value="{ProfitCenter>/Cepc/telbx}"/>
+			<Input value="{ProfitCenter>/Cepc/telbx}" editable="{App>/edit}"/>
 			<core:Title text=""/>
 			<Label text="Teletex Number"/>
-			<Input value="{ProfitCenter>/Cepc/teltx}"/>
+			<Input value="{ProfitCenter>/Cepc/teltx}" editable="{App>/edit}"/>
 			<Label text="Printer Name"/>
-			<Input value="{ProfitCenter>/Cepc/drnam}"/>
+			<Input value="{ProfitCenter>/Cepc/drnam}" editable="{App>/edit}"/>
 			<Label text="Data Line"/>
-			<Input value="{ProfitCenter>/Cepc/datlt}"/>
+			<Input value="{ProfitCenter>/Cepc/datlt}" editable="{App>/edit}"/>
 		</form:content>
 	</form:SimpleForm>
 </core:FragmentDefinition>

@@ -39,6 +39,11 @@
 					</Column>
 					<Column >
 						<header>
+							<Label text="Workflow Status" design="Bold"/>
+						</header>
+					</Column>
+					<Column >
+						<header>
 							<Label text="Change Request Date" design="Bold"/>
 						</header>
 					</Column>
@@ -47,17 +52,34 @@
 							<Label text="Changed By" design="Bold"/>
 						</header>
 					</Column>
+					<Column >
+						<header>
+							<Label text="Created By" design="Bold"/>
+						</header>
+					</Column>
+					<Column >
+						<header>
+							<Label text="Finalized By" design="Bold"/>
+						</header>
+					</Column>
+					<Column >
+						<header>
+							<Label text="Finalized On" design="Bold"/>
+						</header>
+					</Column>
 				</columns>
 				<items>
 					<ColumnListItem>
 						<cells>
-							<Link
-								text="{ parts: [ 'ChangeRequestsModel>crDTO/change_request_id', 'ChangeRequestsModel>crDTO/entity_id'], formatter: '.formatCR_Entiry_ID' }"
+							<Link text="{ parts: [ 'ChangeRequestsModel>change_request_id', 'ChangeRequestsModel>entity_id'], formatter: '.formatCR_Entiry_ID' }"
 								press="onChangeReqLinkPress"></Link>
-							<Text text="{ChangeRequestsModel>crDTO/change_request_desc}"></Text>
-							<ObjectStatus text="{path:'ChangeRequestsModel>crDTO/is_cr_closed',formatter:'.getStatusOfCr'}"/>
-							<Text text="{path:'ChangeRequestsModel>crDTO/change_request_date',formatter:'.getDateofCr'}"></Text>
-							<Text text="{ChangeRequestsModel>crDTO/change_request_by/firstname} {ChangeRequestsModel>crDTO/change_request_by/lastname}"></Text>
+							<Text text="{ChangeRequestsModel>change_request_desc}"></Text>
+							<ObjectStatus text="{path:'ChangeRequestsModel>is_cr_closed',formatter:'.getStatusOfCr'}"/>
+							<Text text="{path:'ChangeRequestsModel>change_request_date',formatter:'.getDateofCr'}"></Text>
+							<Text text="{ChangeRequestsModel>modified_by}"></Text>
+							<Text text="{ChangeRequestsModel>change_request_by/display_name}"></Text>
+							<Text text=""></Text>
+							<Text text=""></Text>
 						</cells>
 					</ColumnListItem>
 				</items>

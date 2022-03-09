@@ -1,11 +1,12 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
 	<Table items="{ProfitCenter>/Cepct}">
+		<headerToolbar>
+			<Toolbar>
+				<ToolbarSpacer></ToolbarSpacer>
+				<Button text="Add" press="onAddDescription" type="Emphasized" visible="{App>/edit}"></Button>
+			</Toolbar>
+		</headerToolbar>
 		<columns>
-			<Column >
-				<header>
-					<Label text="Actions" design="Bold"></Label>
-				</header>
-			</Column>
 			<Column>
 				<header>
 					<Label text="Language" design="Bold"></Label>
@@ -21,15 +22,21 @@
 					<Label text="Medium Text" design="Bold"></Label>
 				</header>
 			</Column>
+			<Column width="5%">
+				<header>
+					<Label text=""></Label>
+				</header>
+			</Column>
 		</columns>
 		<items>
 			<ColumnListItem>
 				<cells>
-					<Text text=""></Text>
-					<Text text="{ProfitCenter>ktext}"></Text>
-					<Text text="{ProfitCenter>ktext}"></Text>
-					<Text text="{ProfitCenter>ltext}"></Text>
-					
+					<ComboBox required="true" selectedKey="{ProfitCenter>spras}" items="{Dropdowns>/T002}" editable="{App>/edit}">
+						<core:Item key="{Dropdowns>spras}" text="{Dropdowns>sptxt}"/>
+					</ComboBox>
+					<Input value="{ProfitCenter>ktext}" editable="{App>/edit}"/>
+					<Input value="{ProfitCenter>ltext}" editable="{App>/edit}"/>
+					<core:Icon src="sap-icon://delete" color="Negative" class="sapUiSmallMarginEnd" press="onDeleteDesc" visible="{App>/edit}"/>
 				</cells>
 			</ColumnListItem>
 		</items>

@@ -1,14 +1,15 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
-	<Table>
+	<Table items="{ProfitCenter>/CepcBukrs}">
+		<headerToolbar>
+			<Toolbar>
+				<ToolbarSpacer></ToolbarSpacer>
+				<Button text="Add" press="onAddBukrs" type="Emphasized" visible="{App>/edit}"></Button>
+			</Toolbar>
+		</headerToolbar>
 		<columns>
 			<Column >
 				<header>
 					<Label text="Company Code" design="Bold"></Label>
-				</header>
-			</Column>
-			<Column>
-				<header>
-					<Label text="Company Code Description" design="Bold"></Label>
 				</header>
 			</Column>
 			<Column >
@@ -16,10 +17,24 @@
 					<Label text="Postable" design="Bold"></Label>
 				</header>
 			</Column>
+			<Column width="5%">
+				<header>
+					<Label text=""></Label>
+				</header>
+			</Column>
 		</columns>
 		<items>
 			<ColumnListItem>
-				<cells></cells>
+				<cells>
+					<ComboBox required="true" selectedKey="{CostCenter>bukrs}" items="{Dropdowns>/T001}" editable="{App>/edit}" showSecondaryValues="true">
+						<core:ListItem key="{Dropdowns>bukrs}" text="{Dropdowns>butxt}" additionalText="{Dropdowns>bukrs}"/>
+					</ComboBox>
+					<CheckBox select="onSelectCheckBox" selected="{= ${ProfitCenter>/Cepc/lock_ind} === 'X'}" editable="{App>/edit}">
+						<customData>
+							<core:CustomData key="ProfitCenter>/Cepc/lock_ind"/>
+						</customData>
+					</CheckBox>
+				</cells>
 			</ColumnListItem>
 		</items>
 	</Table>

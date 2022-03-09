@@ -18,37 +18,37 @@
 							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.profitCenter.Validity" type="XML"/>
 						</content>
 					</Panel>
-					<Panel expandable="true" expanded="true" headerText="Profit Center Details">
+					<Panel expandable="true" expanded="false" headerText="Profit Center Details">
 						<content>
 							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.profitCenter.Details" type="XML"/>
 						</content>
 					</Panel>
-					<Panel expandable="true" expanded="true" headerText="Profit Center Description">
+					<Panel expandable="true" expanded="false" headerText="Profit Center Description">
 						<content>
 							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.profitCenter.Description" type="XML"/>
 						</content>
 					</Panel>
-					<Panel expandable="true" expanded="true" headerText="Profit Center Assignments in Profit Center Group Hierarchies">
+					<Panel expandable="true" expanded="false" visible="false" headerText="Profit Center Assignments in Profit Center Group Hierarchies">
 						<content>
 							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.profitCenter.Assignments" type="XML"/>
 						</content>
 					</Panel>
-					<Panel expandable="true" expanded="true" headerText="Profit Center Indicators">
+					<Panel expandable="true" expanded="false" headerText="Profit Center Indicators">
 						<content>
 							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.profitCenter.Indicators" type="XML"/>
 						</content>
 					</Panel>
-					<Panel expandable="true" expanded="true" headerText="Profit Center Address">
+					<Panel expandable="true" expanded="false" headerText="Profit Center Address">
 						<content>
 							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.profitCenter.Address" type="XML"/>
 						</content>
 					</Panel>
-					<Panel expandable="true" expanded="true" headerText="Profit Center Communication Data">
+					<Panel expandable="true" expanded="false" headerText="Profit Center Communication Data">
 						<content>
 							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.profitCenter.CommunicationData" type="XML"/>
 						</content>
 					</Panel>
-					<Panel expandable="true" expanded="true" headerText="Profit Center to Company Code Assignments">
+					<Panel expandable="true" expanded="false" headerText="Profit Center to Company Code Assignments">
 						<content>
 							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.profitCenter.CompanyCodes" type="XML"/>
 						</content>

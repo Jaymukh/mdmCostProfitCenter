@@ -1,28 +1,28 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
-	<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
-		adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+	<form:SimpleForm id="idCCCommunication" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+		labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
 		singleContainerFullSize="false">
 		<form:content>
 			<core:Title text="Communication Data"/>
 			<Label text="Language"/>
-			<ComboBox required="true" selectedKey="{Customer>/Csks/spras}" items="{Dropdowns>/T002}" editable="{App>/edit}">
+			<ComboBox required="true" selectedKey="{CostCenter>/Csks/spras}" items="{Dropdowns>/T002}" editable="{App>/edit}">
 				<core:Item key="{Dropdowns>spras}" text="{Dropdowns>sptxt}"/>
 			</ComboBox>
 			<Label text="Telephone 1"/>
-			<Input value="{Customer>/Csks/telf1}"/>
+			<Input value="{CostCenter>/Csks/telf1}" editable="{App>/edit}"/>
 			<Label text="Telephone 2"/>
-			<Input value="{Customer>/Csks/telf2}"/>
+			<Input value="{CostCenter>/Csks/telf2}" editable="{App>/edit}"/>
 			<Label text="Fax Number"/>
-			<Input value="{Customer>/Csks/telfx}"/>
+			<Input value="{CostCenter>/Csks/telfx}" editable="{App>/edit}"/>
 			<Label text="Telebox Number"/>
-			<Input value="{Customer>/Csks/telbx}"/>
+			<Input value="{CostCenter>/Csks/telbx}" editable="{App>/edit}"/>
 			<core:Title text=""/>
 			<Label text="Teletex Number"/>
-			<Input value="{Customer>/Csks/telx1}"/>
+			<Input value="{CostCenter>/Csks/telx1}" editable="{App>/edit}"/>
 			<Label text="Printer Name"/>
-			<Input value="{Customer>/Csks/kdnam}"/>
+			<Input value="{CostCenter>/Csks/kdnam}" editable="{App>/edit}"/>
 			<Label text="Data Line"/>
-			<Input value="{Customer>/Csks/datlt}"/>
+			<Input value="{CostCenter>/Csks/datlt}" editable="{App>/edit}"/>
 		</form:content>
 	</form:SimpleForm>
 </core:FragmentDefinition>

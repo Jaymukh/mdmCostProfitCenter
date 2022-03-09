@@ -5,7 +5,11 @@
 		<form:content>
 			<core:Title text="Indicators"/>
 			<Label text="Lock Indicator"/>
-			<CheckBox selected="{ProfitCenter>/Cepc/lock_ind}"/>
+			<CheckBox select="onSelectCheckBox" selected="{= ${ProfitCenter>/Cepc/lock_ind} === 'X'}" editable="{App>/edit}">
+				<customData>
+					<core:CustomData key="ProfitCenter>/Cepc/lock_ind"/>
+				</customData>
+			</CheckBox>
 		</form:content>
 	</form:SimpleForm>
 </core:FragmentDefinition>

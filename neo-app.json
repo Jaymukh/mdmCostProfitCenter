@@ -37,7 +37,7 @@
 		},
 		"description": "SAPUI5 Test Resources"
 	}, {
-		"path": "/murphyCustom",
+		"path": "/mdmccpc",
 		"target": {
 			"type": "destination",
 			"name": "MDM_CCPC_JAVA_DEST"

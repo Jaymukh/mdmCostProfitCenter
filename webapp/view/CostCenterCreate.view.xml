@@ -18,37 +18,37 @@
 							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.costCenter.Validity" type="XML"/>
 						</content>
 					</Panel>
-					<Panel expandable="true" expanded="true" headerText="Cost Center Details">
+					<Panel expandable="true" expanded="false" headerText="Cost Center Details">
 						<content>
 							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.costCenter.Details" type="XML"/>
 						</content>
 					</Panel>
-					<Panel expandable="true" expanded="true" headerText="Cost Center Description">
+					<Panel expandable="true" expanded="false" headerText="Cost Center Description">
 						<content>
 							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.costCenter.Descriptions" type="XML"/>
 						</content>
 					</Panel>
-					<Panel expandable="true" expanded="true" headerText="Cost Center Indicators">
+					<Panel expandable="true" expanded="false" headerText="Cost Center Indicators">
 						<content>
 							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.costCenter.Indicators" type="XML"/>
 						</content>
 					</Panel>
-					<Panel expandable="true" expanded="true" headerText="Cost Center Address">
+					<Panel expandable="true" expanded="false" headerText="Cost Center Address">
 						<content>
 							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.costCenter.Address" type="XML"/>
 						</content>
 					</Panel>
-					<Panel expandable="true" expanded="true" headerText="Cost Center Communication Data">
+					<Panel expandable="true" expanded="false" headerText="Cost Center Communication Data">
 						<content>
 							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.costCenter.CommunicationData" type="XML"/>
 						</content>
 					</Panel>
-					<Panel expandable="true" expanded="true" headerText="Joint Venture Accounting">
+					<Panel expandable="true" expanded="false" headerText="Joint Venture Accounting">
 						<content>
 							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.costCenter.JointVentureAccounting" type="XML"/>
 						</content>
 					</Panel>
-					<Panel expandable="true" expanded="true" headerText="Cost Center Additional Fields">
+					<Panel expandable="true" expanded="false" headerText="Cost Center Additional Fields">
 						<content>
 							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.costCenter.AdditionalFields" type="XML"/>
 						</content>

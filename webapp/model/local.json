@@ -6,26 +6,12 @@
 	"rejectButton": false,
 	"submitButton": false,
 	"previousPage": null,
-	"appTitle": "Search ERP Customer",
-	"dateFormat": "dd-MM-yyyy",
+	"appTitle": "Search Cost Center",
+	"dateFormat": "yyyy/dd/MM",
 	"dateValueFormat": "yyyy-MM-dd",
 	"sidePanelSelectedPage": "",
 	"sideNavExp": false,
 	"supportedFileTypes": ["jpg", "jpeg", "png", "pdf", "msg", "eml"],
-	"createCRCCData": {
-		"entityId": null,
-		"crID": null,
-		"crTime": null,
-		"workflowID": null,
-		"formData": {
-			"entityType": "COST_CENTER",
-			"parentDTO": {
-				"customData": {
-
-				}
-			}
-		}
-	},
 	"changeReq": {
 		"desc": "",
 		"priority": "",
@@ -43,8 +29,8 @@
 		"entity_id": "",
 		"kokrs": "1000",
 		"kostl": "",
-		"datbi": "",
-		"datab": "",
+		"datbi": "9999-12-31",
+		"datab": "9999-12-31",
 		"bkzkp": "",
 		"pkzkp": "",
 		"bukrs": "",
@@ -58,7 +44,7 @@
 		"prctr": "",
 		"werks": "",
 		"logsystem": "",
-		"ersda": "",
+		"ersda": "9999-12-31",
 		"usnam": "",
 		"bkzks": "",
 		"bkzer": "",
@@ -136,7 +122,7 @@
 		"entity_id": "",
 		"kokrs": "",
 		"kostl": "",
-		"datbi": "",
+		"datbi": "9999-12-31",
 		"spras": "",
 		"ktext": "",
 		"ltext": "",
@@ -144,9 +130,9 @@
 	},
 	"cepc": {
 		"entity_id": "",
-		"kokrs": "",
-		"datbi": "",
-		"datab": "",
+		"kokrs": "1000",
+		"datbi": "9999-12-31",
+		"datab": "9999-12-31",
 		"bukrs": "",
 		"verak": "",
 		"verak_user": "",
@@ -155,7 +141,7 @@
 		"txjcd": "",
 		"prctr": "",
 		"logsystem": "",
-		"ersda": "",
+		"ersda": "9999-12-31",
 		"usnam": "",
 		"abtei": "",
 		"kvewe": "",
@@ -195,11 +181,22 @@
 	"cepct": {
 		"entity_id": "",
 		"kokrs": "",
-		"datbi": "",
+		"datbi": "9999-12-31",
 		"spras": "",
 		"ktext": "",
 		"ltext": "",
 		"mctxt": "",
 		"prctr": ""
+	},
+	"cepc_bukrs": {
+		"kokrs": "",
+		"prctr": "",
+		"bukrs": "",
+		"vname": "",
+		"recid": "",
+		"etype": "",
+		"jv_otype": "",
+		"jv_jibcl": "",
+		"jv_jibsa": ""
 	}
 }
