@@ -1,6 +1,7 @@
 sap.ui.define([
-	"murphy/mdm/costProfit/mdmCostProfitCenter/controller/BaseController"
-], function (BaseController) {
+	"murphy/mdm/costProfit/mdmCostProfitCenter/controller/BaseController",
+	"sap/ui/core/Fragment"
+], function (BaseController, Fragment) {
 	"use strict";
 
 	return BaseController.extend("murphy.mdm.costProfit.mdmCostProfitCenter.controller.CostCenterSearch", {
@@ -32,12 +33,12 @@ sap.ui.define([
 				oObjectParam = {
 					"entitySearchType": "GET_BY_COST_CENTER_FILTERS",
 					"entityType": "COST_CENTER",
-					"customerSearchDTO": {},
+					"costCenterSearchDTO": {},
 					"currentPage": iPageNo
 				};
 
-			oFilterValues.customerSearchType = sFilterBy === "*standard*" ? "SEARCH_BY_ADDRESS" : "SEARCH_BY_BANK_DETAILS";
-			oObjectParam.customerSearchDTO = oFilterValues;
+			oFilterValues.costCenterSearchType = sFilterBy === "*standard*" ? "SEARCH_BY_ADDRESS" : "SEARCH_BY_GEN_DETAIL";
+			oObjectParam.costCenterSearchDTO = oFilterValues;
 
 			var objParam = {
 				url: "/mdmccpc/entity-service/entities/entity/get",
@@ -47,7 +48,7 @@ sap.ui.define([
 			};
 
 			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
-				var aResultDataArr = oData.result.customerDTOs,
+				var aResultDataArr = oData.result.costCenterDTOs,
 					aPageJson = [];
 				oData.result.totalRecords = aResultDataArr[0].totalCount;
 
@@ -64,9 +65,44 @@ sap.ui.define([
 				oSearchModel.setProperty("/SelectedPageKey", aResultDataArr[0].currentPage);
 				oSearchModel.setProperty("/RightEnabled", aResultDataArr[0].totalPageCount > aResultDataArr[0].currentPage ? true : false);
 				oSearchModel.setProperty("/LeftEnabled", aResultDataArr[0].currentPage > 1 ? true : false);
-				oSearchModel.setProperty("/SearchAllModelData", oData.result);
+				oSearchModel.setProperty("/CostCenters", oData.result.costCenterDTOs);
 			});
 		},
+
+		onCostCenterAction: function (oEvent) {
+			var oContext = oEvent.getSource().getBindingContext("SearchCCModel"),
+				oButton = oEvent.getSource();
+			if (!this._pPopover) {
+				this._pPopover = Fragment.load({
+					id: this.getView().getId(),
+					name: "murphy.mdm.costProfit.mdmCostProfitCenter.fragments.OverflowPopUp",
+					controller: this
+				}).then(oPopover => {
+					this.getView().addDependent(oPopover);
+					return oPopover;
+				});
+			}
+
+			this._pPopover.then(function (oPopover) {
+				oPopover.bindElement({
+					path: oContext.getPath(),
+					model: "SearchCCModel"
+				});
+				oPopover.openBy(oButton);
+			});
+		},
+
+		onGetCostCenterDetails: function (oEvent) {
+			let oCostCenter = oEvent.getSource().getBindingContext("SearchCCModel").getObject(),
+				oAppModel = this.getModel("App");
+
+			this.clearAllButtons();
+			this.getCostCenterDetails(oCostCenter.costCenterCsksDTO.kostl);
+			oAppModel.setProperty("/editButton", true);
+			oAppModel.setProperty("/previousPage", "CC_SEARCH");
+			oAppModel.setProperty("/erpPreview", true);
+			this.getRouter().getTargets().display("CostCenterCreate");
+		}
 
 	});
 

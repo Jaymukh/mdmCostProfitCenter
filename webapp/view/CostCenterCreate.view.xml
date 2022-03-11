@@ -8,7 +8,7 @@
 			<l:DynamicSideContent class="sapUiDSCExplored createPageHeight" containerQuery="true" sideContentFallDown="BelowM"
 				breakpointChanged="handleBreakpointChangeEvent">
 				<VBox>
-					<Panel expandable="true" expanded="true" headerText="Change Request">
+					<Panel expandable="true" expanded="true" headerText="Change Request" visible="{= !${App>/erpPreview}}">
 						<content>
 							<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.costCenter.ChangeRequests" type="XML"/>
 						</content>

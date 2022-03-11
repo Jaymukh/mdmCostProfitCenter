@@ -143,6 +143,18 @@
 					"SelectedPageKey": 1,
 					"CostCenters": []
 				}
+			},
+			"SearchPCModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"LeftEnabled": false,
+					"RightEnabled": false,
+					"PageData": [],
+					"TotalCount": 0,
+					"SelectedPageKey": 1,
+					"ProfitCenters": []
+				}
 			}
 		},
 		"resources": {

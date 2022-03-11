@@ -13,6 +13,7 @@ sap.ui.define([
 		onSideItemSelect: function (oEvent) {
 			let oAppModel = this.getModel("App"),
 				sKey = oEvent.getParameter("item").getKey();
+			this.clearAllButtons();
 			this.getRouter().getTargets().display(sKey);
 			oAppModel.setProperty("/appTitle", this.getText(sKey));
 
@@ -32,12 +33,10 @@ sap.ui.define([
 				oAppModel.setProperty("/previousPage", "");
 				break;
 			case "CostCenterChangeRequets":
-				this.clearAllButtons();
 				this.getAllCCChangeRequests();
 				this.getCcCrStatistics();
 				break;
 			case "ProfitCenterChangeRequest":
-				this.clearAllButtons();
 				this.getAllPCChangeRequests();
 				this.getPcCrStatistics();
 				break;

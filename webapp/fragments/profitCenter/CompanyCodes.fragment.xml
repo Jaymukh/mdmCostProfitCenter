@@ -1,41 +1,118 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
-	<Table items="{ProfitCenter>/CepcBukrs}">
-		<headerToolbar>
-			<Toolbar>
-				<ToolbarSpacer></ToolbarSpacer>
-				<Button text="Add" press="onAddBukrs" type="Emphasized" visible="{App>/edit}"></Button>
-			</Toolbar>
-		</headerToolbar>
-		<columns>
-			<Column >
-				<header>
-					<Label text="Company Code" design="Bold"></Label>
-				</header>
-			</Column>
-			<Column >
-				<header>
-					<Label text="Postable" design="Bold"></Label>
-				</header>
-			</Column>
-			<Column width="5%">
-				<header>
-					<Label text=""></Label>
-				</header>
-			</Column>
-		</columns>
-		<items>
-			<ColumnListItem>
-				<cells>
-					<ComboBox required="true" selectedKey="{CostCenter>bukrs}" items="{Dropdowns>/T001}" editable="{App>/edit}" showSecondaryValues="true">
-						<core:ListItem key="{Dropdowns>bukrs}" text="{Dropdowns>butxt}" additionalText="{Dropdowns>bukrs}"/>
-					</ComboBox>
-					<CheckBox select="onSelectCheckBox" selected="{= ${ProfitCenter>/Cepc/lock_ind} === 'X'}" editable="{App>/edit}">
-						<customData>
-							<core:CustomData key="ProfitCenter>/Cepc/lock_ind"/>
-						</customData>
-					</CheckBox>
-				</cells>
-			</ColumnListItem>
-		</items>
-	</Table>
+	<VBox>
+		<Table items="{ProfitCenter>/CepcBukrs}">
+			<headerToolbar>
+				<Toolbar>
+					<ToolbarSpacer></ToolbarSpacer>
+					<Button text="Add" press="onAddBukrs" type="Emphasized" visible="{App>/edit}"></Button>
+				</Toolbar>
+			</headerToolbar>
+			<columns>
+				<Column >
+					<header>
+						<Label text="Company Code" design="Bold"></Label>
+					</header>
+				</Column>
+				<Column >
+					<header>
+						<Label text="Postable" design="Bold"></Label>
+					</header>
+				</Column>
+				<Column width="5%">
+					<header>
+						<Label text=""></Label>
+					</header>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<ComboBox required="true" selectedKey="{ProfitCenter>bukrs}" items="{Dropdowns>/T001}" editable="{App>/edit}" showSecondaryValues="true">
+							<core:ListItem key="{Dropdowns>bukrs}" text="{Dropdowns>butxt}" additionalText="{Dropdowns>bukrs}"/>
+						</ComboBox>
+						<CheckBox selected="true" editable="false"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+			adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+			singleContainerFullSize="false">
+			<form:content>
+				<core:Title text="Company Code"/>
+				<Label text="Company Code" required="true"/>
+				<ComboBox required="true" selectedKey="{ProfitCenter>/Cepc_bukrs/bukrs}" items="{Dropdowns>/T001}" editable="{App>/edit}"
+					showSecondaryValues="true">
+					<core:ListItem key="{Dropdowns>bukrs}" text="{Dropdowns>butxt}" additionalText="{Dropdowns>bukrs}"/>
+				</ComboBox>
+				<core:Title text=""/>
+				<core:Title text="Joint Venture Data"/>
+				<Label text="Joint Venture"/>
+				<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true" value="{ProfitCenter>/Cepc_bukrs/vname}"
+					editable="{App>/edit}">
+					<customData>
+						<core:CustomData key="title" value="Joint Venture"></core:CustomData>
+						<core:CustomData key="table" value="T8JV"></core:CustomData>
+						<core:CustomData key="inputKey" value="vname"></core:CustomData>
+						<core:CustomData key="inputText" value="vname"></core:CustomData>
+						<core:CustomData key="bukrs" value="Company Code"></core:CustomData>
+						<core:CustomData key="vname" value="Joint Venture"></core:CustomData>
+					</customData>
+				</Input>
+				<Label text="Equity Type"/>
+				<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true" value="{ProfitCenter>/Cepc_bukrs/etype}"
+					editable="{App>/edit}">
+					<customData>
+						<core:CustomData key="title" value="Equity Type"></core:CustomData>
+						<core:CustomData key="table" value="T8JG"></core:CustomData>
+						<core:CustomData key="inputKey" value="etype"></core:CustomData>
+						<core:CustomData key="inputText" value="etype"></core:CustomData>
+						<core:CustomData key="bukrs" value="Company Code"></core:CustomData>
+						<core:CustomData key="vname" value="Joint Venture"></core:CustomData>
+						<core:CustomData key="etype" value="Equity Type"></core:CustomData>
+					</customData>
+				</Input>
+				<Label text="Joint Venture Object Type"/>
+				<Input showValueHelp="true" valueHelpOnly="true" value="{CostCenter>/Csks/jv_otype}" editable="{App>/edit}"/>
+				<core:Title text=""/>
+				<Label text="Recovery Indicator"/>
+				<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true" value="{ProfitCenter>/Cepc_bukrs/recid}"
+					editable="{App>/edit}">
+					<customData>
+						<core:CustomData key="title" value="Recovery Indicator"></core:CustomData>
+						<core:CustomData key="table" value="T8JJ"></core:CustomData>
+						<core:CustomData key="inputKey" value="recid"></core:CustomData>
+						<core:CustomData key="inputText" value="recid"></core:CustomData>
+						<core:CustomData key="bukrs" value="Company Code"></core:CustomData>
+						<core:CustomData key="recid" value="Recovery Indicator"></core:CustomData>
+					</customData>
+				</Input>
+				<Label text="JIB/JIBE Class"/>
+				<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true" value="{ProfitCenter>/Cepc_bukrs/jv_jibcl}"
+					editable="{App>/edit}">
+					<customData>
+						<core:CustomData key="title" value="JIB/JIBE Class"></core:CustomData>
+						<core:CustomData key="table" value="T8J6A"></core:CustomData>
+						<core:CustomData key="inputKey" value="class"></core:CustomData>
+						<core:CustomData key="inputText" value="class"></core:CustomData>
+						<core:CustomData key="bukrs" value="Company Code"></core:CustomData>
+						<core:CustomData key="class" value="Class"></core:CustomData>
+					</customData>
+				</Input>
+				<Label text="JIB/JIBE Subclass A"/>
+				<Input showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true" value="{ProfitCenter>/Cepc_bukrs/jv_jibsa}"
+					editable="{App>/edit}">
+					<customData>
+						<core:CustomData key="title" value="JIB/JIBE Subclass A"></core:CustomData>
+						<core:CustomData key="table" value="T8J6C"></core:CustomData>
+						<core:CustomData key="inputKey" value="subclass"></core:CustomData>
+						<core:CustomData key="inputText" value="subclass"></core:CustomData>
+						<core:CustomData key="bukrs" value="Company Code"></core:CustomData>
+						<core:CustomData key="class" value="Class"></core:CustomData>
+						<core:CustomData key="subclass" value="Sub Class"></core:CustomData>
+					</customData>
+				</Input>
+			</form:content>
+		</form:SimpleForm>
+	</VBox>
 </core:FragmentDefinition>

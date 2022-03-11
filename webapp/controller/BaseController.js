@@ -529,6 +529,8 @@ sap.ui.define([
 			oAppModel.setProperty("/rejectButton", false);
 			oAppModel.setProperty("/submitButton", false);
 			oAppModel.setProperty("/previousPage", null);
+			oAppModel.setProperty("/erpPreview", false);
+			oAppModel.setProperty("/crPreview", false);
 		},
 
 		formatCR_Entiry_ID: function (sCRId, sEntityID) {
@@ -670,7 +672,8 @@ sap.ui.define([
 						ChangeRequest: oChangeRequest,
 						Cepc: oCepc,
 						Cepct: [],
-						CepcBukrs: []
+						CepcBukrs: [],
+						Cepc_bukrs: Object.assign({}, oAppModel.getProperty("/cepc_bukrs"))
 					});
 				},
 				//Error Handler 
@@ -700,7 +703,7 @@ sap.ui.define([
 				hasPayload: true,
 				type: "POST",
 				data: {
-					"crSearchType": "GET_CR_BY_CUSTOMER_FILTERS",
+					"crSearchType": oFilters.entityType === "PROFIT_CENTER" ? "GET_CR_BY_PROFIT_CENTER_FILTERS" : "GET_CR_BY_COST_CENTER_FILTERS",
 					"currentPage": nPageNo,
 					"changeRequestSearchDTO": oFilters
 				}
@@ -764,6 +767,31 @@ sap.ui.define([
 			];
 
 			return oFilters;
+		},
+
+		getCostCenterDetails: function (sCostCenter) {
+			var objParamCreate = {
+				url: "/mdmccpc/entity-service/entities/entity/get",
+				type: "POST",
+				hasPayload: true,
+				data: {
+					"entitySearchType": "GET_BY_COST_CENTER_ID",
+					"entityType": "COST_CENTER",
+					"parentDTO": {
+						"customData": {
+							"fin_csks": {
+								"kostl": sCostCenter
+							}
+						}
+					}
+				}
+			};
+			this.getView().setBusy(true);
+			this.serviceCall.handleServiceRequest(objParamCreate).then(oDataResp => {
+				this.getView().setBusy(false);
+			}, oError => {
+				this.getView().setBusy(false);
+			});
 		},
 
 		clearCRTableModel: function () {

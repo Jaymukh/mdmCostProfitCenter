@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Popover placement="Auto" showHeader="false" title="Cost Center: {SearchCCModel>costCenterCsksDTO/kostl}">
+		<content>
+			<List id="list">
+				<StandardListItem title="Edit" type="Active"
+					info="{= ${SearchCCModel>costCenterCsksDTO/kostl} ? '' :'A change request is in progress.'}" icon="sap-icon://edit"
+					press="onEditCustomer"/>
+				<StandardListItem title="Copy" type="Active"
+					info="{= ${SearchCCModel>costCenterCsksDTO/kostl} ? '' :'A change request is in progress.'}" icon="sap-icon://copy"
+					press="onCopyCustomer"/>
+				<StandardListItem title="Block" type="Active"
+					info="{= ${SearchCCModel>costCenterCsksDTO/kostl} ? '' :'A change request is in progress.'}" icon="sap-icon://cancel"
+					press="onBlockCustomer"/>
+				<StandardListItem title="Delete" type="Active" press="onDeleteCustomer"
+					info="{=${SearchCCModel>costCenterCsksDTO/kostl} ? '' :'A change request is in progress.'}" icon="sap-icon://delete"/>
+			</List>
+		</content>
+	</Popover>
+</core:FragmentDefinition>
