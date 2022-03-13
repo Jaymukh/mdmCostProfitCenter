@@ -158,9 +158,11 @@
 			}
 		},
 		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
 		},
 		"routing": {
 			"config": {
@@ -172,13 +174,15 @@
 				"controlId": "pageContainer",
 				"clearControlAggregation": false
 			},
-			"routes": [{
-				"name": "AppRoute",
-				"pattern": "",
-				"target": [
-					"CostCenterSearch"
-				]
-			}],
+			"routes": [
+				{
+					"name": "AppRoute",
+					"pattern": "",
+					"target": [
+						"CostCenterSearch"
+					]
+				}
+			],
 			"targets": {
 				"TargetApp": {
 					"viewType": "XML",
@@ -210,5 +214,9 @@
 				}
 			}
 		}
+	},
+	"sap.platform.hcp": {
+		"uri": "webapp",
+		"_version": "1.1.0"
 	}
 }
