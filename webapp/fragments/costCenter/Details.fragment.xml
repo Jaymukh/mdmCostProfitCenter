@@ -23,9 +23,9 @@
 			<Label text="Department"/>
 			<Input value="{CostCenter>/Csks/abtei}" editable="{App>/edit}"/>
 			<Label text="Cost Center Category" required="true"/>
-			<ComboBox required="true" selectedKey="{CostCenter>/Cskt/kosar}" items="{Dropdowns>/TKA05}" editable="{App>/edit}"
+			<ComboBox required="true" selectedKey="{CostCenter>/Cskt/kosar}" items="{Dropdowns>/TKT05}" editable="{App>/edit}"
 				showSecondaryValues="true">
-				<core:ListItem key="{Dropdowns>kosar}" text="{Dropdowns>butxt}" additionalText="{Dropdowns>kosar}"/>
+				<core:ListItem key="{Dropdowns>kosar}" text="{Dropdowns>ktext}" additionalText="{Dropdowns>kosar}"/>
 			</ComboBox>
 			<Label text="Company Code" required="true"/>
 			<ComboBox required="true" selectedKey="{CostCenter>/Cskt/kosar}" items="{Dropdowns>/T001}" editable="{App>/edit}"
@@ -36,8 +36,9 @@
 			<Label text="Business Area"/>
 			<Input editable="false" value="{CostCenter>/Cskt/gsber}"/>
 			<Label text="Functional Area"/>
-			<ComboBox required="true" selectedKey="{CostCenter>/Cskt/fkber}" items="{Dropdowns>/TFKB}" editable="{App>/edit}" showSecondaryValues="true">
-				<core:ListItem key="{Dropdowns>fkber}" text="{Dropdowns>butxt}" additionalText="{Dropdowns>fkber}"/>
+			<ComboBox required="true" selectedKey="{CostCenter>/Cskt/fkber}" items="{Dropdowns>/VW_TFKB}" editable="{App>/edit}"
+				showSecondaryValues="true">
+				<core:ListItem key="{Dropdowns>fkber}" text="{Dropdowns>fkbtx}" additionalText="{Dropdowns>fkber}"/>
 			</ComboBox>
 			<Label text="Currency" required="true"/>
 			<ComboBox required="true" selectedKey="{CostCenter>/Cskt/waers}" items="{Dropdowns>/TCURC}" editable="false" showSecondaryValues="true">
@@ -51,7 +52,17 @@
 			<Label text="New Cost Center"/>
 			<Input valueHelpOnly="true" showValueHelp="true" value="" editable="{App>/edit}"/>
 			<Label text="User Responsible"/>
-			<Input valueHelpOnly="true" showValueHelp="true" value="{CostCenter>/Cskt/verak_user}" editable="{App>/edit}"/>
+			<Input required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
+				value="{CostCenter>/Cskt/verak_user}" editable="{App>/edit}">
+				<customData>
+					<core:CustomData key="title" value="User Responsible"></core:CustomData>
+					<core:CustomData key="table" value="USER_ADDRP"></core:CustomData>
+					<core:CustomData key="inputKey" value="bname"></core:CustomData>
+					<core:CustomData key="inputText" value="bname"></core:CustomData>
+					<core:CustomData key="persnumber" value="Identifier"></core:CustomData>
+					<core:CustomData key="name_TEXT" value="Description"></core:CustomData>
+				</customData>
+			</Input>
 			<Label text=" Person Responsible"/>
 			<Input required="true" value="{CostCenter>/Cskt/verak}" editable="{App>/edit}"/>
 			<core:Title text="Audit Information"/>

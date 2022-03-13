@@ -39,8 +39,8 @@
 										<SearchField/>
 										<ToggleButton id="slideToggleButtonID" icon="sap-icon://arrow-left" pressed="false" text="Side Menu" press="handleCRSideMenu"></ToggleButton>
 									</Toolbar>
-									<filterbar:FilterBar id="idFbChangeRequests" showFilterConfiguration="false" useToolbar="false" showGoOnFB="true"
-										search="onSearchCCCR" class="noBorderFilterBar">
+									<filterbar:FilterBar id="idFbChangeRequests" showFilterConfiguration="false" useToolbar="false" showGoOnFB="true" search="onSearchCCCR"
+										class="noBorderFilterBar">
 										<filterbar:filterGroupItems >
 											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="ChangeReq" name="dateRange" label="Date Range">
 												<filterbar:control>
@@ -70,7 +70,9 @@
 											</filterbar:FilterGroupItem>
 											<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="ChangeReq" name="companyCode" label="Company Code">
 												<filterbar:control>
-													<Input value="{ChangeRequestsModel>/CompanyCode}"/>
+													<ComboBox selectedKey="{ChangeRequestsModel>/CompanyCode}" items="{Dropdowns>/T001}" showSecondaryValues="true">
+														<core:ListItem key="{Dropdowns>bukrs}" text="{Dropdowns>butxt}" additionalText="{Dropdowns>bukrs}"/>
+													</ComboBox>
 												</filterbar:control>
 											</filterbar:FilterGroupItem>
 										</filterbar:filterGroupItems>
@@ -81,7 +83,98 @@
 								<uxap:ObjectPageSection showTitle="false">
 									<uxap:ObjectPageSubSection >
 										<uxap:blocks>
-											<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.search.ChangeRequests" type="XML"/>
+											<l:DynamicSideContent id="idCCCRDynamicPage" class="sapUiDSCExplored" containerQuery="true" sideContentFallDown="BelowM"
+												showSideContent="false" breakpointChanged="handleBreakpointChangeEvent">
+												<VBox>
+													<Table mode="SingleSelectLeft" fixedLayout="false" items="{ChangeRequestsModel>/ChangeRequests}" selectionChange="onSelectCRinTable"
+														noDataText="No Chnage Request available, Please adjust filter or Try Again.">
+														<headerToolbar>
+															<Toolbar>
+																<Label text="All Change Request({ChangeRequestsModel>/TotalCount})" design="Bold"></Label>
+																<ToolbarSpacer/>
+																<Button icon="sap-icon://sort" tooltip="Sort Change Requests" press="onSortChangeReq"/>
+																<Label text="Page No."/>
+																<Select forceSelection="true" items="{ChangeRequestsModel>/PageData}" selectedKey="{ChangeRequestsModel>/SelectedPageKey}"
+																	change="onSelectChnageReqPage">
+																	<core:Item text="{ChangeRequestsModel>text}" key="{ChangeRequestsModel>key}"/>
+																</Select>
+																<Button icon="sap-icon://navigation-left-arrow" type="Transparent" enabled="{ChangeRequestsModel>/LeftEnabled}"
+																	press="onSelectChnageReqPageLeft"></Button>
+																<Button icon="sap-icon://navigation-right-arrow" type="Transparent" enabled="{ChangeRequestsModel>/RightEnabled}"
+																	press="onSelectChnageReqPageRight"></Button>
+															</Toolbar>
+														</headerToolbar>
+														<columns>
+															<Column >
+																<header>
+																	<Label text="Change Request" design="Bold"/>
+																</header>
+															</Column>
+															<Column >
+																<header>
+																	<Label text="Description" design="Bold"/>
+																</header>
+															</Column>
+															<Column >
+																<header>
+																	<Label text="Change Status" design="Bold"/>
+																</header>
+															</Column>
+															<Column >
+																<header>
+																	<Label text="Workflow Status" design="Bold"/>
+																</header>
+															</Column>
+															<Column >
+																<header>
+																	<Label text="Change Request Date" design="Bold"/>
+																</header>
+															</Column>
+															<Column >
+																<header>
+																	<Label text="Changed By" design="Bold"/>
+																</header>
+															</Column>
+															<Column >
+																<header>
+																	<Label text="Created By" design="Bold"/>
+																</header>
+															</Column>
+															<Column >
+																<header>
+																	<Label text="Finalized By" design="Bold"/>
+																</header>
+															</Column>
+															<Column >
+																<header>
+																	<Label text="Finalized On" design="Bold"/>
+																</header>
+															</Column>
+														</columns>
+														<items>
+															<ColumnListItem>
+																<cells>
+																	<Link
+																		text="{ parts: [ 'ChangeRequestsModel>crDTO/change_request_id', 'ChangeRequestsModel>crDTO/entity_id'], formatter: '.formatCR_Entiry_ID' }"
+																		press="onChangeReqLinkPress"></Link>
+																	<Text text="{ChangeRequestsModel>crDTO/change_request_desc}"></Text>
+																	<ObjectStatus text="{path:'ChangeRequestsModel>crDTO/is_cr_closed',formatter:'.handleChangeStatus'}"/>
+																	<ObjectStatus
+																		text="{parts :[{path:'ChangeRequestsModel>crDTO/assigmentStatus'},{path:'ChangeRequestsModel>crDTO/assignmentStage'}],formatter:'.handleStatus'}"/>
+																	<Text text="{path:'ChangeRequestsModel>crDTO/change_request_date',formatter:'.handleChangeReqDate'}"></Text>
+																	<Text text="{ChangeRequestsModel>crDTO/modified_by/firstname} {ChangeRequestsModel>crDTO/modified_by/lastname}"></Text>
+																	<Text text="{ChangeRequestsModel>crDTO/change_request_by/firstname} {ChangeRequestsModel>crDTO/change_request_by/lastname}"></Text>
+																	<Text text="{ChangeRequestsModel>crDTO/statusChangeBy/firstname} {ChangeRequestsModel>crDTO/statusChangeBy/lastname}"></Text>
+																	<Text text="{path:'ChangeRequestsModel>crDTO/statusChangeDate',formatter:'.handleChangeReqDate'}"></Text>
+																</cells>
+															</ColumnListItem>
+														</items>
+													</Table>
+												</VBox>
+												<l:sideContent>
+													<core:Fragment fragmentName="murphy.mdm.costProfit.mdmCostProfitCenter.fragments.changeRequest.CRSideContent" type="XML"/>
+												</l:sideContent>
+											</l:DynamicSideContent>
 										</uxap:blocks>
 									</uxap:ObjectPageSubSection>
 								</uxap:ObjectPageSection>

@@ -18,7 +18,7 @@
 								<commons:content>
 									<commons:TimelineItem dateTime="{path:'WorkFlowModel>statusChangedDate', formatter : '.changeWorkflowDate'}"
 										title="{path:'WorkFlowModel>status', formatter : '.changeWorkflowStatus'}" userNameClickable="false"
-										userName="{WorkFlowModel>assignmentUserName} {WorkFlowModel>assignmentStageName}" filterValue="{WorkFlowModel>status}"></commons:TimelineItem>
+										userName="{WorkFlowModel>assignmentUserName} - {WorkFlowModel>assignmentStageName}" filterValue="{WorkFlowModel>status}"></commons:TimelineItem>
 								</commons:content>
 							</commons:Timeline>
 						</uxap:blocks>

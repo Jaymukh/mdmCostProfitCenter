@@ -1,7 +1,8 @@
 sap.ui.define([
 	"murphy/mdm/costProfit/mdmCostProfitCenter/controller/BaseController",
-	"sap/ui/core/Fragment"
-], function (BaseController, Fragment) {
+	"sap/ui/core/Fragment",
+	"sap/m/MessageToast"
+], function (BaseController, Fragment, MessageToast) {
 	"use strict";
 
 	return BaseController.extend("murphy.mdm.costProfit.mdmCostProfitCenter.controller.CostCenterSearch", {
@@ -65,7 +66,7 @@ sap.ui.define([
 				oSearchModel.setProperty("/SelectedPageKey", aResultDataArr[0].currentPage);
 				oSearchModel.setProperty("/RightEnabled", aResultDataArr[0].totalPageCount > aResultDataArr[0].currentPage ? true : false);
 				oSearchModel.setProperty("/LeftEnabled", aResultDataArr[0].currentPage > 1 ? true : false);
-				oSearchModel.setProperty("/CostCenters", oData.result.costCenterDTOs);
+				oSearchModel.setProperty("/CostCenters", aResultDataArr);
 			});
 		},
 
@@ -94,14 +95,39 @@ sap.ui.define([
 
 		onGetCostCenterDetails: function (oEvent) {
 			let oCostCenter = oEvent.getSource().getBindingContext("SearchCCModel").getObject(),
-				oAppModel = this.getModel("App");
+				oAppModel = this.getModel("App"),
+				oCCModel = this.getModel("CostCenter"),
+				oCsks = null,
+				aCskt = [];
 
 			this.clearAllButtons();
-			this.getCostCenterDetails(oCostCenter.costCenterCsksDTO.kostl);
+			this.getCostCenterDetails(oCostCenter.costCenterCsksDTO.kostl)
+				.then(oData => {
+					oData.result.costCenterDTOs.forEach(oItem => {
+						if (oItem.hasOwnProperty("costCenterCsksDTO") && oItem.costCenterCsksDTO) {
+							oCsks = oItem.costCenterCsksDTO;
+						}
+
+						if (oItem.hasOwnProperty("costCenterCsktDTOs") && oItem.costCenterCsktDTOs) {
+							aCskt = oItem.costCenterCsktDTOs;
+						}
+					});
+					oCCModel.setData({
+						workflowID: "",
+						ChangeRequest: {},
+						Csks: oCsks,
+						Cskt: aCskt
+					});
+					this.getRouter().getTargets().display("CostCenterCreate");
+					this.getView().setBusy(false);
+				}, oError => {
+					MessageToast.show("Failed to fetch Cost Center Details, please try again");
+					this.getView().setBusy(false);
+				});
 			oAppModel.setProperty("/editButton", true);
 			oAppModel.setProperty("/previousPage", "CC_SEARCH");
 			oAppModel.setProperty("/erpPreview", true);
-			this.getRouter().getTargets().display("CostCenterCreate");
+
 		}
 
 	});

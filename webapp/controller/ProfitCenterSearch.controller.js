@@ -27,8 +27,8 @@ sap.ui.define([
 			oSearchModel.setProperty("/RightEnabled", false);
 
 			//Get filter details
-			var oFilterValues = this.getFilterValues("idCCSearchFB"),
-				sFilterBy = this.byId("idCCVm").getSelectionKey(),
+			var oFilterValues = this.getFilterValues("idPCSearchFB"),
+				sFilterBy = this.byId("idPCVm").getSelectionKey(),
 				oObjectParam = {
 					"entitySearchType": "GET_BY_PROFIT_CENTER_FILTERS",
 					"entityType": "PROFIT_CENTER",
@@ -47,7 +47,7 @@ sap.ui.define([
 			};
 
 			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
-				var aResultDataArr = oData.result.costCenterDTOs,
+				var aResultDataArr = oData.result.profitCenterDTOs,
 					aPageJson = [];
 				oData.result.totalRecords = aResultDataArr[0].totalCount;
 
@@ -64,7 +64,7 @@ sap.ui.define([
 				oSearchModel.setProperty("/SelectedPageKey", aResultDataArr[0].currentPage);
 				oSearchModel.setProperty("/RightEnabled", aResultDataArr[0].totalPageCount > aResultDataArr[0].currentPage ? true : false);
 				oSearchModel.setProperty("/LeftEnabled", aResultDataArr[0].currentPage > 1 ? true : false);
-				oSearchModel.setProperty("/ProfitCenters", oData.result);
+				oSearchModel.setProperty("/ProfitCenters", aResultDataArr);
 			});
 		}
 	});

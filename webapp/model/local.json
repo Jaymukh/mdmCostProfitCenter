@@ -122,7 +122,7 @@
 	},
 	"cskt": {
 		"entity_id": "",
-		"kokrs": "",
+		"kokrs": "1000",
 		"kostl": "",
 		"datbi": "9999-12-31",
 		"spras": "",
@@ -191,7 +191,7 @@
 		"prctr": ""
 	},
 	"cepc_bukrs": {
-		"kokrs": "",
+		"kokrs": "1000",
 		"prctr": "",
 		"bukrs": "",
 		"vname": "",

@@ -5,7 +5,7 @@
 		<f:title>
 			<f:DynamicPageTitle>
 				<f:heading>
-					<vm:VariantManagement select="onHandleVMSelect" standardItemText="Address Data" defaultVariantKey="addressData">
+					<vm:VariantManagement id="idPCVm" select="onHandleVMSelect" standardItemText="Address Data" defaultVariantKey="addressData">
 						<vm:variantItems>
 							<vm:VariantItem text="General Data" key="generalData"></vm:VariantItem>
 						</vm:variantItems>
@@ -73,21 +73,21 @@
 			</f:DynamicPageHeader>
 		</f:header>
 		<f:content>
-			<Table sticky="ColumnHeaders" items="{SearchCustomerModel>/searchAllModelData/customerDTOs}">
+			<Table sticky="ColumnHeaders" items="{SearchPCModel>/searchAllModelData/customerDTOs}">
 				<headerToolbar>
 					<Toolbar>
-						<Label text="Profit Center Master List({SearchCustomerModel>/searchAllModelData/totalRecords})" design="Bold"></Label>
+						<Label text="Profit Center Master List({SearchPCModel>/searchAllModelData/totalRecords})" design="Bold"></Label>
 						<ToolbarSpacer></ToolbarSpacer>
 						<Button text="Create Profit Center" visible="{= ${userManagementModel>/role}.indexOf('req')!== -1 ? true : false }" type="Emphasized"
 							press="onNavtoCreatePC"></Button>
 						<Label text="Page No."/>
-						<Select id="searchAllVendorPageSelectID" items="{SearchCustomerModel>/PageData}" selectedKey="{SearchCustomerModel>/selectedPageKey}"
+						<Select id="searchAllVendorPageSelectID" items="{SearchPCModel>/PageData}" selectedKey="{SearchPCModel>/selectedPageKey}"
 							change="onSelectSearchAllVendorPage">
-							<core:Item text="{SearchCustomerModel>text}" key="{SearchCustomerModel>key}"/>
+							<core:Item text="{SearchPCModel>text}" key="{SearchPCModel>key}"/>
 						</Select>
-						<Button icon="sap-icon://navigation-left-arrow" type="Transparent" enabled="{SearchCustomerModel>/leftEnabled}"
+						<Button icon="sap-icon://navigation-left-arrow" type="Transparent" enabled="{SearchPCModel>/leftEnabled}"
 							press="onSelectSearchAllVendorPageLeft"></Button>
-						<Button icon="sap-icon://navigation-right-arrow" type="Transparent" enabled="{SearchCustomerModel>/rightEnabled}"
+						<Button icon="sap-icon://navigation-right-arrow" type="Transparent" enabled="{SearchPCModel>/rightEnabled}"
 							press="onSelectSearchAllVendorPageRight"></Button>
 					</Toolbar>
 				</headerToolbar>
@@ -141,16 +141,17 @@
 				<items>
 					<ColumnListItem >
 						<cells>
-							<Link text="{SearchCustomerModel>customCustomerCustKna1DTO/kunnr}" press="onGetCustomerDetails"></Link>
-							<ObjectStatus state="{path :'SearchCustomerModel>pendingRequest', formatter : '.handlePendingRequest'}"
-								text="{SearchCustomerModel>pendingRequest}"/>
-							<Text
-								text="{ parts:[ {path:'SearchCustomerModel>customVendorLFA1DTO/name1'}, {path:'SearchCustomerModel>customVendorLFA1DTO/name2'}, {path:'SearchCustomerModel>customVendorLFA1DTO/name3'}, {path:'SearchCustomerModel>customVendorLFA1DTO/name4'} ], formatter:'.handleDescription' }"></Text>
-							<Text text="{SearchCustomerModel>customVendorLFA1DTO/vbund}"></Text>
-							<Text text="{SearchCustomerModel>customVendorLFA1DTO/land1}"></Text>
+							<Link text="{SearchPCModel>profitCenterCepcDTO/kostl}" press="onGetCostCenterDetails"></Link>
+							<ObjectStatus state="{path :'SearchCCModel>pendingRequest', formatter : '.handlePendingRequest'}" text="{SearchCCModel>pendingRequest}"/>
+							<Text text=""></Text>
+							<Text text="{SearchCCModel>costCenterCsksDTO/datab}"/>
 							<Text text=""/>
-							<Text text=""/>
-							<core:Icon src="sap-icon://overflow" press="handleOverFlowButton"></core:Icon>
+							<Link text="{SearchCCModel>costCenterCsksDTO/kostl}" press="onGetCostCenterDetails"></Link>
+							<ComboBox selectedKey="{SearchCCModel>costCenterCsksDTO/kosar}" items="{Dropdowns>/TKA05}" editable="false" showSecondaryValues="true">
+								<core:ListItem key="{Dropdowns>kosar}" text="{Dropdowns>butxt}" additionalText="{Dropdowns>kosar}"/>
+							</ComboBox>
+							<Text text="{SearchCCModel>costCenterCsksDTO/verak}"/>
+							<core:Icon src="sap-icon://overflow" press="onCostCenterAction"></core:Icon>
 						</cells>
 					</ColumnListItem>
 				</items>

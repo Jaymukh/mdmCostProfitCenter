@@ -5,7 +5,7 @@
 			<tnt:header>
 				<tnt:ToolHeader>
 					<Button tooltip="{= ${App>/sideNavExp} ? 'Small Size Navigation' : 'Large Size Navigation'}"
-						icon="{= ${App>/sideNavExp} ? 'sap-icon://close-command-field' : 'sap-icon://open-command-field'}" type="Transparent" press="onSideNavPress">
+						icon="sap-icon://menu2" type="Transparent" press="onSideNavPress">
 						<layoutData>
 							<OverflowToolbarLayoutData priority="NeverOverflow"/>
 						</layoutData>
@@ -34,11 +34,11 @@
 							<tnt:NavigationListItem text="Profit Center Change Request" key="ProfitCenterChangeRequest"/>
 						</tnt:NavigationListItem>
 					</tnt:NavigationList>
-					<tnt:fixedItem>
+					<!--<tnt:fixedItem>
 						<tnt:NavigationList>
 							<tnt:NavigationListItem text="Lock Menu" icon="sap-icon://unlocked" key="unlock"/>
 						</tnt:NavigationList>
-					</tnt:fixedItem>
+					</tnt:fixedItem>-->
 				</tnt:SideNavigation>
 			</tnt:sideContent>
 			<tnt:mainContents>

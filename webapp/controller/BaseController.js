@@ -320,9 +320,6 @@ sap.ui.define([
 							return e.changeLogType === "Deleted";
 						}).length;
 
-						if (!oAuditLogModel.getProperty("/details")) {
-							oAuditLogModel.setProperty("/details", {});
-						}
 						oAuditLogModel.setProperty("/details/newCount", nNewCount);
 						oAuditLogModel.setProperty("/details/changedCount", nChangedCount);
 						oAuditLogModel.setProperty("/details/deleteCount", nDeleteCount);
@@ -504,11 +501,8 @@ sap.ui.define([
 		},
 
 		getSidePanelDetails: function (oCRObject) {
+			this.clearSidePanelDetails();
 			var oAudLogModel = this.getView().getModel("AuditLogModel");
-			if (!oAudLogModel.getProperty("/details")) {
-				oAudLogModel.setProperty("/details", {});
-			}
-
 			oAudLogModel.setProperty("/details/desc", oCRObject.crDTO.change_request_desc);
 			oAudLogModel.setProperty("/details/businessID", oCRObject.crDTO.entity_id);
 			oAudLogModel.setProperty("/details/ChangeRequestID", oCRObject.crDTO.change_request_id);
@@ -518,6 +512,21 @@ sap.ui.define([
 			this.getAllDocumentsForCR(oCRObject.crDTO.entity_id);
 			this.getAuditLogsForCR(oCRObject.crDTO.entity_id);
 			this.getWorkFlowForCR(oCRObject.crDTO.change_request_id);
+		},
+
+		clearSidePanelDetails: function () {
+			var oCommentsModel = this.getModel("CommentsModel"),
+				oAttachModel = this.getModel("AttachmentsModel"),
+				oAudLogModel = this.getView().getModel("AuditLogModel"),
+				oWorkFlowModel = this.getModel("WorkFlowModel");
+
+			oCommentsModel.setData([]);
+			oAttachModel.setData([]);
+			oWorkFlowModel.setData([]);
+			oAudLogModel.setProperty("/details", {});
+			oAudLogModel.setProperty("/details/desc", "");
+			oAudLogModel.setProperty("/details/businessID", "");
+			oAudLogModel.setProperty("/details/ChangeRequestID", "");
 		},
 
 		clearAllButtons: function () {
@@ -553,15 +562,7 @@ sap.ui.define([
 			return sText;
 		},
 
-		createCCEntity: function () {
-			var oCCModel = this.getModel("CostCenter"),
-				oAppModel = this.getModel("App"),
-				oChangeRequest = Object.assign({}, oAppModel.getProperty("/changeReq")),
-				oCsks = Object.assign({}, oAppModel.getProperty("/csks")),
-				sUserId = this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
-				oDate = new Date(),
-				sDate = `${oDate.getFullYear()}-${("0" + (oDate.getMonth() + 1) ).slice(-2)}-${("0" + oDate.getDate()).slice(-2)}`;
-
+		createEntityId: function () {
 			var objParam = {
 				url: "/mdmccpc/entity-service/entities/entity/create",
 				hasPayload: true,
@@ -572,8 +573,8 @@ sap.ui.define([
 						"customData": {
 							"business_entity": {
 								"entity_type_id": "41004",
-								"created_by": sUserId,
-								"modified_by": sUserId,
+								"created_by": this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
+								"modified_by": this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
 								"is_draft": true
 							}
 						}
@@ -581,105 +582,7 @@ sap.ui.define([
 				}
 			};
 
-			this.serviceCall.handleServiceRequest(objParam).then(
-				//Success Handler
-				oData => {
-					var oBusinessEntity = oData.result.costCenterDTOs[0].businessEntityDTO;
-					oCsks.entity_id = oBusinessEntity.entity_id;
-					oCsks.datab = sDate;
-					oChangeRequest.change_request_id = 50001;
-					oChangeRequest.reason = "";
-					oChangeRequest.timeCreation = `${("0" + oDate.getHours()).slice(-2)}:${("0" + oDate.getMinutes()).slice(-2)}`;
-					oChangeRequest.dateCreation = sDate;
-					oChangeRequest.change_request_by = oBusinessEntity.hasOwnProperty("created_by") ? oBusinessEntity.created_by : {};
-					oChangeRequest.modified_by = oBusinessEntity.hasOwnProperty("modified_by") ? oBusinessEntity.modified_by : {};
-
-					var oAudLogModel = this.getView().getModel("AuditLogModel");
-					if (!oAudLogModel.getProperty("/details")) {
-						oAudLogModel.setProperty("/details", {});
-					}
-
-					oAudLogModel.setProperty("/details/desc", "");
-					oAudLogModel.setProperty("/details/businessID", oBusinessEntity.entity_id);
-					oAudLogModel.setProperty("/details/ChangeRequestID", "");
-
-					oCCModel.setData({
-						workflowID: "",
-						ChangeRequest: oChangeRequest,
-						Csks: oCsks,
-						Cskt: []
-					});
-				},
-				//Error Handler 
-				oError => {
-
-				});
-		},
-
-		createPCEntity: function () {
-			var oPCModel = this.getModel("ProfitCenter"),
-				oAppModel = this.getModel("App"),
-				oChangeRequest = Object.assign({}, oAppModel.getProperty("/changeReq")),
-				oCepc = Object.assign({}, oAppModel.getProperty("/cepc")),
-				sUserId = this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
-				oDate = new Date(),
-				sDate = `${oDate.getFullYear()}-${("0" + (oDate.getMonth() + 1) ).slice(-2)}-${("0" + oDate.getDate()).slice(-2)}`;
-
-			var objParam = {
-				url: "/mdmccpc/entity-service/entities/entity/create",
-				hasPayload: true,
-				type: "POST",
-				data: {
-					"entityType": "PROFIT_CENTER",
-					"parentDTO": {
-						"customData": {
-							"business_entity": {
-								"entity_type_id": "41004",
-								"created_by": sUserId,
-								"modified_by": sUserId,
-								"is_draft": true
-							}
-						}
-					}
-				}
-			};
-
-			this.serviceCall.handleServiceRequest(objParam).then(
-				//Success Handler
-				oData => {
-					var oBusinessEntity = oData.result.profitCenterDTOs[0].businessEntityDTO;
-					oCepc.entity_id = oBusinessEntity.entity_id;
-					oCepc.datab = sDate;
-					oCepc.ersda = sDate;
-					oChangeRequest.change_request_id = 50001;
-					oChangeRequest.reason = "";
-					oChangeRequest.timeCreation = `${("0" + oDate.getHours()).slice(-2)}:${("0" + oDate.getMinutes()).slice(-2)}`;
-					oChangeRequest.dateCreation = sDate;
-					oChangeRequest.change_request_by = oBusinessEntity.hasOwnProperty("created_by") ? oBusinessEntity.created_by : {};
-					oChangeRequest.modified_by = oBusinessEntity.hasOwnProperty("modified_by") ? oBusinessEntity.modified_by : {};
-
-					var oAudLogModel = this.getView().getModel("AuditLogModel");
-					if (!oAudLogModel.getProperty("/details")) {
-						oAudLogModel.setProperty("/details", {});
-					}
-
-					oAudLogModel.setProperty("/details/desc", "");
-					oAudLogModel.setProperty("/details/businessID", oBusinessEntity.entity_id);
-					oAudLogModel.setProperty("/details/ChangeRequestID", "");
-
-					oPCModel.setData({
-						workflowID: "",
-						ChangeRequest: oChangeRequest,
-						Cepc: oCepc,
-						Cepct: [],
-						CepcBukrs: [],
-						Cepc_bukrs: Object.assign({}, oAppModel.getProperty("/cepc_bukrs"))
-					});
-				},
-				//Error Handler 
-				oError => {
-
-				});
+			return this.serviceCall.handleServiceRequest(objParam);
 		},
 
 		getAllCCChangeRequests: function (nPageNo = 1) {
@@ -731,7 +634,7 @@ sap.ui.define([
 				oChangeRequestsModel.setProperty("/SelectedPageKey", oData.result.currentPage);
 				oChangeRequestsModel.setProperty("/RightEnabled", oData.result.totalPageCount > oData.result.currentPage ? true : false);
 				oChangeRequestsModel.setProperty("/LeftEnabled", oData.result.currentPage > 1 ? true : false);
-				oChangeRequestsModel.setProperty("/TotalCount", oData.result.parentCrDTOs.length);
+				oChangeRequestsModel.setProperty("/TotalCount", oData.result.totalCount);
 				this.getView().setBusy(false);
 			}.bind(this), function () {
 				//Error Handler
@@ -742,10 +645,12 @@ sap.ui.define([
 
 		getCRSearchFilters: function (nPageNo = 1) {
 			var oCRSearchData = Object.assign({}, this.getModel("ChangeRequestsModel").getData()),
-				sUserId = this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
+				sUserId = this.getModel("userManagementModel").getProperty("/data/user_id"),
 				oFilters = Object.create(null);
+
 			oCRSearchData.DateFrom = oCRSearchData.DateFrom ? oCRSearchData.DateFrom : new Date(0);
 			oCRSearchData.DateTo = oCRSearchData.DateTo ? oCRSearchData.DateTo : new Date();
+
 			oFilters.dateRangeFrom =
 				`${oCRSearchData.DateFrom.getFullYear()}-${("0" + (oCRSearchData.DateFrom.getMonth() + 1) ).slice(-2)}-${("0" + oCRSearchData.DateFrom.getDate()).slice(-2)}`;
 			oFilters.dateRangeTo =
@@ -756,7 +661,6 @@ sap.ui.define([
 			oFilters.approvedEntityId = oCRSearchData.Customer;
 			oFilters.countryCode = oCRSearchData.City;
 			oFilters.companyCode = oCRSearchData.CompanyCode;
-			oFilters.entity_type_id = "41003";
 			oFilters.listOfCRSearchCondition = [
 				"GET_CR_BY_ADDRESS",
 				"GET_CR_CREATED_BY_USER_ID",
@@ -787,11 +691,7 @@ sap.ui.define([
 				}
 			};
 			this.getView().setBusy(true);
-			this.serviceCall.handleServiceRequest(objParamCreate).then(oDataResp => {
-				this.getView().setBusy(false);
-			}, oError => {
-				this.getView().setBusy(false);
-			});
+			return this.serviceCall.handleServiceRequest(objParamCreate);
 		},
 
 		clearCRTableModel: function () {
@@ -968,5 +868,64 @@ sap.ui.define([
 			});
 		},
 
+		handleChangeStatus: function (sValue) {
+			var sText = "Unknown";
+			if (sValue) {
+				sText = "Closed";
+			} else if (sValue === false) {
+				sText = "Open";
+			} else {
+				sText = "Open";
+			}
+			return sText;
+		},
+
+		handleChangeReqDate: function (sDateText) {
+			var sResultDate = "";
+			if (sDateText) {
+				sResultDate = new Date(sDateText.split('T')[0]);
+				var sDate = (sResultDate.getDate()).toString();
+				sDate = sDate.length === 2 ? sDate : ('0' + sDate);
+				var sMonth = ((sResultDate.getMonth()) + 1).toString();
+				sMonth = sMonth.length === 2 ? sMonth : ('0' + sMonth);
+				sResultDate = sMonth + '-' + sDate + '-' + sResultDate.getFullYear();
+			}
+			return sResultDate;
+		},
+
+		handleStatus: function (sValue1, sValue2) {
+			var sAssignment = sValue1 ? sValue1.toLowerCase() : sValue1,
+				sResult = sValue1;
+			sValue2 = Number(sValue2);
+			if (sAssignment === "claimed" && sValue2 === 1) {
+				sResult = "Pending Steward Approval";
+			} else if ((sAssignment === "approved" && sValue2 === 1) || (sAssignment === "claimed" && sValue2 === 2)) {
+				sResult = "Pending Final Approval";
+			} else if (sAssignment === "approved" && sValue2 === 2) {
+				sResult = "Approved and Submitted to SAP";
+			} else if (sAssignment === "rejected") {
+				sResult = "Rejected";
+			}
+			return sResult;
+		},
+
+		changeWorkflowDate: function (sDate) {
+			var sDateTime = "";
+			if (sDate) {
+				var dateTime = sDate.split("T");
+				var date = dateTime[0];
+				date = date.split("-");
+				var time = dateTime[1].split(".")[0];
+				sDateTime = date[1] + "-" + date[2] + "-" + date[0] + " at " + time;
+			}
+			return sDateTime;
+		},
+
+		changeWorkflowStatus: function (sStatus) {
+			if (sStatus === "UNCLAIMED") {
+				sStatus = "ASSIGNED";
+			}
+			return sStatus;
+		},
 	});
 });
