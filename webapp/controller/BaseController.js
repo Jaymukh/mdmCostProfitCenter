@@ -539,7 +539,7 @@ sap.ui.define([
 			oAppModel.setProperty("/submitButton", false);
 			oAppModel.setProperty("/previousPage", null);
 			oAppModel.setProperty("/erpPreview", false);
-			oAppModel.setProperty("/crPreview", false);
+			oAppModel.setProperty("/crEdit", false);
 		},
 
 		formatCR_Entiry_ID: function (sCRId, sEntityID) {
@@ -562,13 +562,13 @@ sap.ui.define([
 			return sText;
 		},
 
-		createEntityId: function () {
+		createEntityId: function (sEntityType) {
 			var objParam = {
 				url: "/mdmccpc/entity-service/entities/entity/create",
 				hasPayload: true,
 				type: "POST",
 				data: {
-					"entityType": "COST_CENTER",
+					"entityType": sEntityType,
 					"parentDTO": {
 						"customData": {
 							"business_entity": {
@@ -690,7 +690,27 @@ sap.ui.define([
 					}
 				}
 			};
-			this.getView().setBusy(true);
+			return this.serviceCall.handleServiceRequest(objParamCreate);
+		},
+
+		getProfitCenterDetails: function (sProfitCenter) {
+			var objParamCreate = {
+				url: "/mdmccpc/entity-service/entities/entity/get",
+				type: "POST",
+				hasPayload: true,
+				data: {
+					"entitySearchType": "GET_BY_PROFIT_CENTER_ID",
+					"entityType": "PROFIT_CENTER",
+					"parentDTO": {
+						"customData": {
+							"fin_cepc": {
+								"prctr": sProfitCenter
+							}
+						}
+					}
+				}
+			};
+
 			return this.serviceCall.handleServiceRequest(objParamCreate);
 		},
 

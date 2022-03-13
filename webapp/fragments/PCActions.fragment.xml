@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Popover placement="Auto" showHeader="false" title="Profit Center: {SearchPCModel>profitCenterCepcDTO/prctr}">
+		<content>
+			<List id="list">
+				<StandardListItem title="Edit" type="Active" info="{= ${SearchPCModel>profitCenterCepcDTO/prctr} ? '' :'A change request is in progress.'}"
+					icon="sap-icon://edit" press="onEditPC"/>
+				<StandardListItem title="Copy" type="Active" info="{= ${SearchPCModel>profitCenterCepcDTO/prctr} ? '' :'A change request is in progress.'}"
+					icon="sap-icon://copy" press="onCopyPC"/>
+				<StandardListItem title="Block" type="Active" info="{= ${SearchPCModel>profitCenterCepcDTO/prctr} ? '' :'A change request is in progress.'}"
+					icon="sap-icon://cancel" press="onBlockPC"/>
+				<StandardListItem title="Delete" type="Active" press="onDeletePC"
+					info="{=${SearchPCModel>profitCenterCepcDTO/prctr} ? '' :'A change request is in progress.'}" icon="sap-icon://delete"/>
+			</List>
+		</content>
+	</Popover>
+</core:FragmentDefinition>

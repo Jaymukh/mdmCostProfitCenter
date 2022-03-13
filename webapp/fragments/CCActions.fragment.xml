@@ -4,14 +4,14 @@
 			<List id="list">
 				<StandardListItem title="Edit" type="Active"
 					info="{= ${SearchCCModel>costCenterCsksDTO/kostl} ? '' :'A change request is in progress.'}" icon="sap-icon://edit"
-					press="onEditCustomer"/>
+					press="onEditCC"/>
 				<StandardListItem title="Copy" type="Active"
 					info="{= ${SearchCCModel>costCenterCsksDTO/kostl} ? '' :'A change request is in progress.'}" icon="sap-icon://copy"
-					press="onCopyCustomer"/>
+					press="onCopyCC"/>
 				<StandardListItem title="Block" type="Active"
 					info="{= ${SearchCCModel>costCenterCsksDTO/kostl} ? '' :'A change request is in progress.'}" icon="sap-icon://cancel"
-					press="onBlockCustomer"/>
-				<StandardListItem title="Delete" type="Active" press="onDeleteCustomer"
+					press="onBlockCC"/>
+				<StandardListItem title="Delete" type="Active" press="onDeleteCC"
 					info="{=${SearchCCModel>costCenterCsksDTO/kostl} ? '' :'A change request is in progress.'}" icon="sap-icon://delete"/>
 			</List>
 		</content>

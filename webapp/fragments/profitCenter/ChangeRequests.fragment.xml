@@ -10,7 +10,7 @@
 			<TextArea required="true" value="{ProfitCenter>/ChangeRequest/desc}"/>
 			<Label text="Priority"/>
 			<ComboBox selectedKey="{ProfitCenter>/ChangeRequest/priority}" showSecondaryValues="true"
-				items="{path:'Dropdowns>/TAXONOMY',filters : [{ path : 'taxonomyType', operator : 'EQ', value1 : 'CR_PRIORITY' }]}" editable="{App>/edit}">
+				items="{path:'Dropdowns>/TAXONOMY',filters : [{ path : 'taxonomyType', operator : 'EQ', value1 : 'CR_PRIORITY' }]}" editable="{App>/crEdit}">
 				<items>
 					<core:ListItem key="{Dropdowns>taxonomyId}" additionalText="{Dropdowns>taxonomyId}" text="{Dropdowns>taxonomyName}"/>
 				</items>
@@ -19,7 +19,8 @@
 			<DatePicker displayFormat="{App>/dateFormat}" valueFormat="{App>/dateValueFormat}" value="{ProfitCenter>/ChangeRequest/dueDate}"/>
 			<Label text="Reason"/>
 			<ComboBox required="true" selectedKey="{ProfitCenter>/ChangeRequest/reason}" showSecondaryValues="true"
-				items="{path:'Dropdowns>/TAXONOMY',filters : [{ path : 'taxonomyType', operator : 'EQ', value1 : 'PC_CR_REASON' }]}" editable="{App>/edit}">
+				items="{path:'Dropdowns>/TAXONOMY',filters : [{ path : 'taxonomyType', operator : 'EQ', value1 : 'PC_CR_REASON' }]}"
+				editable="{App>/crEdit}">
 				<items>
 					<core:ListItem key="{Dropdowns>taxonomyId}" additionalText="{Dropdowns>taxonomyId}" text="{Dropdowns>taxonomyName}"/>
 				</items>

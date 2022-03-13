@@ -20,24 +20,14 @@ sap.ui.define([
 			switch (sKey) {
 			case "CostCenterCreate":
 				this.createCCEntity();
-				oAppModel.setProperty("/edit", true);
-				oAppModel.setProperty("/saveButton", true);
-				oAppModel.setProperty("/checkButton", true);
-				oAppModel.setProperty("/previousPage", "");
 				break;
 			case "ProfitCenterCreate":
 				this.createPCEntity();
-				oAppModel.setProperty("/edit", true);
-				oAppModel.setProperty("/saveButton", true);
-				oAppModel.setProperty("/checkButton", true);
-				oAppModel.setProperty("/previousPage", "");
 				break;
 			case "CostCenterChangeRequets":
-				this.getAllCCChangeRequests();
 				this.getCcCrStatistics();
 				break;
 			case "ProfitCenterChangeRequest":
-				this.getAllPCChangeRequests();
 				this.getPcCrStatistics();
 				break;
 			}
@@ -52,8 +42,8 @@ sap.ui.define([
 				sDate = `${oDate.getFullYear()}-${("0" + (oDate.getMonth() + 1) ).slice(-2)}-${("0" + oDate.getDate()).slice(-2)}`;
 
 			this.clearSidePanelDetails();
-			this.getView().showBusy(true);
-			this.createEntityId().then(oData => {
+			this.getView().setBusy(true);
+			this.createEntityId("COST_CENTER").then(oData => {
 				var oBusinessEntity = oData.result.costCenterDTOs[0].businessEntityDTO;
 				oCsks.entity_id = oBusinessEntity.entity_id;
 				oCsks.datab = sDate;
@@ -71,10 +61,15 @@ sap.ui.define([
 					Csks: oCsks,
 					Cskt: []
 				});
-				this.getView().showBusy(false);
+				oAppModel.setProperty("/edit", true);
+				oAppModel.setProperty("/crEdit", true);
+				oAppModel.setProperty("/saveButton", true);
+				oAppModel.setProperty("/checkButton", true);
+				oAppModel.setProperty("/previousPage", "");
+				this.getView().setBusy(false);
 			}, oError => {
 				MessageToast.show("Failed to create entity id, please try again");
-				this.getView().showBusy(false);
+				this.getView().setBusy(false);
 			});
 		},
 
@@ -87,8 +82,8 @@ sap.ui.define([
 				sDate = `${oDate.getFullYear()}-${("0" + (oDate.getMonth() + 1) ).slice(-2)}-${("0" + oDate.getDate()).slice(-2)}`;
 
 			this.clearSidePanelDetails();
-			this.getView().showBusy(true);
-			this.createEntityId().then(
+			this.getView().setBusy(true);
+			this.createEntityId("PROFIT_CENTER").then(
 				//Success Handler
 				oData => {
 					var oBusinessEntity = oData.result.profitCenterDTOs[0].businessEntityDTO;
@@ -111,12 +106,17 @@ sap.ui.define([
 						CepcBukrs: [],
 						Cepc_bukrs: Object.assign({}, oAppModel.getProperty("/cepc_bukrs"))
 					});
-					this.getView().showBusy(false);
+					oAppModel.setProperty("/edit", true);
+					oAppModel.setProperty("/crEdit", true);
+					oAppModel.setProperty("/saveButton", true);
+					oAppModel.setProperty("/checkButton", true);
+					oAppModel.setProperty("/previousPage", "");
+					this.getView().setBusy(false);
 				},
 				//Error Handler 
 				oError => {
 					MessageToast.show("Failed to create entity id, please try again");
-					this.getView().showBusy(false);
+					this.getView().setBusy(false);
 				});
 		},
 
@@ -136,7 +136,7 @@ sap.ui.define([
 				"T002", //Language
 				"T001", //Company Codes,
 				"TKT05", //Cost Center Category
-				"VW_TFKB", //Functional Area
+				"vw_TFKB", //Functional Area
 				"TCURC", //Currency Codes
 				"FAGL_SEGM" //Segment 
 			];

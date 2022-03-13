@@ -186,12 +186,13 @@
 				<items>
 					<ColumnListItem >
 						<cells>
-							<Link text="{SearchCCModel>costCenterCsksDTO/kostl}" press="onGetCostCenterDetails"></Link>
+							<Link text="{SearchCCModel>costCenterCsksDTO/kostl}" press="onPreviewCC"></Link>
 							<ObjectStatus state="{path :'SearchCCModel>pendingRequest', formatter : '.handlePendingRequest'}" text="{SearchCCModel>pendingRequest}"/>
 							<Text text=""></Text>
 							<Text text="{SearchCCModel>costCenterCsksDTO/datab}"/>
-							<Text text=""/>
-							<Link text="{SearchCCModel>costCenterCsksDTO/kostl}" press="onGetCostCenterDetails"></Link>
+							<Text
+								text="{SearchCCModel>costCenterCsksDTO/name1} {SearchCCModel>costCenterCsksDTO/name2} {SearchCCModel>costCenterCsksDTO/name3} {SearchCCModel>costCenterCsksDTO/name4}"/>
+							<Link text="{SearchCCModel>costCenterCsksDTO/kostl}" press="onPreviewCC"></Link>
 							<ComboBox selectedKey="{SearchCCModel>costCenterCsksDTO/kosar}" items="{Dropdowns>/TKA05}" editable="false" showSecondaryValues="true">
 								<core:ListItem key="{Dropdowns>kosar}" text="{Dropdowns>butxt}" additionalText="{Dropdowns>kosar}"/>
 							</ComboBox>

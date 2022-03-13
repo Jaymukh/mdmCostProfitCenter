@@ -6,7 +6,7 @@
 	"rejectButton": false,
 	"submitButton": false,
 	"erpPreview": false,
-	"crPreview": false,
+	"crEdit": false,
 	"previousPage": null,
 	"appTitle": "Search Cost Center",
 	"dateFormat": "yyyy/dd/MM",
