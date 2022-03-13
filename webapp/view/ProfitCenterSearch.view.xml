@@ -16,7 +16,7 @@
 		<f:header>
 			<f:DynamicPageHeader>
 				<f:content>
-					<filterbar:FilterBar id="idPCSearchFB" reset="onReset" search="onSearchCustomer" useToolbar="false" showGoOnFB="true">
+					<filterbar:FilterBar id="idPCSearchFB" reset="onReset" search="profitCenterSearch" useToolbar="false" showGoOnFB="true">
 						<filterbar:filterGroupItems >
 							<filterbar:FilterGroupItem visibleInFilterBar="true" groupName="*standard*" name="name1" label="Name 1">
 								<filterbar:control>
@@ -73,7 +73,7 @@
 			</f:DynamicPageHeader>
 		</f:header>
 		<f:content>
-			<Table sticky="ColumnHeaders" items="{SearchPCModel>/searchAllModelData/customerDTOs}">
+			<Table sticky="ColumnHeaders" items="{SearchPCModel>/ProfitCenters}">
 				<headerToolbar>
 					<Toolbar>
 						<Label text="Profit Center Master List({SearchPCModel>/searchAllModelData/totalRecords})" design="Bold"></Label>
@@ -141,17 +141,19 @@
 				<items>
 					<ColumnListItem >
 						<cells>
-							<Link text="{SearchPCModel>profitCenterCepcDTO/kostl}" press="onGetCostCenterDetails"></Link>
-							<ObjectStatus state="{path :'SearchCCModel>pendingRequest', formatter : '.handlePendingRequest'}" text="{SearchCCModel>pendingRequest}"/>
+							<Link text="{SearchPCModel>profitCenterCepcDTO/prctr}" press="onPreviewPC"/>
+							<ObjectStatus state="{path :'SearchPCModel>pendingRequest', formatter : '.handlePendingRequest'}" text="{SearchPCModel>pendingRequest}"/>
 							<Text text=""></Text>
-							<Text text="{SearchCCModel>costCenterCsksDTO/datab}"/>
-							<Text text=""/>
-							<Link text="{SearchCCModel>costCenterCsksDTO/kostl}" press="onGetCostCenterDetails"></Link>
-							<ComboBox selectedKey="{SearchCCModel>costCenterCsksDTO/kosar}" items="{Dropdowns>/TKA05}" editable="false" showSecondaryValues="true">
-								<core:ListItem key="{Dropdowns>kosar}" text="{Dropdowns>butxt}" additionalText="{Dropdowns>kosar}"/>
+							<Text text="{SearchPCModel>profitCenterCepcDTO/datab}"/>
+							<Text
+								text="{SearchPCModel>profitCenterCepcDTO/name1} {SearchPCModel>profitCenterCepcDTO/name2} {SearchPCModel>profitCenterCepcDTO/name3} {SearchPCModel>profitCenterCepcDTO/name4}"/>
+							<Link text="{SearchPCModel>profitCenterCepcDTO/prctr}" press="onPreviewPC"/>
+							<ComboBox selectedKey="{SearchPCModel>profitCenterCepcDTO/segment}" items="{Dropdowns>/FAGL_SEGM}" editable="false"
+								showSecondaryValues="true">
+								<core:ListItem key="{Dropdowns>segment}" text="{Dropdowns>text}" additionalText="{Dropdowns>segment}"/>
 							</ComboBox>
-							<Text text="{SearchCCModel>costCenterCsksDTO/verak}"/>
-							<core:Icon src="sap-icon://overflow" press="onCostCenterAction"></core:Icon>
+							<Text text="{SearchPCModel>profitCenterCepcDTO/verak}"/>
+							<core:Icon src="sap-icon://overflow" press="onProfitCenterAction"></core:Icon>
 						</cells>
 					</ColumnListItem>
 				</items>

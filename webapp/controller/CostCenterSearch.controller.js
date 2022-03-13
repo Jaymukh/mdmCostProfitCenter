@@ -1,8 +1,9 @@
 sap.ui.define([
 	"murphy/mdm/costProfit/mdmCostProfitCenter/controller/BaseController",
 	"sap/ui/core/Fragment",
-	"sap/m/MessageToast"
-], function (BaseController, Fragment, MessageToast) {
+	"sap/m/MessageToast",
+	"sap/m/MessageBox"
+], function (BaseController, Fragment, MessageToast, MessageBox) {
 	"use strict";
 
 	return BaseController.extend("murphy.mdm.costProfit.mdmCostProfitCenter.controller.CostCenterSearch", {
@@ -76,7 +77,7 @@ sap.ui.define([
 			if (!this._pPopover) {
 				this._pPopover = Fragment.load({
 					id: this.getView().getId(),
-					name: "murphy.mdm.costProfit.mdmCostProfitCenter.fragments.OverflowPopUp",
+					name: "murphy.mdm.costProfit.mdmCostProfitCenter.fragments.CCActions",
 					controller: this
 				}).then(oPopover => {
 					this.getView().addDependent(oPopover);
@@ -93,15 +94,70 @@ sap.ui.define([
 			});
 		},
 
-		onGetCostCenterDetails: function (oEvent) {
-			let oCostCenter = oEvent.getSource().getBindingContext("SearchCCModel").getObject(),
-				oAppModel = this.getModel("App"),
+		onPreviewCC: function (oEvent) {
+			var oCC = oEvent.getSource().getBindingContext("SearchCCModel").getObject();
+			this.navToCCPage(oCC.costCenterCsksDTO.kostl, "PREVIEW");
+		},
+
+		onEditCC: function (oEvent) {
+			var oCC = oEvent.getSource().getBindingContext("SearchCCModel").getObject();
+			this.navToCCPage(oCC.costCenterCsksDTO.kostl, "EDIT");
+			this.closeSearchAction();
+		},
+
+		onCopyCC: function (oEvent) {
+			var oCC = oEvent.getSource().getBindingContext("SearchCCModel").getObject();
+			this.navToCCPage(oCC.costCenterCsksDTO.kostl, "COPY");
+			this.closeSearchAction();
+		},
+
+		onBlockCC: function (oEvent) {
+			var oCC = oEvent.getSource().getBindingContext("SearchCCModel").getObject();
+			MessageBox.confirm(
+				`Are you sure, you wan to block Cost Center ${oCC.costCenterCsksDTO.kostl} - ${oCC.costCenterCsksDTO.name1} ?`, {
+					actions: [sap.m.MessageBox.Action.OK, sap.m.MessageBox.Action.CANCEL],
+					onClose: sAction => {
+						if (sAction === "OK") {
+							this.navToCCPage(oCC.costCenterCsksDTO.kostl, "BLOCK");
+						}
+					}
+				});
+			this.closeSearchAction();
+		},
+
+		onDeleteCC: function (oEvent) {
+			var oCC = oEvent.getSource().getBindingContext("SearchCCModel").getObject();
+			MessageBox.confirm(
+				`Are you sure, you wan to delete Cost Center ${oCC.costCenterCsksDTO.kostl} - ${oCC.costCenterCsksDTO.name1} ?`, {
+					actions: [sap.m.MessageBox.Action.OK, sap.m.MessageBox.Action.CANCEL],
+					onClose: sAction => {
+						if (sAction === "OK") {
+							this.navToCCPage(oCC.costCenterCsksDTO.kostl, "DELETE");
+						}
+					}
+				});
+			this.closeSearchAction();
+		},
+
+		closeSearchAction: function () {
+			this._pPopover.then(oPopover => {
+				oPopover.close();
+			});
+		},
+
+		navToCCPage: function (sCostCenter, sAction) {
+			let oAppModel = this.getModel("App"),
 				oCCModel = this.getModel("CostCenter"),
+				oChangeRequest = Object.assign({}, oAppModel.getProperty("/changeReq")),
 				oCsks = null,
-				aCskt = [];
+				aCskt = [],
+				oDate = new Date(),
+				sMonth = oDate.getMonth() + 1,
+				sMinutes = oDate.getMinutes();
 
 			this.clearAllButtons();
-			this.getCostCenterDetails(oCostCenter.costCenterCsksDTO.kostl)
+			this.getView().setBusy(true);
+			this.getCostCenterDetails(sCostCenter)
 				.then(oData => {
 					oData.result.costCenterDTOs.forEach(oItem => {
 						if (oItem.hasOwnProperty("costCenterCsksDTO") && oItem.costCenterCsksDTO) {
@@ -112,6 +168,42 @@ sap.ui.define([
 							aCskt = oItem.costCenterCsktDTOs;
 						}
 					});
+					switch (sAction) {
+					case "EDIT":
+					case "COPY":
+						oChangeRequest.change_request_id = sAction === "COPY" ? 50003 : 50002;
+						oAppModel.setProperty("/saveButton", true);
+						oAppModel.setProperty("/checkButton", true);
+						oAppModel.setProperty("/edit", true);
+						oAppModel.setProperty("/crEdit", true);
+						oAppModel.setProperty("/appTitle", "Create Cost Center");
+						if (sAction === "COPY") {
+							oCsks.kostl = "";
+						}
+						break;
+					case "BLOCK":
+						oChangeRequest.change_request_id = 50004;
+						oAppModel.setProperty("/saveButton", true);
+						oAppModel.setProperty("/checkButton", true);
+						oAppModel.setProperty("/edit", false);
+						oAppModel.setProperty("/crEdit", true);
+						oAppModel.setProperty("/appTitle", "Block Cost Center");
+						break;
+					case "DELETE":
+						oChangeRequest.change_request_id = 50005;
+						oAppModel.setProperty("/saveButton", true);
+						oAppModel.setProperty("/checkButton", true);
+						oAppModel.setProperty("/edit", false);
+						oAppModel.setProperty("/crEdit", true);
+						oAppModel.setProperty("/appTitle", "Delete Cost Center");
+						break;
+					case "PREVIEW":
+						oAppModel.setProperty("/editButton", true);
+						oAppModel.setProperty("/appTitle", "Create Cost Center");
+						oAppModel.setProperty("/previousPage", "ALL_CC");
+						oAppModel.setProperty("/erpPreview", true);
+					}
+
 					oCCModel.setData({
 						workflowID: "",
 						ChangeRequest: {},
@@ -120,14 +212,38 @@ sap.ui.define([
 					});
 					this.getRouter().getTargets().display("CostCenterCreate");
 					this.getView().setBusy(false);
+
+					//Create Entity ID for Cost Center
+					if (sAction !== "PREVIEW") {
+						this.getView().setBusy(true);
+						this.createEntityId("COST_CENTER").then(oData => {
+							var oBusinessEntity = oData.result.costCenterDTOs[0].businessEntityDTO,
+								sEntityId = oBusinessEntity.entity_id;
+							oChangeRequest.reason = "";
+							oChangeRequest.timeCreation = oDate.getHours() + ":" + (sMinutes < 10 ? "0" + sMinutes : sMinutes);
+							oChangeRequest.dateCreation = oDate.getFullYear() + "-" + (sMonth < 10 ? "0" + sMonth : sMonth) + "-" + oDate.getDate();
+							oChangeRequest.change_request_by = oBusinessEntity.hasOwnProperty("created_by") ? oBusinessEntity.created_by : {};
+							oChangeRequest.modified_by = oBusinessEntity.hasOwnProperty("modified_by") ? oBusinessEntity.modified_by : {};
+							oCsks.entity_id = sEntityId;
+
+							oCCModel.setData({
+								workflowID: "",
+								ChangeRequest: oChangeRequest,
+								Csks: oCsks,
+								Cskt: aCskt
+							});
+							this.getView().setBusy(false);
+						}, oError => {
+							this.getView().setBusy(false);
+							MessageToast.show("Entity ID not created. Please try after some time");
+							this.getRouter().getTargets().display("CostCenterSearch");
+							oAppModel.setProperty("/appTitle", "Search Cost Center");
+						});
+					}
 				}, oError => {
 					MessageToast.show("Failed to fetch Cost Center Details, please try again");
 					this.getView().setBusy(false);
 				});
-			oAppModel.setProperty("/editButton", true);
-			oAppModel.setProperty("/previousPage", "CC_SEARCH");
-			oAppModel.setProperty("/erpPreview", true);
-
 		}
 
 	});

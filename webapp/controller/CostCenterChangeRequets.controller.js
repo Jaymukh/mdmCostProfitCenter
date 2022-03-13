@@ -5,7 +5,9 @@ sap.ui.define([
 
 	return BaseController.extend("murphy.mdm.costProfit.mdmCostProfitCenter.controller.CostCenterChangeRequets", {
 
-		onInit: function () {},
+		onInit: function () {
+			this.getAllCCChangeRequests(1);
+		},
 
 		onSearchCCCR: function () {
 			this.getAllCCChangeRequests(1);
