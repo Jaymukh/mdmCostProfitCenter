@@ -86,7 +86,15 @@ sap.ui.define([
 			this.createEntityId("PROFIT_CENTER").then(
 				//Success Handler
 				oData => {
-					var oBusinessEntity = oData.result.profitCenterDTOs[0].businessEntityDTO;
+					var oBusinessEntity = oData.result.profitCenterDTOs[0].businessEntityDTO,
+						oAudLogModel = this.getView().getModel("AuditLogModel");
+					if (!oAudLogModel.getProperty("/details")) {
+						oAudLogModel.setProperty("/details", {});
+					}
+
+					oAudLogModel.setProperty("/details/desc", "");
+					oAudLogModel.setProperty("/details/businessID", oBusinessEntity.entity_id);
+					oAudLogModel.setProperty("/details/ChangeRequestID", "");
 					oCepc.entity_id = oBusinessEntity.entity_id;
 					oCepc.datab = sDate;
 					oCepc.ersda = sDate;

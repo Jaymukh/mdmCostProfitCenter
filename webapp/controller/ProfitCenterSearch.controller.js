@@ -96,7 +96,7 @@ sap.ui.define([
 
 		onPreviewPC: function (oEvent) {
 			var oPC = oEvent.getSource().getBindingContext("SearchPCModel").getObject();
-			this.navToCCPage(oPC.profitCenterCepcDTO.prctr, "PREVIEW");
+			this.navToPCPage(oPC.profitCenterCepcDTO.prctr, "PREVIEW");
 		},
 
 		onEditPC: function (oEvent) {

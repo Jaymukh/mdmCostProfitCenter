@@ -79,11 +79,56 @@ sap.ui.define([
 		},
 
 		onEditClick: function () {
-			var oAppModel = this.getModel("App");
-			oAppModel.setProperty("/edit", true);
-			oAppModel.setProperty("/submitButton", false);
-			oAppModel.setProperty("/editButton", false);
-			oAppModel.setProperty("/saveButton", true);
+			var oCCModel = this.getModel("CostCenter"),
+				oAppModel = this.getModel("App"),
+				oChangeRequest = Object.assign({}, oAppModel.getProperty("/changeReq")),
+				oCCData = oCCModel.getData(),
+				oDate = new Date(),
+				sDate = `${oDate.getFullYear()}-${("0" + (oDate.getMonth() + 1) ).slice(-2)}-${("0" + oDate.getDate()).slice(-2)}`;
+			oCCData.ChangeRequest = oChangeRequest;
+			if (oAppModel.getProperty("/erpPreview")) {
+				this.clearAllButtons();
+				this.getView().setBusy(true);
+				this.createEntityId("COST_CENTER").then(oData => {
+					var oBusinessEntity = oData.result.costCenterDTOs[0].businessEntityDTO,
+						sEntityId = oBusinessEntity.entity_id,
+						oAudLogModel = this.getView().getModel("AuditLogModel");
+					if (!oAudLogModel.getProperty("/details")) {
+						oAudLogModel.setProperty("/details", {});
+					}
+
+					oAudLogModel.setProperty("/details/desc", "");
+					oAudLogModel.setProperty("/details/businessID", sEntityId);
+					oAudLogModel.setProperty("/details/ChangeRequestID", "");
+
+					oCCData.Csks.entity_id = sEntityId;
+					oCCData.ChangeRequest.change_request_id = 50001;
+					oCCData.ChangeRequest.reason = "";
+					oCCData.ChangeRequest.timeCreation = `${("0" + oDate.getHours()).slice(-2)}:${("0" + oDate.getMinutes()).slice(-2)}`;
+					oCCData.ChangeRequest.dateCreation = sDate;
+					oCCData.ChangeRequest.change_request_by = oBusinessEntity.hasOwnProperty("created_by") ? oBusinessEntity.created_by : {};
+					oCCData.ChangeRequest.modified_by = oBusinessEntity.hasOwnProperty("modified_by") ? oBusinessEntity.modified_by : {};
+					this.getModel("AuditLogModel").setProperty("/details/businessID", oBusinessEntity.entity_id);
+
+					oCCModel.setData(oCCData);
+					oAppModel.setProperty("/edit", true);
+					oAppModel.setProperty("/submitButton", false);
+					oAppModel.setProperty("/editButton", false);
+					oAppModel.setProperty("/saveButton", true);
+					oAppModel.setProperty("/crEdit", true);
+					this.getView().setBusy(false);
+				}, oError => {
+					this.getView().setBusy(false);
+					MessageToast.show("Entity ID not created. Please try after some time");
+				});
+			} else {
+				this.clearAllButtons();
+				oAppModel.setProperty("/edit", true);
+				oAppModel.setProperty("/submitButton", false);
+				oAppModel.setProperty("/editButton", false);
+				oAppModel.setProperty("/saveButton", true);
+				oAppModel.setProperty("/crEdit", true);
+			}
 		},
 
 		onCheckCR: function () {

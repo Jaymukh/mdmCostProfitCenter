@@ -149,7 +149,7 @@ sap.ui.define([
 			let oAppModel = this.getModel("App"),
 				oCCModel = this.getModel("CostCenter"),
 				oChangeRequest = Object.assign({}, oAppModel.getProperty("/changeReq")),
-				oCsks = null,
+				oCsks = Object.assign({}, oAppModel.getProperty("/csks")),
 				aCskt = [],
 				oDate = new Date(),
 				sMonth = oDate.getMonth() + 1,
