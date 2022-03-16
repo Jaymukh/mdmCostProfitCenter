@@ -153,7 +153,7 @@
 																<cells>
 																	<Link
 																		text="{ parts: [ 'ChangeRequestsModel>crDTO/change_request_id', 'ChangeRequestsModel>crDTO/entity_id'], formatter: '.formatCR_Entiry_ID' }"
-																		press="onChangeReqLinkPress"></Link>
+																		press="onPCCRPress"></Link>
 																	<Text text="{ChangeRequestsModel>crDTO/change_request_desc}"></Text>
 																	<ObjectStatus text="{path:'ChangeRequestsModel>crDTO/is_cr_closed',formatter:'.handleChangeStatus'}"/>
 																	<ObjectStatus
