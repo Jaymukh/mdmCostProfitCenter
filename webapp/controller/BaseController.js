@@ -405,7 +405,7 @@ sap.ui.define([
 										"created_by": this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
 										"file_name_with_extension": oFile.name
 									},
-									"entityType": "COST_CENTER",
+									"entityType": "COST_CENTRE",
 									"businessEntity": {
 										"entity_id": sEntityID
 									},
@@ -447,7 +447,7 @@ sap.ui.define([
 							"attachment_id": oFileData.attachmentEntity.attachment_id,
 							"dms_ref_id": oFileData.attachmentEntity.dms_ref_id
 						},
-						"entityType": "COST_CENTER",
+						"entityType": "COST_CENTRE",
 						"businessEntity": {
 							"entity_id": sEntityID
 						},
@@ -588,14 +588,14 @@ sap.ui.define([
 		getAllCCChangeRequests: function (nPageNo = 1) {
 			var oFilters = this.getCRSearchFilters(nPageNo);
 			this.clearCRTableModel();
-			oFilters.entityType = "COST_CENTER";
+			oFilters.entityType = "COST_CENTRE";
 			this.getAllChangeRequest(nPageNo, oFilters);
 		},
 
 		getAllPCChangeRequests: function (nPageNo = 1) {
 			var oFilters = this.getCRSearchFilters(nPageNo);
 			this.clearCRTableModel();
-			oFilters.entityType = "PROFIT_CENTER";
+			oFilters.entityType = "PROFIT_CENTRE";
 			this.getAllChangeRequest(nPageNo, oFilters);
 		},
 
@@ -606,7 +606,7 @@ sap.ui.define([
 				hasPayload: true,
 				type: "POST",
 				data: {
-					"crSearchType": oFilters.entityType === "PROFIT_CENTER" ? "GET_CR_BY_PROFIT_CENTER_FILTERS" : "GET_CR_BY_COST_CENTER_FILTERS",
+					"crSearchType": oFilters.entityType === "PROFIT_CENTRE" ? "GET_CR_BY_PROFIT_CENTER_FILTERS" : "GET_CR_BY_COST_CENTER_FILTERS",
 					"currentPage": nPageNo,
 					"changeRequestSearchDTO": oFilters
 				}
@@ -680,7 +680,7 @@ sap.ui.define([
 				hasPayload: true,
 				data: {
 					"entitySearchType": "GET_BY_COST_CENTER_ID",
-					"entityType": "COST_CENTER",
+					"entityType": "COST_CENTRE",
 					"parentDTO": {
 						"customData": {
 							"fin_csks": {
@@ -700,7 +700,7 @@ sap.ui.define([
 				hasPayload: true,
 				data: {
 					"entitySearchType": "GET_BY_PROFIT_CENTER_ID",
-					"entityType": "PROFIT_CENTER",
+					"entityType": "PROFIT_CENTRE",
 					"parentDTO": {
 						"customData": {
 							"fin_cepc": {
@@ -778,15 +778,27 @@ sap.ui.define([
 				oConfigFilters["spras"] = "EN";
 			}
 
+			if (oData.table === "PROFIT_CENTER_GROUP") {
+				objParamCreate = {
+					url: "/MurphyECCOdataDest/sap/opu/odata/sap/ZPROFITCENTER_GRP_GETLIST_SRV/Controlling_AreaSet?$format=json",
+					hasPayload: false,
+					type: "GET"
+				};
+			}
+
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
+				var aResults = [];
 				if (oDataResp.result && oDataResp.result.modelMap) {
-					var obj = {};
-					obj[oData["key"]] = "";
-					obj[oData["text"]] = "";
-					oDataResp.result.modelMap.unshift(obj);
-					this.oTableDataModel.setProperty("/item", oDataResp.result.modelMap);
-					this.oTableDataModel.refresh();
+					aResults = oDataResp.result.modelMap;
+				} else if (oDataResp.hasOwnProperty("d")) {
+					aResults = oDataResp.d.results;
 				}
+				var obj = {};
+				obj[oData["key"]] = "";
+				obj[oData["text"]] = "";
+				aResults.unshift(obj);
+				this.oTableDataModel.setProperty("/item", aResults);
+				this.oTableDataModel.refresh();
 			}.bind(this));
 
 			Fragment.load({

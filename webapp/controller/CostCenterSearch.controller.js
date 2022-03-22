@@ -34,7 +34,7 @@ sap.ui.define([
 				sFilterBy = this.byId("idCCVm").getSelectionKey(),
 				oObjectParam = {
 					"entitySearchType": "GET_BY_COST_CENTER_FILTERS",
-					"entityType": "COST_CENTER",
+					"entityType": "COST_CENTRE",
 					"costCenterSearchDTO": {},
 					"currentPage": iPageNo
 				};
@@ -216,7 +216,7 @@ sap.ui.define([
 					//Create Entity ID for Cost Center
 					if (sAction !== "PREVIEW") {
 						this.getView().setBusy(true);
-						this.createEntityId("COST_CENTER").then(oData => {
+						this.createEntityId("COST_CENTRE").then(oData => {
 							var oBusinessEntity = oData.result.costCenterDTOs[0].commonEntityDTO.customBusinessDTO,
 								sEntityId = oBusinessEntity.entity_id;
 							oChangeRequest.reason = "";

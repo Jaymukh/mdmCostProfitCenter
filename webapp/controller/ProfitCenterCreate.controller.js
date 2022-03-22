@@ -92,11 +92,12 @@ sap.ui.define([
 					oPCData = oPCModel.getData(),
 					oAppModel = this.getModel("App"),
 					oFormData = {
-						"entityType": "PROFIT_CENTER",
+						"entityType": "PROFIT_CENTRE",
 						"parentDTO": {
 							"customData": {
 								"fin_cepc": oPCData.Cepc,
-								"fin_cepct": {}
+								"fin_cepct": {},
+								"fin_cepc_bukrs": {}
 							}
 						}
 					};
@@ -105,6 +106,10 @@ sap.ui.define([
 					oItem.kokrs = oPCData.Cepc.kokrs;
 					oItem.kostl = oPCData.Cepc.kostl;
 					oFormData.parentDTO.customData.fin_cepct[iIndex + 1] = oItem;
+				});
+				
+				oPCData.CepcBukrs.forEach((oItem, iIndex) => {
+					oFormData.parentDTO.customData.fin_cepc_bukrs[iIndex + 1] = oItem;
 				});
 
 				var oObjParamCreate = {
@@ -146,7 +151,7 @@ sap.ui.define([
 			if (oAppModel.getProperty("/erpPreview")) {
 				this.clearAllButtons();
 				this.getView().setBusy(true);
-				this.createEntityId("PROFIT_CENTER").then(oData => {
+				this.createEntityId("PROFIT_CENTRE").then(oData => {
 					var oBusinessEntity = oData.result.profitCenterDTOs[0].commonEntityDTO.customBusinessDTO,
 						sEntityId = oBusinessEntity.entity_id,
 						oAudLogModel = this.getView().getModel("AuditLogModel");

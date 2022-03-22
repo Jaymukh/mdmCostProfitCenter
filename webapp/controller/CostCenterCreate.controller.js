@@ -35,7 +35,7 @@ sap.ui.define([
 					oCCData = oCCModel.getData(),
 					oAppModel = this.getModel("App"),
 					oFormData = {
-						"entityType": "COST_CENTER",
+						"entityType": "COST_CENTRE",
 						"parentDTO": {
 							"customData": {
 								"csks": oCCData.Csks,
@@ -89,7 +89,7 @@ sap.ui.define([
 			if (oAppModel.getProperty("/erpPreview")) {
 				this.clearAllButtons();
 				this.getView().setBusy(true);
-				this.createEntityId("COST_CENTER").then(oData => {
+				this.createEntityId("COST_CENTRE").then(oData => {
 					var oBusinessEntity = oData.result.costCenterDTOs[0].commonEntityDTO.customBusinessDTO,
 						sEntityId = oBusinessEntity.entity_id,
 						oAudLogModel = this.getView().getModel("AuditLogModel");

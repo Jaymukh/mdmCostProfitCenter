@@ -45,7 +45,7 @@ sap.ui.define([
 					hasPayload: true,
 					data: {
 						"entitySearchType": "PC_GET_BY_ENTITY_ID",
-						"entityType": "PROFIT_CENTER",
+						"entityType": "PROFIT_CENTRE",
 						"parentDTO": {
 							"customData": {
 								"business_entity": {

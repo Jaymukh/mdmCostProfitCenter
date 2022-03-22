@@ -34,7 +34,7 @@ sap.ui.define([
 				sFilterBy = this.byId("idPCVm").getSelectionKey(),
 				oObjectParam = {
 					"entitySearchType": "GET_BY_PROFIT_CENTER_FILTERS",
-					"entityType": "PROFIT_CENTER",
+					"entityType": "PROFIT_CENTRE",
 					"profitCenterSearchDTO": {},
 					"currentPage": iPageNo
 				};
@@ -219,7 +219,7 @@ sap.ui.define([
 					//Create Entity ID for Cost Center
 					if (sAction !== "PREVIEW") {
 						this.getView().setBusy(true);
-						this.createEntityId("PROFIT_CENTER").then(oData => {
+						this.createEntityId("PROFIT_CENTRE").then(oData => {
 							var oBusinessEntity = oData.result.profitCenterDTOs[0].commonEntityDTO.customBusinessDTO,
 								sEntityId = oBusinessEntity.entity_id;
 

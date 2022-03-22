@@ -43,7 +43,7 @@ sap.ui.define([
 
 			this.clearSidePanelDetails();
 			this.getView().setBusy(true);
-			this.createEntityId("COST_CENTER").then(oData => {
+			this.createEntityId("COST_CENTRE").then(oData => {
 				var oBusinessEntity = oData.result.costCenterDTOs[0].commonEntityDTO.customBusinessDTO;
 				oCsks.entity_id = oBusinessEntity.entity_id;
 				oCsks.datab = sDate;
@@ -84,7 +84,7 @@ sap.ui.define([
 
 			this.clearSidePanelDetails();
 			this.getView().setBusy(true);
-			this.createEntityId("PROFIT_CENTER").then(
+			this.createEntityId("PROFIT_CENTRE").then(
 				//Success Handler
 				oData => {
 					var oBusinessEntity = oData.result.profitCenterDTOs[0].commonEntityDTO.customBusinessDTO,
@@ -181,7 +181,7 @@ sap.ui.define([
 					data: {
 						"userId": this.getModel("userManagementModel").getProperty("/data/user_id"),
 						"changeRequestSearchDTO": {
-							"entityType": "COST_CENTER"
+							"entityType": "COST_CENTRE"
 						}
 					}
 				};
@@ -201,7 +201,7 @@ sap.ui.define([
 					data: {
 						"userId": oDataResources.data.user_id,
 						"changeRequestSearchDTO": {
-							"entityType": "PROFIT_CENTER"
+							"entityType": "PROFIT_CENTRE"
 						}
 					}
 

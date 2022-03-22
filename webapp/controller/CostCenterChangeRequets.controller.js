@@ -45,7 +45,7 @@ sap.ui.define([
 					hasPayload: true,
 					data: {
 						"entitySearchType": "CC_GET_BY_ENTITY_ID",
-						"entityType": "COST_CENTER",
+						"entityType": "COST_CENTRE",
 						"parentDTO": {
 							"customData": {
 								"business_entity": {

@@ -47,22 +47,22 @@
 							</filterbar:FilterGroupItem>
 						</filterbar:filterGroupItems>
 						<filterbar:filterGroupItems>
-							<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="generalData" name="kunnr" label="Name">
+							<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="generalData" name="name1" label="Name">
 								<filterbar:control>
 									<Input/>
 								</filterbar:control>
 							</filterbar:FilterGroupItem>
-							<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="generalData" name="bankAccount" label="Profit Centre">
+							<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="generalData" name="prctr" label="Profit Centre">
 								<filterbar:control>
 									<Input/>
 								</filterbar:control>
 							</filterbar:FilterGroupItem>
-							<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="generalData" name="mediumText" label="Medium Text">
+							<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="generalData" name="ktext" label="Medium Text">
 								<filterbar:control>
 									<Input maxLength="18"/>
 								</filterbar:control>
 							</filterbar:FilterGroupItem>
-							<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="generalData" name="personRes" label="Person Responsible">
+							<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="generalData" name="verak" label="Person Responsible">
 								<filterbar:control>
 									<Input maxLength="18"/>
 								</filterbar:control>

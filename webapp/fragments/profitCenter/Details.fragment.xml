@@ -22,6 +22,18 @@
 			<Input value="{ProfitCenter>/Cepct/ltext}" liveChange="onChangeMText" editable="{App>/edit}"/>
 			<Label text="Department"/>
 			<Input value="{ProfitCenter>/Cepc/abtei}" editable="{App>/edit}"/>
+			<Label text="Profit Ctr. Group"/>
+			<Input value="{ProfitCenter>/Cepc/khinr}" editable="{App>/edit}" showValueHelp="true" valueHelpOnly="true"
+				valueHelpRequest=".onValueHelpRequested">
+				<customData>
+					<core:CustomData key="title" value="Profit Center Group"></core:CustomData>
+					<core:CustomData key="table" value="PROFIT_CENTER_GROUP"></core:CustomData>
+					<core:CustomData key="inputKey" value="Groupname"></core:CustomData>
+					<core:CustomData key="inputText" value="Groupname"></core:CustomData>
+					<core:CustomData key="Groupname" value="Group Name"></core:CustomData>
+					<core:CustomData key="Descript" value="Description"></core:CustomData>
+				</customData>
+			</Input>
 			<Label text="Segment" required="true"/>
 			<ComboBox required="true" selectedKey="{ProfitCenter>/Cepc/segment}" items="{Dropdowns>/FAGL_SEGM}" editable="{App>/edit}"
 				showSecondaryValues="true">
@@ -54,8 +66,8 @@
 				<customData>
 					<core:CustomData key="title" value="User Responsible"></core:CustomData>
 					<core:CustomData key="table" value="USER_ADDRP"></core:CustomData>
-					<core:CustomData key="inputKey" value="bname"></core:CustomData>
-					<core:CustomData key="inputText" value="bname"></core:CustomData>
+					<core:CustomData key="inputKey" value="persnumber"></core:CustomData>
+					<core:CustomData key="inputText" value="persnumber"></core:CustomData>
 					<core:CustomData key="persnumber" value="Identifier"></core:CustomData>
 					<core:CustomData key="name_TEXT" value="Description"></core:CustomData>
 				</customData>
