@@ -44,7 +44,7 @@ sap.ui.define([
 			this.clearSidePanelDetails();
 			this.getView().setBusy(true);
 			this.createEntityId("COST_CENTER").then(oData => {
-				var oBusinessEntity = oData.result.costCenterDTOs[0].businessEntityDTO;
+				var oBusinessEntity = oData.result.costCenterDTOs[0].commonEntityDTO.customBusinessDTO;
 				oCsks.entity_id = oBusinessEntity.entity_id;
 				oCsks.datab = sDate;
 				oChangeRequest.change_request_id = 50001;
@@ -67,6 +67,7 @@ sap.ui.define([
 				oAppModel.setProperty("/checkButton", true);
 				oAppModel.setProperty("/previousPage", "");
 				this.getView().setBusy(false);
+				this.filterCRReasons(oChangeRequest.change_request_id, "CC_CR_REASON");
 			}, oError => {
 				MessageToast.show("Failed to create entity id, please try again");
 				this.getView().setBusy(false);
@@ -86,7 +87,7 @@ sap.ui.define([
 			this.createEntityId("PROFIT_CENTER").then(
 				//Success Handler
 				oData => {
-					var oBusinessEntity = oData.result.profitCenterDTOs[0].businessEntityDTO,
+					var oBusinessEntity = oData.result.profitCenterDTOs[0].commonEntityDTO.customBusinessDTO,
 						oAudLogModel = this.getView().getModel("AuditLogModel");
 					if (!oAudLogModel.getProperty("/details")) {
 						oAudLogModel.setProperty("/details", {});
@@ -119,6 +120,7 @@ sap.ui.define([
 					oAppModel.setProperty("/saveButton", true);
 					oAppModel.setProperty("/checkButton", true);
 					oAppModel.setProperty("/previousPage", "");
+					this.filterCRReasons(oChangeRequest.change_request_id, "PC_CR_REASON");
 					this.getView().setBusy(false);
 				},
 				//Error Handler 
@@ -151,6 +153,7 @@ sap.ui.define([
 			aDropDowns.forEach(function (sValue) {
 				this.getDropdownTableData(sValue);
 			}, this);
+			this.getModel("Dropdowns").setProperty("/crReasons", []);
 		},
 
 		getDropdownTableData: function (sValue) {

@@ -4,7 +4,7 @@
 		singleContainerFullSize="false">
 		<form:content>
 			<core:Title text="Communication Data"/>
-			<Label text="Language"/>
+			<Label text="Language" required="true"/>
 			<ComboBox required="true" selectedKey="{ProfitCenter>/Cepc/spras}" items="{Dropdowns>/T002}" editable="{App>/edit}">
 				<core:Item key="{Dropdowns>spras}" text="{Dropdowns>sptxt}"/>
 			</ComboBox>

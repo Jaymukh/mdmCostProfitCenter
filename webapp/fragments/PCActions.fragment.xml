@@ -8,8 +8,8 @@
 					icon="sap-icon://copy" press="onCopyPC"/>
 				<StandardListItem title="Block" type="Active" info="{= ${SearchPCModel>profitCenterCepcDTO/prctr} ? '' :'A change request is in progress.'}"
 					icon="sap-icon://cancel" press="onBlockPC"/>
-				<StandardListItem title="Delete" type="Active" press="onDeletePC"
-					info="{=${SearchPCModel>profitCenterCepcDTO/prctr} ? '' :'A change request is in progress.'}" icon="sap-icon://delete"/>
+				<!--<StandardListItem title="Delete" type="Active" press="onDeletePC"
+					info="{=${SearchPCModel>profitCenterCepcDTO/prctr} ? '' :'A change request is in progress.'}" icon="sap-icon://delete"/>-->
 			</List>
 		</content>
 	</Popover>

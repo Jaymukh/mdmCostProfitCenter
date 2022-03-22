@@ -217,7 +217,7 @@ sap.ui.define([
 					if (sAction !== "PREVIEW") {
 						this.getView().setBusy(true);
 						this.createEntityId("COST_CENTER").then(oData => {
-							var oBusinessEntity = oData.result.costCenterDTOs[0].businessEntityDTO,
+							var oBusinessEntity = oData.result.costCenterDTOs[0].commonEntityDTO.customBusinessDTO,
 								sEntityId = oBusinessEntity.entity_id;
 							oChangeRequest.reason = "";
 							oChangeRequest.timeCreation = oDate.getHours() + ":" + (sMinutes < 10 ? "0" + sMinutes : sMinutes);
@@ -232,6 +232,7 @@ sap.ui.define([
 								Csks: oCsks,
 								Cskt: aCskt
 							});
+							this.filterCRReasons(oChangeRequest.change_request_id, "CC_CR_REASON");
 							this.getView().setBusy(false);
 						}, oError => {
 							this.getView().setBusy(false);

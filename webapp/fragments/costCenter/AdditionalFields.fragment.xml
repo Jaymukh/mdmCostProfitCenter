@@ -5,11 +5,11 @@
 		<form:content>
 			<core:Title text="Additional Fields"/>
 			<Label text="Unique Well Identifier Survey System"/>
-			<Input showValueHelp="true" valueHelpOnly="true" value="{CostCenter>/Csks/zzwid}" editable="{App>/edit}"/>
+			<Input showValueHelp="true" valueHelpOnly="true" value="{CostCenter>/Csks/zzwid}" maxLength="3" editable="{App>/edit}"/>
 			<Label text="Unique Well Identifier UWI"/>
-			<Input value="{CostCenter>/Csks/zzwidu}" editable="{App>/edit}"/>
+			<Input value="{CostCenter>/Csks/zzwidu}" maxLength="23" editable="{App>/edit}"/>
 			<Label text="MUWI"/>
-			<Input value="{CostCenter>/Csks/zmuwi}" editable="{App>/edit}"/>
+			<Input value="{CostCenter>/Csks/zmuwi}" maxLength="10" editable="{App>/edit}"/>
 		</form:content>
 	</form:SimpleForm>
 </core:FragmentDefinition>

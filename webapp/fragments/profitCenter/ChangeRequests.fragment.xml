@@ -6,7 +6,7 @@
 			<core:Title text="General Data"/>
 			<Label text="Change Request ID"/>
 			<Input editable="false" value="{ parts: [ 'ProfitCenter>/crID', 'ProfitCenter>/Cepc/entity_id'], formatter: '.formatCR_Entiry_ID' }"/>
-			<Label text="Description"/>
+			<Label text="Description" required="true"/>
 			<TextArea required="true" value="{ProfitCenter>/ChangeRequest/desc}"/>
 			<Label text="Priority"/>
 			<ComboBox selectedKey="{ProfitCenter>/ChangeRequest/priority}" showSecondaryValues="true"
@@ -17,9 +17,8 @@
 			</ComboBox>
 			<Label text="Due Date"/>
 			<DatePicker displayFormat="{App>/dateFormat}" valueFormat="{App>/dateValueFormat}" value="{ProfitCenter>/ChangeRequest/dueDate}"/>
-			<Label text="Reason"/>
-			<ComboBox required="true" selectedKey="{ProfitCenter>/ChangeRequest/reason}" showSecondaryValues="true"
-				items="{path:'Dropdowns>/TAXONOMY',filters : [{ path : 'taxonomyType', operator : 'EQ', value1 : 'PC_CR_REASON' }]}"
+			<Label text="Reason" required="true"/>
+			<ComboBox required="true" selectedKey="{ProfitCenter>/ChangeRequest/reason}" showSecondaryValues="true" items="{Dropdowns>/crReasons}"
 				editable="{App>/crEdit}">
 				<items>
 					<core:ListItem key="{Dropdowns>taxonomyId}" additionalText="{Dropdowns>taxonomyId}" text="{Dropdowns>taxonomyName}"/>

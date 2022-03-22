@@ -95,8 +95,8 @@ sap.ui.define([
 						"entityType": "PROFIT_CENTER",
 						"parentDTO": {
 							"customData": {
-								"cepc": oPCData.Cepc,
-								"cepct": {}
+								"fin_cepc": oPCData.Cepc,
+								"fin_cepct": {}
 							}
 						}
 					};
@@ -104,7 +104,7 @@ sap.ui.define([
 				oPCData.Cepct.forEach((oItem, iIndex) => {
 					oItem.kokrs = oPCData.Cepc.kokrs;
 					oItem.kostl = oPCData.Cepc.kostl;
-					oFormData.parentDTO.customData.cepct[iIndex + 1] = oItem;
+					oFormData.parentDTO.customData.fin_cepct[iIndex + 1] = oItem;
 				});
 
 				var oObjParamCreate = {
@@ -119,9 +119,9 @@ sap.ui.define([
 					oDataResp => {
 						//Success Handle after save CR
 						this.getView().setBusy(false);
-						this.getAllCommentsForCR(oFormData.parentDTO.customData.cepc.entity_id);
-						this.getAllDocumentsForCR(oFormData.parentDTO.customData.cepc.entity_id);
-						this.getAuditLogsForCR(oFormData.parentDTO.customData.cepc.entity_id);
+						this.getAllCommentsForCR(oFormData.parentDTO.customData.fin_cepc.entity_id);
+						this.getAllDocumentsForCR(oFormData.parentDTO.customData.fin_cepc.entity_id);
+						this.getAuditLogsForCR(oFormData.parentDTO.customData.fin_cepc.entity_id);
 						this.clearAllButtons();
 						oAppModel.setProperty("/edit", false);
 						oAppModel.setProperty("/submitButton", true);
@@ -147,7 +147,7 @@ sap.ui.define([
 				this.clearAllButtons();
 				this.getView().setBusy(true);
 				this.createEntityId("PROFIT_CENTER").then(oData => {
-					var oBusinessEntity = oData.result.profitCenterDTOs[0].businessEntityDTO,
+					var oBusinessEntity = oData.result.profitCenterDTOs[0].commonEntityDTO.customBusinessDTO,
 						sEntityId = oBusinessEntity.entity_id,
 						oAudLogModel = this.getView().getModel("AuditLogModel");
 					if (!oAudLogModel.getProperty("/details")) {
@@ -173,6 +173,7 @@ sap.ui.define([
 					oAppModel.setProperty("/editButton", false);
 					oAppModel.setProperty("/saveButton", true);
 					oAppModel.setProperty("/crEdit", true);
+					this.filterCRReasons(oPCData.ChangeRequest.change_request_id, "PC_CR_REASON");
 					this.getView().setBusy(false);
 				}, oError => {
 					this.getView().setBusy(false);
@@ -259,13 +260,13 @@ sap.ui.define([
 				this.getView().setBusy(true);
 				var objParamSubmit = {
 					url: "/mdmccpc/workflow-service/workflows/tasks/task/action",
-					type: 'POST',
+					type: "POST",
 					hasPayload: true,
 					data: {
-						"operationType": "CREATE",
 						"changeRequestDTO": {
-							"entity_type_id": "41003",
-							"entity_id": this.getModel("CostCenter").getProperty("/Csks/entity_id")
+							"entity_id": this.getModel("ProfitCenter").getProperty("/Cepc/entity_id"),
+							"entity_type_id": 41004,
+							"change_request_type_id": 50001
 						}
 					}
 				};
@@ -293,7 +294,6 @@ sap.ui.define([
 						});
 						sError = oError.responseJSON.error;
 					}
-					this.getView().getModel("Customer").refresh(true);
 					MessageToast.show(sError, {
 						duration: 6000,
 						width: "100%"

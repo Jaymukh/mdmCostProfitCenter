@@ -35,8 +35,8 @@
 						<ComboBox required="true" selectedKey="{CostCenter>spras}" items="{Dropdowns>/T002}" editable="{App>/edit}">
 							<core:Item key="{Dropdowns>spras}" text="{Dropdowns>sptxt}"/>
 						</ComboBox>
-						<Input value="{CostCenter>ktext}" editable="{App>/edit}"/>
-						<Input value="{CostCenter>ltext}" editable="{App>/edit}"/>
+						<Input value="{CostCenter>ktext}" editable="{App>/edit}" maxLength="20"/>
+						<Input value="{CostCenter>ltext}" editable="{App>/edit}" maxLength="40"/>
 						<core:Icon src="sap-icon://delete" color="Negative" class="sapUiSmallMarginEnd" press="onDeleteDesc" visible="{App>/edit}"/>
 					</cells>
 				</ColumnListItem>

@@ -947,5 +947,42 @@ sap.ui.define([
 			}
 			return sStatus;
 		},
+
+		filterCRReasons: function (sRequestType, sAppName) {
+			var oDropDownModel = this.getModel("Dropdowns"),
+				aTaxonomyReasons = oDropDownModel.getProperty("/TAXONOMY") || [],
+				aCustCRReasons = aTaxonomyReasons.filter(oItem => {
+					return oItem.taxonomyType === sAppName;
+				}),
+				aFinalReasons = [];
+			switch (sRequestType) {
+			case 50001: //Create 
+				aFinalReasons = aCustCRReasons.filter(oItem => {
+					return oItem.groupName === "CREATE";
+				});
+				break;
+			case 50002: //Edit 
+				aFinalReasons = aCustCRReasons.filter(oItem => {
+					return oItem.groupName === "EDIT";
+				});
+				break;
+			case 50003: //Copy 
+				aFinalReasons = aCustCRReasons.filter(oItem => {
+					return oItem.groupName === "COPY";
+				});
+				break;
+			case 50004: //Block
+				aFinalReasons = aCustCRReasons.filter(oItem => {
+					return oItem.groupName === "BLOCK";
+				});
+				break;
+			case 50005: //Delete
+				aFinalReasons = aCustCRReasons.filter(oItem => {
+					return oItem.groupName === "DELETE";
+				});
+				break;
+			}
+			oDropDownModel.setProperty("/crReasons", aFinalReasons);
+		}
 	});
 });

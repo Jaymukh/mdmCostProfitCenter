@@ -11,16 +11,16 @@
 				</items>
 			</ComboBox>
 			<Label text="Name1" required="true"/>
-			<Input required="true" value="{CostCenter>/Csks/name1}" editable="{App>/edit}"/>
+			<Input required="true" value="{CostCenter>/Csks/name1}" maxLength="35" editable="{App>/edit}"/>
 			<Label text="Name2"/>
-			<Input value="{CostCenter>/Csks/name2}" editable="{App>/edit}"/>
+			<Input value="{CostCenter>/Csks/name2}" editable="{App>/edit}" maxLength="35"/>
 			<Label text="Name3"/>
-			<Input value="{CostCenter>/Csks/name3}" editable="{App>/edit}"/>
+			<Input value="{CostCenter>/Csks/name3}" editable="{App>/edit}" maxLength="35"/>
 			<Label text="Name4"/>
-			<Input value="{CostCenter>/Csks/name4}" editable="{App>/edit}"/>
+			<Input value="{CostCenter>/Csks/name4}" editable="{App>/edit}" maxLength="35"/>
 			<core:Title text=""/>
 			<Label text="Street"/>
-			<Input value="{CostCenter>/Csks/stras}" editable="{App>/edit}"/>
+			<Input value="{CostCenter>/Csks/stras}" editable="{App>/edit}" maxLength="35"/>
 			<Label text="Postal Code / City" required="true"/>
 			<Input required="true" value="{CostCenter>/Csks/pstlz}" maxLength="10" editable="{App>/edit}">
 				<layoutData>
@@ -29,7 +29,7 @@
 			</Input>
 			<Input required="true" value="{CostCenter>/Csks/ort01}" maxLength="35" editable="{App>/edit}"/>
 			<Label text="District"/>
-			<Input value="{CostCenter>/Csks/ort02}" editable="{App>/edit}"/>
+			<Input value="{CostCenter>/Csks/ort02}" editable="{App>/edit}" maxLength="35"/>
 			<Label text="Country" required="true"/>
 			<ComboBox required="true" items="{Dropdowns>/T005}" selectionChange="onChangeCountry" selectedKey="{CostCenter>/Csks/land1}"
 				editable="{App>/edit}">
@@ -40,14 +40,14 @@
 				<core:Item key="{Dropdowns>bland}" text="{Dropdowns>bland} - {Dropdowns>bezei}"/>
 			</ComboBox>
 			<Label text="PO Box Postal Code/ PO Box"/>
-			<Input value="{CostCenter>/Csks/pstl2}" editable="{App>/edit}">
+			<Input value="{CostCenter>/Csks/pstl2}" editable="{App>/edit}" maxLength="10">
 				<layoutData>
 					<l:GridData span="XL2 L3 M3 S4"/>
 				</layoutData>
 			</Input>
-			<Input value="{CostCenter>/Csks/pfach}" editable="{App>/edit}"/>
+			<Input value="{CostCenter>/Csks/pfach}" editable="{App>/edit}" maxLength="10"/>
 			<Label text="Tax Jurisdiction"/>
-			<Input value="{CostCenter>/Csks/txjcd}" editable="false"/>
+			<Input value="{CostCenter>/Csks/txjcd}" editable="false" maxLength="15"/>
 		</form:content>
 	</form:SimpleForm>
 </core:FragmentDefinition>

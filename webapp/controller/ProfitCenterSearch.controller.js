@@ -220,7 +220,7 @@ sap.ui.define([
 					if (sAction !== "PREVIEW") {
 						this.getView().setBusy(true);
 						this.createEntityId("PROFIT_CENTER").then(oData => {
-							var oBusinessEntity = oData.result.profitCenterDTOs[0].businessEntityDTO,
+							var oBusinessEntity = oData.result.profitCenterDTOs[0].commonEntityDTO.customBusinessDTO,
 								sEntityId = oBusinessEntity.entity_id;
 
 							oChangeRequest.reason = "";
@@ -238,6 +238,7 @@ sap.ui.define([
 								CepcBukrs: [],
 								Cepc_bukrs: Object.assign({}, oAppModel.getProperty("/cepc_bukrs"))
 							});
+							this.filterCRReasons(oChangeRequest.change_request_id, "PC_CR_REASON");
 							this.getView().setBusy(false);
 						}, oError => {
 							this.getView().setBusy(false);

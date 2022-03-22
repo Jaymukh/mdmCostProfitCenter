@@ -9,20 +9,20 @@
 				<core:Item key="{Dropdowns>spras}" text="{Dropdowns>sptxt}"/>
 			</ComboBox>
 			<Label text="Telephone 1"/>
-			<Input value="{CostCenter>/Csks/telf1}" editable="{App>/edit}"/>
+			<Input value="{CostCenter>/Csks/telf1}" editable="{App>/edit}" maxLength="16"/>
 			<Label text="Telephone 2"/>
-			<Input value="{CostCenter>/Csks/telf2}" editable="{App>/edit}"/>
+			<Input value="{CostCenter>/Csks/telf2}" editable="{App>/edit}" maxLength="16"/>
 			<Label text="Fax Number"/>
-			<Input value="{CostCenter>/Csks/telfx}" editable="{App>/edit}"/>
+			<Input value="{CostCenter>/Csks/telfx}" editable="{App>/edit}" maxLength="30"/>
 			<Label text="Telebox Number"/>
-			<Input value="{CostCenter>/Csks/telbx}" editable="{App>/edit}"/>
+			<Input value="{CostCenter>/Csks/telbx}" editable="{App>/edit}" maxLength="15"/>
 			<core:Title text=""/>
 			<Label text="Teletex Number"/>
-			<Input value="{CostCenter>/Csks/telx1}" editable="{App>/edit}"/>
+			<Input value="{CostCenter>/Csks/telx1}" editable="{App>/edit}" maxLength="30"/>
 			<Label text="Printer Name"/>
-			<Input value="{CostCenter>/Csks/kdnam}" editable="{App>/edit}"/>
+			<Input value="{CostCenter>/Csks/kdnam}" editable="{App>/edit}" maxLength="10"/>
 			<Label text="Data Line"/>
-			<Input value="{CostCenter>/Csks/datlt}" editable="{App>/edit}"/>
+			<Input value="{CostCenter>/Csks/datlt}" editable="{App>/edit}" maxLength="14"/>
 		</form:content>
 	</form:SimpleForm>
 </core:FragmentDefinition>

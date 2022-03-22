@@ -90,7 +90,7 @@ sap.ui.define([
 				this.clearAllButtons();
 				this.getView().setBusy(true);
 				this.createEntityId("COST_CENTER").then(oData => {
-					var oBusinessEntity = oData.result.costCenterDTOs[0].businessEntityDTO,
+					var oBusinessEntity = oData.result.costCenterDTOs[0].commonEntityDTO.customBusinessDTO,
 						sEntityId = oBusinessEntity.entity_id,
 						oAudLogModel = this.getView().getModel("AuditLogModel");
 					if (!oAudLogModel.getProperty("/details")) {
@@ -116,6 +116,7 @@ sap.ui.define([
 					oAppModel.setProperty("/editButton", false);
 					oAppModel.setProperty("/saveButton", true);
 					oAppModel.setProperty("/crEdit", true);
+					this.filterCRReasons(oCCData.ChangeRequest.change_request_id, "CC_CR_REASON");
 					this.getView().setBusy(false);
 				}, oError => {
 					this.getView().setBusy(false);

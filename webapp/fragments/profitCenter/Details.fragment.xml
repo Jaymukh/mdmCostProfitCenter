@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
-	<form:SimpleForm id="idPcDetails" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
-		adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+	<form:SimpleForm id="idPcDetails" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+		labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
 		singleContainerFullSize="false">
 		<form:content>
 			<core:Title text="General Data"/>
@@ -11,7 +11,7 @@
 				</layoutData>
 			</Input>
 			<Input value="Murphy Controlling Area" editable="false"/>
-			<Label text="Profit Center / Name"/>
+			<Label text="Profit Center / Name" required="true"/>
 			<Input required="true" value="{ProfitCenter>/Cepc/prctr}" editable="{App>/edit}">
 				<layoutData>
 					<l:GridData span="XL2 L2 M3 S4"/>
@@ -23,9 +23,9 @@
 			<Label text="Department"/>
 			<Input value="{ProfitCenter>/Cepc/abtei}" editable="{App>/edit}"/>
 			<Label text="Segment" required="true"/>
-			<ComboBox required="true" selectedKey="{CostCenter>/Cepc/segment}" items="{Dropdowns>/FAGL_SEGM}" editable="{App>/edit}"
+			<ComboBox required="true" selectedKey="{ProfitCenter>/Cepc/segment}" items="{Dropdowns>/FAGL_SEGM}" editable="{App>/edit}"
 				showSecondaryValues="true">
-				<core:ListItem key="{Dropdowns>segment}" text="{Dropdowns>text}" additionalText="{Dropdowns>segment}"/>
+				<core:ListItem key="{Dropdowns>segment}" text="{Dropdowns>segment}" additionalText="{Dropdowns>segment}"/>
 			</ComboBox>
 			<Label text="Logical System"/>
 			<Input editable="false" value="{ProfitCenter>/Cepc/logsystem}">
@@ -35,9 +35,9 @@
 			</Input>
 			<Input editable="false" value="{ProfitCenter>/Cepc/logsystem}"/>
 			<core:Title text="Administrative Data"/>
-			<Label text="New Profit Center"/>
-			<Input required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true" value="{ProfitCenter>/Cepc/nprctr}"
-				editable="{App>/edit}">
+			<Label text="New Profit Center" required="true"/>
+			<Input required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
+				value="{ProfitCenter>/Cepc/nprctr}" editable="{App>/edit}">
 				<customData>
 					<core:CustomData key="title" value="Profit Center"></core:CustomData>
 					<core:CustomData key="table" value="vw_cepct"></core:CustomData>
@@ -49,14 +49,15 @@
 				</customData>
 			</Input>
 			<Label text="User Responsible"/>
-			<Input valueHelpOnly="true" showValueHelp="true" value="{ProfitCenter>/Cepc/verak_user}" editable="{App>/edit}">
+			<Input required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
+				value="{ProfitCenter>/Cepc/verak_user}" editable="{App>/edit}" maxLength="12">
 				<customData>
-					<core:CustomData key="title" value="User Details"></core:CustomData>
-					<core:CustomData key="table" value="user_addrp"></core:CustomData>
-					<core:CustomData key="inputKey" value="prctr"></core:CustomData>
-					<core:CustomData key="inputText" value="prctr"></core:CustomData>
-					<core:CustomData key="userid" value="User Id"></core:CustomData>
-					<core:CustomData key="name" value="Name"></core:CustomData>
+					<core:CustomData key="title" value="User Responsible"></core:CustomData>
+					<core:CustomData key="table" value="USER_ADDRP"></core:CustomData>
+					<core:CustomData key="inputKey" value="bname"></core:CustomData>
+					<core:CustomData key="inputText" value="bname"></core:CustomData>
+					<core:CustomData key="persnumber" value="Identifier"></core:CustomData>
+					<core:CustomData key="name_TEXT" value="Description"></core:CustomData>
 				</customData>
 			</Input>
 			<Label text="Person Responsible" required="true"/>

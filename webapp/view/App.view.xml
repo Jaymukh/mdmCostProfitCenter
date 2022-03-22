@@ -4,8 +4,8 @@
 		<tnt:ToolPage id="toolPage" sideExpanded="{App>/sideNavExp}">
 			<tnt:header>
 				<tnt:ToolHeader>
-					<Button tooltip="{= ${App>/sideNavExp} ? 'Small Size Navigation' : 'Large Size Navigation'}"
-						icon="sap-icon://menu2" type="Transparent" press="onSideNavPress">
+					<Button tooltip="{= ${App>/sideNavExp} ? 'Small Size Navigation' : 'Large Size Navigation'}" icon="sap-icon://menu2" type="Transparent"
+						press="onSideNavPress">
 						<layoutData>
 							<OverflowToolbarLayoutData priority="NeverOverflow"/>
 						</layoutData>
@@ -21,15 +21,15 @@
 			<tnt:sideContent >
 				<tnt:SideNavigation selectedKey="CostCenterSearch" itemSelect="onSideItemSelect">
 					<tnt:NavigationList>
-						<tnt:NavigationListItem text="Search" icon="sap-icon://detail-view">
+						<tnt:NavigationListItem text="Search" icon="sap-icon://detail-view" key="CostCenterSearch">
 							<tnt:NavigationListItem text="Cost Center" key="CostCenterSearch"/>
 							<tnt:NavigationListItem text="Profit Center" key="ProfitCenterSearch"/>
 						</tnt:NavigationListItem>
-						<tnt:NavigationListItem text="Create" icon="sap-icon://create">
+						<tnt:NavigationListItem text="Create" icon="sap-icon://create" key="CostCenterCreate">
 							<tnt:NavigationListItem text="Cost Center" key="CostCenterCreate"/>
 							<tnt:NavigationListItem text="Profit Center" key="ProfitCenterCreate"/>
 						</tnt:NavigationListItem>
-						<tnt:NavigationListItem text="Change" icon="sap-icon://request">
+						<tnt:NavigationListItem text="Change" icon="sap-icon://request" key="CostCenterChangeRequets">
 							<tnt:NavigationListItem text="Cost Center Change Request" key="CostCenterChangeRequets"/>
 							<tnt:NavigationListItem text="Profit Center Change Request" key="ProfitCenterChangeRequest"/>
 						</tnt:NavigationListItem>
