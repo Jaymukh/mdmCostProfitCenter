@@ -5,7 +5,10 @@
 		<form:content>
 			<core:Title text="Additional Fields"/>
 			<Label text="Unique Well Identifier Survey System"/>
-			<Input showValueHelp="true" valueHelpOnly="true" value="{CostCenter>/Csks/zzwid}" maxLength="3" editable="{App>/edit}"/>
+			<ComboBox selectedKey="{CostCenter>/Csks/zzwid}" editable="{App>/edit}">
+				<core:Item key="DLS" text="DLS"/>
+				<core:Item key="NTS" text="NTS"/>
+			</ComboBox>
 			<Label text="Unique Well Identifier UWI"/>
 			<Input value="{CostCenter>/Csks/zzwidu}" maxLength="23" editable="{App>/edit}"/>
 			<Label text="MUWI"/>

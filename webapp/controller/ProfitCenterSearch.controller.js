@@ -93,6 +93,15 @@ sap.ui.define([
 				oPopover.openBy(oButton);
 			});
 		},
+		
+		onNavtoCreatePC: function(){
+			let oAppModel = this.getModel("App"),
+				sKey = "ProfitCenterCreate";
+			this.clearAllButtons();
+			this.getRouter().getTargets().display(sKey);
+			oAppModel.setProperty("/appTitle", this.getText(sKey));
+			this.createPCEntity();
+		},
 
 		onPreviewPC: function (oEvent) {
 			var oPC = oEvent.getSource().getBindingContext("SearchPCModel").getObject();

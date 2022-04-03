@@ -150,7 +150,7 @@
 							<Link text="{SearchPCModel>profitCenterCepcDTO/prctr}" press="onPreviewPC"/>
 							<ComboBox selectedKey="{SearchPCModel>profitCenterCepcDTO/segment}" items="{Dropdowns>/FAGL_SEGM}" editable="false"
 								showSecondaryValues="true">
-								<core:ListItem key="{Dropdowns>segment}" text="{Dropdowns>text}" additionalText="{Dropdowns>segment}"/>
+								<core:ListItem key="{Dropdowns>segment}" text="{Dropdowns>segment}" additionalText="{Dropdowns>segment}"/>
 							</ComboBox>
 							<Text text="{SearchPCModel>profitCenterCepcDTO/verak}"/>
 							<core:Icon src="sap-icon://overflow" press="onProfitCenterAction"></core:Icon>

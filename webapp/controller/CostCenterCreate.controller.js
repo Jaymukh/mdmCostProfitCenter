@@ -19,7 +19,7 @@ sap.ui.define([
 
 		onSelectBukrs: function (oEvent) {
 			var oBukrs = oEvent.getParameter("selectedItem").getBindingContext("Dropdowns").getObject();
-			this.getModel("CostCenter").setProperty("/Cskt/waers", oBukrs.waers);
+			this.getModel("CostCenter").setProperty("/Csks/waers", oBukrs.waers);
 		},
 
 		onChangeCountry: function (oEvent) {
@@ -38,8 +38,8 @@ sap.ui.define([
 						"entityType": "COST_CENTRE",
 						"parentDTO": {
 							"customData": {
-								"csks": oCCData.Csks,
-								"cskt": {}
+								"fin_csks": oCCData.Csks,
+								"fin_cskt": {}
 							}
 						}
 					};
@@ -47,7 +47,7 @@ sap.ui.define([
 				oCCData.Cskt.forEach((oItem, iIndex) => {
 					oItem.kokrs = oCCData.Csks.kokrs;
 					oItem.kostl = oCCData.Csks.kostl;
-					oFormData.parentDTO.customData.cskt[iIndex + 1] = oItem;
+					oFormData.parentDTO.customData.fin_cskt[iIndex + 1] = oItem;
 				});
 
 				var oObjParamCreate = {
@@ -62,13 +62,14 @@ sap.ui.define([
 					oDataResp => {
 						//Success Handle after save CR
 						this.getView().setBusy(false);
-						this.getAllCommentsForCR(oFormData.parentDTO.customData.csks.entity_id);
-						this.getAllDocumentsForCR(oFormData.parentDTO.customData.csks.entity_id);
-						this.getAuditLogsForCR(oFormData.parentDTO.customData.csks.entity_id);
+						this.getAllCommentsForCR(oFormData.parentDTO.customData.fin_csks.entity_id);
+						this.getAllDocumentsForCR(oFormData.parentDTO.customData.fin_csks.entity_id);
+						this.getAuditLogsForCR(oFormData.parentDTO.customData.fin_csks.entity_id);
 						this.clearAllButtons();
 						oAppModel.setProperty("/edit", false);
 						oAppModel.setProperty("/submitButton", true);
 						oAppModel.setProperty("/editButton", true);
+						MessageToast.show("Draft Version Created Successfully");
 					},
 					oError => {
 						//Error Hanlder while saving CR
@@ -85,8 +86,8 @@ sap.ui.define([
 				oCCData = oCCModel.getData(),
 				oDate = new Date(),
 				sDate = `${oDate.getFullYear()}-${("0" + (oDate.getMonth() + 1) ).slice(-2)}-${("0" + oDate.getDate()).slice(-2)}`;
-			oCCData.ChangeRequest = oChangeRequest;
 			if (oAppModel.getProperty("/erpPreview")) {
+				oCCData.ChangeRequest = oChangeRequest;
 				this.clearAllButtons();
 				this.getView().setBusy(true);
 				this.createEntityId("COST_CENTRE").then(oData => {
@@ -200,7 +201,7 @@ sap.ui.define([
 
 		onSubmitCR: function () {
 			if (this.onCheckCR()) {
-				this.getView().setBusy(true);
+				/*this.getView().setBusy(true);
 				var objParamSubmit = {
 					url: "/mdmccpc/workflow-service/workflows/tasks/task/action",
 					type: 'POST',
@@ -242,8 +243,8 @@ sap.ui.define([
 						duration: 6000,
 						width: "100%"
 					});
-				}.bind(this));
-				//	this._createTask();
+				}.bind(this));*/
+				this._createTask();
 			}
 		},
 
@@ -262,7 +263,7 @@ sap.ui.define([
 								"isMandatory": true,
 								"isEdited": 2,
 								"attrDes": "",
-								"value": oCCData.ChangeRequest.genData.desc,
+								"value": oCCData.Cskt[0].ktext,
 								"dataType": null,
 								"valueList": null,
 								"attachmentType": null,
@@ -283,8 +284,8 @@ sap.ui.define([
 								"isRunTime": null,
 								"isVisible": null
 							}, {
-								"processName": "MDGCustomerWorkflow",
-								"key": "0b1j5f3b6a5jf",
+								"processName": "MDGCCWorkflow",
+								"key": "ii068iehc3i5",
 								"label": "CountryCode",
 								"processType": null,
 								"isEditable": true,
@@ -292,7 +293,7 @@ sap.ui.define([
 								"isMandatory": true,
 								"isEdited": 2,
 								"attrDes": "Country Code",
-								"value": oCCData.Csks.land1,
+								"value": "US",
 								"dataType": "INPUT",
 								"valueList": [],
 								"attachmentType": null,
@@ -313,8 +314,8 @@ sap.ui.define([
 								"isRunTime": null,
 								"isVisible": null
 							}, {
-								"processName": "MDGCustomerWorkflow",
-								"key": "0161eec7ie65c8",
+								"processName": "MDGCCWorkflow",
+								"key": "b3dg9b8bc3e7",
 								"label": "AccountGroup",
 								"processType": null,
 								"isEditable": true,
@@ -322,7 +323,7 @@ sap.ui.define([
 								"isMandatory": true,
 								"isEdited": 2,
 								"attrDes": "Account Group",
-								"value": oCCData.Csks.ktokd,
+								"value": "ZZZZ",
 								"dataType": "INPUT",
 								"valueList": [],
 								"attachmentType": null,
@@ -343,8 +344,8 @@ sap.ui.define([
 								"isRunTime": false,
 								"isVisible": null
 							}, {
-								"processName": "MDGCustomerWorkflow",
-								"key": "cafe0ee6f50c8",
+								"processName": "MDGCCWorkflow",
+								"key": "855ci3a199a5h",
 								"label": "Data Domain",
 								"processType": null,
 								"isEditable": true,
@@ -352,7 +353,7 @@ sap.ui.define([
 								"isMandatory": true,
 								"isEdited": 2,
 								"attrDes": "Data Domain",
-								"value": "CUSTOMER",
+								"value": "CC",
 								"dataType": "INPUT",
 								"valueList": [],
 								"attachmentType": null,
@@ -373,8 +374,38 @@ sap.ui.define([
 								"isRunTime": false,
 								"isVisible": null
 							}, {
-								"processName": "MDGCustomerWorkflow",
-								"key": "hhcie3a1d1a7a",
+								"processName": "MDGCCWorkflow",
+								"key": "4a8i2a7c9585e",
+								"label": "CountryCodeAccountGroup",
+								"processType": null,
+								"isEditable": true,
+								"isActive": true,
+								"isMandatory": true,
+								"isEdited": 2,
+								"attrDes": "CountryCodeAccountGroup",
+								"value": "US+ZZZZ",
+								"dataType": "INPUT",
+								"valueList": [],
+								"attachmentType": null,
+								"attachmentSize": null,
+								"attachmentName": null,
+								"attachmentId": null,
+								"dataTypeKey": 0,
+								"dropDownType": null,
+								"url": null,
+								"taskId": null,
+								"origin": "Process",
+								"attributePath": null,
+								"dependantOn": null,
+								"rowNumber": 0,
+								"tableAttributes": null,
+								"tableContents": null,
+								"isDeleted": false,
+								"isRunTime": false,
+								"isVisible": null
+							}, {
+								"processName": "MDGCCWorkflow",
+								"key": "g563ecgc1d6df",
 								"label": "CR Number",
 								"processType": null,
 								"isEditable": true,
@@ -382,7 +413,7 @@ sap.ui.define([
 								"isMandatory": true,
 								"isEdited": 2,
 								"attrDes": "CR Number",
-								"value": "CR0033",
+								"value": oCCData.Csks.entity_id,
 								"dataType": "INPUT",
 								"valueList": [],
 								"attachmentType": null,
@@ -408,15 +439,14 @@ sap.ui.define([
 						"type": "Multiple Instance",
 						"resourceid": null,
 						"actionType": "Submit",
-						"processName": "MDGCustomerWorkflow",
+						"processName": "MDGCCWorkflow",
 						"processId": null,
 						"isEdited": 2,
 						"requestId": null,
 						"responseMessage": null,
 						"userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id"),
 						"emailId": this.getView().getModel("userManagementModel").getProperty("/data/email_id"),
-						"userName": this.getView().getModel("userManagementModel").getProperty("/data/firstname") + " " +
-							this.getView().getModel("userManagementModel").getProperty("/data/lastname")
+						"userName": this.getView().getModel("userManagementModel").getProperty("/data/display_name")
 					},
 					"changeRequestDTO": {
 						"entity_id": oCCData.Csks.entity_id,
@@ -426,12 +456,12 @@ sap.ui.define([
 						"modified_by": {
 							"user_id": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
 						},
-						"entity_type_id": "41002",
-						"change_request_type_id": oCCData.ChangeRequest.genData.change_request_id,
-						"change_request_priority_id": oCCData.ChangeRequest.genData.priority,
-						"change_request_due_date": oCCData.ChangeRequest.genData.dueDate,
-						"change_request_desc": oCCData.ChangeRequest.genData.desc,
-						"change_request_reason_id": oCCData.ChangeRequest.genData.reason
+						"entity_type_id": "41005",
+						"change_request_type_id": oCCData.ChangeRequest.change_request_id,
+						"change_request_priority_id": oCCData.ChangeRequest.priority,
+						"change_request_due_date": oCCData.ChangeRequest.dueDate,
+						"change_request_desc": oCCData.ChangeRequest.desc,
+						"change_request_reason_id": oCCData.ChangeRequest.reason
 					}
 				};
 			var objParamCreate = {
@@ -440,7 +470,7 @@ sap.ui.define([
 				data: oData,
 				type: "POST"
 			};
-
+			this.getView().setBusy(true);
 			this.serviceCall.handleServiceRequest(objParamCreate).then(function (oDataResp) {
 				this.getView().setBusy(false);
 				if (oDataResp.result && oDataResp.result.changeRequestDTO) {
@@ -459,7 +489,7 @@ sap.ui.define([
 				type: "POST",
 				hasPayload: true,
 				data: {
-					"entityType": "CUSTOMER",
+					"entityType": "COST_CENTRE",
 					"parentDTO": {
 						"customData": {
 							"business_entity": {
@@ -469,17 +499,31 @@ sap.ui.define([
 						}
 					}
 				}
-
 			};
+			this.getView().setBusy(true);
 			this.serviceCall.handleServiceRequest(objParamSubmit).then(
 				oData => {
 					this.getView().setBusy(false);
-					this.onBackToAllChangeReq();
+					this.onBackToCCChangeReq();
 				},
 				oError => {
 					this.getView().setBusy(false);
 					MessageToast.show("Error while updating draft falg.");
 				});
+		},
+
+		onBackToCCChangeReq: function () {
+			//if (!this.getOwnerComponent().getModel("ChangeRequestsModel").getProperty("/ChangeRequests").length) {
+				this.nPageNo = 1;
+				this.getAllCCChangeRequests(this.nPageNo);
+				this.getCcCrStatistics();
+			//}
+			this.clearAllButtons();
+			this.getView().getParent().getParent().getSideContent().setSelectedItem(this.getView().getParent().getParent().getSideContent().getItem()
+				.getItems()[2]);
+
+			this.getModel("App").setProperty("/appTitle", "Cost Center Change Requests");
+			this.getRouter().getTargets().display("CostCenterChangeRequets");
 		},
 
 		onApproveClick: function () {
@@ -512,7 +556,7 @@ sap.ui.define([
 						press: function () {
 							var sRejectReason = sap.ui.getCore().byId("idRejectReason").getValue();
 							if (sRejectReason) {
-								var sWorkFlowID = this.getView().getModel("Customer").getProperty("/createCRCustomerData/workflowID");
+								var sWorkFlowID = this.getView().getModel("CostCenter").getProperty("/workflowID");
 								this._claimTask(sWorkFlowID, "Reject", sRejectReason);
 								this.oRejectDailog.close();
 							} else {
@@ -575,7 +619,6 @@ sap.ui.define([
 
 		_ApproveRejectTask: function (sTaskID, sAction, sReason) {
 			var sUrl = "";
-
 			var oData = {
 				"workboxTaskActionRequestDTO": {
 					"isChatBot": true,
@@ -609,12 +652,9 @@ sap.ui.define([
 			};
 
 			this.serviceCall.handleServiceRequest(objParamCreate).then(
-				function (oDataResp) {
+				oDataResp => {
 					if (oDataResp.result) {
-						this.nPageNo = 1;
-						this.handleGetAllChangeRequests(this.nPageNo);
-						this.handleChangeRequestStatistics();
-						this.onAllChangeReqClick();
+						this.onBackToCCChangeReq();
 					}
 
 					//Adding rejection reason to comment section
@@ -629,8 +669,8 @@ sap.ui.define([
 					this.getView().setBusy(false);
 					var sMessage = sAction.toLowerCase() === "approve" ? "Approved" : "Rejected";
 					MessageToast.show(sMessage);
-				}.bind(this),
-				function (oError) {
+				},
+				oError => {
 					this.getView().setBusy(false);
 					var aError = [];
 					if (oError.responseJSON.result && oError.responseJSON.result.workboxCreateTaskResponseDTO && oError.responseJSON.result.workboxCreateTaskResponseDTO
@@ -647,7 +687,7 @@ sap.ui.define([
 						});
 					}
 					MessageToast.show("Error In " + sAction + " Workflow Task");
-				}.bind(this));
+				});
 		},
 
 		onAddDescription: function (oEvent) {

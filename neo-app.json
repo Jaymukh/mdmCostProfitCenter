@@ -40,7 +40,7 @@
 		"path": "/mdmccpc",
 		"target": {
 			"type": "destination",
-			"name": "MDM_CCPC_JAVA_DEST"
+			"name": "MDM_CUST_JAVA_DEST"
 		},
 		"description": "Destination"
 	}, {

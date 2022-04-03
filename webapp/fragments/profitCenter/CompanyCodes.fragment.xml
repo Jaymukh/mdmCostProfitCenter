@@ -27,15 +27,19 @@
 			<items>
 				<ColumnListItem>
 					<cells>
-						<ComboBox required="true" selectedKey="{ProfitCenter>bukrs}" items="{Dropdowns>/T001}" editable="{App>/edit}" showSecondaryValues="true">
+						<ComboBox required="true" selectedKey="{ProfitCenter>bukrs}" items="{Dropdowns>/T001}" editable="false" showSecondaryValues="true">
 							<core:ListItem key="{Dropdowns>bukrs}" text="{Dropdowns>butxt}" additionalText="{Dropdowns>bukrs}"/>
 						</ComboBox>
 						<CheckBox selected="true" editable="false"/>
+						<HBox>
+							<core:Icon src="sap-icon://edit" class="sapUiSmallMarginEnd" press="onShowComp" />
+							<core:Icon src="sap-icon://delete" color="Negative" class="sapUiSmallMarginEnd" press="onDeleteComp" visible="{App>/edit}"/>
+						</HBox>
 					</cells>
 				</ColumnListItem>
 			</items>
 		</Table>
-		<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+		<form:SimpleForm id="idCompForm" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
 			adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
 			singleContainerFullSize="false">
 			<form:content>

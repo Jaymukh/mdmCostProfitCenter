@@ -38,7 +38,9 @@ sap.ui.define([
 				oCsks = Object.assign({}, oAppModel.getProperty("/csks")),
 				aCskt = [],
 				oChangeRequest = Object.assign({}, oAppModel.getProperty("/changeReq")),
+				oUserData = this.getModel("userManagementModel").getData(),
 				sWorkFlowId = "",
+				sChangeRequestId = oCRObject.crDTO.change_request_id,
 				oEntityParam = {
 					url: "/mdmccpc/entity-service/entities/entity/get",
 					type: "POST",
@@ -55,6 +57,40 @@ sap.ui.define([
 						}
 					}
 				};
+			this.clearAllButtons();
+			//Get Change Request Details
+			var oParamChangeReq = {
+				url: "/mdmccpc/change-request-service/changerequests/changerequest/page",
+				type: 'POST',
+				hasPayload: true,
+				data: {
+					"crSearchType": "GET_BY_CR_ID",
+					"parentCrDTOs": [{
+						"crDTO": {
+							"change_request_id": sChangeRequestId
+						}
+					}],
+					"userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
+				}
+			};
+
+			this.serviceCall.handleServiceRequest(oParamChangeReq).then(oData => {
+				var oChangeReq = oData.result.parentCrDTOs[0].crDTO;
+				if (oChangeReq.isClaimable &&
+					(oChangeReq.change_request_type_id === 50002 || oChangeReq.change_request_type_id === 50001) &&
+					oUserData.role.indexOf('approv') === -1) {
+					oAppModel.setProperty("/editButton", true);
+				}
+				if (oChangeReq.isClaimable &&
+					(oUserData.role.indexOf('approv') !== -1 || oUserData.role.indexOf('stew') !== -1)) {
+					oAppModel.setProperty("/approveButton", true);
+					oAppModel.setProperty("/rejectButton", true);
+				}
+				if (oChangeReq.isClaimable && (oUserData.role.indexOf('req') !== -1)) {
+					oAppModel.setProperty("/withDrawButton", true);
+				}
+			});
+
 			this.getView().setBusy(true);
 			this.serviceCall.handleServiceRequest(oEntityParam).then(oData => {
 				oData.result.costCenterDTOs.forEach(oItem => {
@@ -69,35 +105,57 @@ sap.ui.define([
 					if (oItem.hasOwnProperty("changeRequestDTO") && oItem.changeRequestDTO) {
 						oChangeRequest.desc = oItem.changeRequestDTO.change_request_desc;
 						oChangeRequest.priority = oItem.changeRequestDTO.change_request_priority_id;
-						oChangeRequest.dueDate = oItem.changeRequestDTO.change_request_due_date;
+						if (oItem.changeRequestDTO.change_request_due_date) {
+							var sDueDate = oItem.changeRequestDTO.change_request_due_date.substring(0, 10).replaceAll("-", "");
+							oChangeRequest.dueDate = sDueDate;
+						}
 						oChangeRequest.reason = oItem.changeRequestDTO.change_request_reason_id;
 						oChangeRequest.status = "";
 						oChangeRequest.createdBy = oItem.changeRequestDTO.change_request_by;
 						oChangeRequest.currWrkItem = "";
-						oChangeRequest.timeCreation = oItem.changeRequestDTO.change_request_date;
 						oChangeRequest.dateCreation = oItem.changeRequestDTO.change_request_date;
+						if (oItem.changeRequestDTO.change_request_date) {
+							var sReqTime = oItem.changeRequestDTO.change_request_date.substring(11, 16);
+							oChangeRequest.timeCreation = sReqTime;
+						}
 						oChangeRequest.change_request_by = oItem.changeRequestDTO.change_request_by;
 						oChangeRequest.modified_by = oItem.changeRequestDTO.modified_by;
+						oChangeRequest.isClaimable = oItem.changeRequestDTO.isClaimable;
 						sWorkFlowId = oItem.changeRequestDTO.workflow_task_id;
 					}
 				});
 
-				this.clearAllButtons();
-				oAppModel.setProperty("/editButton", true);
 				oAppModel.setProperty("/appTitle", "Create Cost Center");
 
 				oCCModel.setData({
 					workflowID: sWorkFlowId,
+					crID: sChangeRequestId,
 					ChangeRequest: oChangeRequest,
 					Csks: oCsks,
 					Cskt: aCskt
 				});
+
 				this.getRouter().getTargets().display("CostCenterCreate");
 				this.getView().setBusy(false);
 			}, oError => {
 				this.getView().setBusy(false);
 				MessageToast.show("Failed to fetch CR Details, please try again later");
 			});
+		},
+
+		onSelectChnageReqPage: function () {
+			var sPageNo = this.getView().getModel("ChangeRequestsModel").getProperty("/SelectedPageKey");
+			this.getAllCCChangeRequests(sPageNo);
+		},
+
+		onSelectChnageReqPageLeft: function () {
+			var sPageNo = this.getView().getModel("ChangeRequestsModel").getProperty("/SelectedPageKey");
+			this.getAllCCChangeRequests(sPageNo - 1);
+		},
+
+		onSelectChnageReqPageRight: function () {
+			var sPageNo = this.getView().getModel("ChangeRequestsModel").getProperty("/SelectedPageKey");
+			this.getAllCCChangeRequests(sPageNo + 1);
 		},
 
 	});

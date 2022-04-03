@@ -36,9 +36,12 @@ sap.ui.define([
 				oPCModel = this.getModel("ProfitCenter"),
 				oCepc = Object.assign({}, oAppModel.getProperty("/cepc")),
 				aCepct = [],
+				aCepcBukrs = [],
 				oChangeRequest = Object.assign({}, oAppModel.getProperty("/changeReq")),
 				oDate = new Date(),
+				oUserData = this.getModel("userManagementModel").getData(),
 				sWorkFlowId = "",
+				sChangeRequest = oCRObject.crDTO.change_request_id,
 				oEntityParam = {
 					url: "/mdmccpc/entity-service/entities/entity/get",
 					type: "POST",
@@ -55,15 +58,53 @@ sap.ui.define([
 						}
 					}
 				};
+			this.clearAllButtons();	
+			//Get Change Request Details
+			var oParamChangeReq = {
+				url: "/mdmccpc/change-request-service/changerequests/changerequest/page",
+				type: 'POST',
+				hasPayload: true,
+				data: {
+					"crSearchType": "GET_BY_CR_ID",
+					"parentCrDTOs": [{
+						"crDTO": {
+							"change_request_id": sChangeRequest
+						}
+					}],
+					"userId": this.getView().getModel("userManagementModel").getProperty("/data/user_id")
+				}
+			};
+
+			this.serviceCall.handleServiceRequest(oParamChangeReq).then(oData => {
+				var oChangeReq = oData.result.parentCrDTOs[0].crDTO;
+				if (oChangeReq.isClaimable &&
+					(oChangeReq.change_request_type_id === 50002 || oChangeReq.change_request_type_id === 50001) &&
+					oUserData.role.indexOf('approv') === -1) {
+					oAppModel.setProperty("/editButton", true);
+				}
+				if (oChangeReq.isClaimable &&
+					(oUserData.role.indexOf('approv') !== -1 || oUserData.role.indexOf('stew') !== -1)) {
+					oAppModel.setProperty("/approveButton", true);
+					oAppModel.setProperty("/rejectButton", true);
+				}
+				if (oChangeReq.isClaimable && (oUserData.role.indexOf('req') !== -1)) {
+					oAppModel.setProperty("/withDrawButton", true);
+				}
+			});
+			
 			this.getView().setBusy(true);
 			this.serviceCall.handleServiceRequest(oEntityParam).then(oData => {
-				oData.result.costCenterDTOs.forEach(oItem => {
+				oData.result.profitCenterDTOs.forEach(oItem => {
 					if (oItem.hasOwnProperty("profitCenterCepcDTO") && oItem.profitCenterCepcDTO) {
 						oCepc = oItem.profitCenterCepcDTO;
 					}
 
 					if (oItem.hasOwnProperty("profitCenterCepctDTOs") && oItem.profitCenterCepctDTOs) {
 						aCepct = oItem.profitCenterCepctDTOs;
+					}
+					
+					if(oItem.hasOwnProperty("profitCenterCepcBukrsDTOs") && oItem.profitCenterCepcBukrsDTOs){
+						aCepcBukrs = oItem.profitCenterCepcBukrsDTOs;
 					}
 
 					if (oItem.hasOwnProperty("changeRequestDTO") && oItem.changeRequestDTO) {
@@ -82,16 +123,15 @@ sap.ui.define([
 					}
 				});
 
-				this.clearAllButtons();
-				oAppModel.setProperty("/editButton", true);
 				oAppModel.setProperty("/appTitle", "Create Cost Center");
 
 				oPCModel.setData({
 						workflowID: sWorkFlowId,
 						ChangeRequest: oChangeRequest,
+						crID: sChangeRequest,
 						Cepc: oCepc,
 						Cepct: aCepct,
-						CepcBukrs: [],
+						CepcBukrs: aCepcBukrs,
 						Cepc_bukrs: Object.assign({}, oAppModel.getProperty("/cepc_bukrs"))
 					});
 				this.getRouter().getTargets().display("ProfitCenterCreate");

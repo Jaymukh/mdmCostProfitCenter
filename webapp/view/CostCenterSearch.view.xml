@@ -69,8 +69,8 @@
 							</filterbar:FilterGroupItem>
 							<filterbar:FilterGroupItem visibleInFilterBar="false" groupName="generalData" name="kosar" label="Cost Centre Category">
 								<filterbar:control>
-									<ComboBox items="{Dropdowns>/TKA05}" showSecondaryValues="true">
-										<core:ListItem key="{Dropdowns>kosar}" text="{Dropdowns>butxt}" additionalText="{Dropdowns>kosar}"/>
+									<ComboBox items="{Dropdowns>/TKT05}" showSecondaryValues="true">
+										<core:ListItem key="{Dropdowns>kosar}" text="{Dropdowns>ktext}" additionalText="{Dropdowns>kosar}"/>
 									</ComboBox>
 								</filterbar:control>
 							</filterbar:FilterGroupItem>
@@ -193,8 +193,8 @@
 							<Text
 								text="{SearchCCModel>costCenterCsksDTO/name1} {SearchCCModel>costCenterCsksDTO/name2} {SearchCCModel>costCenterCsksDTO/name3} {SearchCCModel>costCenterCsksDTO/name4}"/>
 							<Link text="{SearchCCModel>costCenterCsksDTO/kostl}" press="onPreviewCC"></Link>
-							<ComboBox selectedKey="{SearchCCModel>costCenterCsksDTO/kosar}" items="{Dropdowns>/TKA05}" editable="false" showSecondaryValues="true">
-								<core:ListItem key="{Dropdowns>kosar}" text="{Dropdowns>butxt}" additionalText="{Dropdowns>kosar}"/>
+							<ComboBox selectedKey="{SearchCCModel>costCenterCsksDTO/kosar}" items="{Dropdowns>/TKT05}" editable="false" showSecondaryValues="true">
+								<core:ListItem key="{Dropdowns>kosar}" text="{Dropdowns>ktext}" additionalText="{Dropdowns>kosar}"/>
 							</ComboBox>
 							<Text text="{SearchCCModel>costCenterCsksDTO/verak}"/>
 							<core:Icon src="sap-icon://overflow" press="onCostCenterAction"></core:Icon>

@@ -11,49 +11,70 @@
 				</layoutData>
 			</Input>
 			<Input value="Murphy Controlling Area" editable="false"/>
-			<Label text="Cost Center / Name"/>
+			<Label text="Cost Center / Name" required="true"/>
 			<Input required="true" value="{CostCenter>/Csks/kostl}" editable="{App>/edit}" maxLength="10">
 				<layoutData>
 					<l:GridData span="XL2 L2 M3 S4"/>
 				</layoutData>
 			</Input>
-			<Input value="{CostCenter>/Cskt/ktext}" liveChange="onChangeName" editable="{App>/edit}" maxLength="20"/>
+			<Input value="" liveChange="onChangeName" editable="{App>/edit}" maxLength="20"/>
 			<Label text="Medium Text"/>
-			<Input value="{CostCenter>/Cskt/ltext}" liveChange="onChangeMText" editable="{App>/edit}" maxLength="40"/>
+			<Input value="" liveChange="onChangeMText" editable="{App>/edit}" maxLength="40"/>
 			<Label text="Department"/>
 			<Input value="{CostCenter>/Csks/abtei}" editable="{App>/edit}" maxLength="12"/>
 			<Label text="Cost Center Category" required="true"/>
-			<ComboBox required="true" selectedKey="{CostCenter>/Cskt/kosar}" items="{Dropdowns>/TKT05}" editable="{App>/edit}"
+			<ComboBox required="true" selectedKey="{CostCenter>/Csks/kosar}" items="{Dropdowns>/TKT05}" editable="{App>/edit}"
 				showSecondaryValues="true">
 				<core:ListItem key="{Dropdowns>kosar}" text="{Dropdowns>ktext}" additionalText="{Dropdowns>kosar}"/>
 			</ComboBox>
 			<Label text="Company Code" required="true"/>
-			<ComboBox required="true" selectedKey="{CostCenter>/Cskt/kosar}" items="{Dropdowns>/T001}" editable="{App>/edit}"
+			<ComboBox required="true" selectedKey="{CostCenter>/Csks/bukrs}" items="{Dropdowns>/T001}" editable="{App>/edit}"
 				selectionChange="onSelectBukrs" showSecondaryValues="true">
 				<core:ListItem key="{Dropdowns>bukrs}" text="{Dropdowns>butxt}" additionalText="{Dropdowns>bukrs}"/>
 			</ComboBox>
 			<core:Title text=""/>
 			<Label text="Business Area"/>
-			<Input editable="false" value="{CostCenter>/Cskt/gsber}" maxLength="4"/>
-			<Label text="Functional Area"/>
-			<ComboBox required="true" selectedKey="{CostCenter>/Cskt/fkber}" items="{Dropdowns>/VW_TFKB}" editable="{App>/edit}"
+			<Input editable="false" value="{CostCenter>/Csks/gsber}" maxLength="4"/>
+			<Label text="Functional Area" required="true"/>
+			<ComboBox required="true" selectedKey="{CostCenter>/Csks/fkber}" items="{Dropdowns>/vw_TFKB}" editable="{App>/edit}"
 				showSecondaryValues="true">
-				<core:ListItem key="{Dropdowns>fkber}" text="{Dropdowns>fkbtx}" additionalText="{Dropdowns>fkber}"/>
+				<core:ListItem key="{Dropdowns>fkber}" text="{Dropdowns>fkber}"/>
 			</ComboBox>
 			<Label text="Currency" required="true"/>
-			<ComboBox required="true" selectedKey="{CostCenter>/Cskt/waers}" items="{Dropdowns>/TCURC}" editable="false" showSecondaryValues="true">
+			<ComboBox required="true" selectedKey="{CostCenter>/Csks/waers}" items="{Dropdowns>/TCURC}" editable="false" showSecondaryValues="true">
 				<core:ListItem key="{Dropdowns>waers}" text="{Dropdowns>ltext}" additionalText="{Dropdowns>waers}"/>
 			</ComboBox>
 			<Label text="Profit Center" required="true"/>
-			<Input valueHelpOnly="true" showValueHelp="true" required="true" value="{CostCenter>/Cskt/prctr}" editable="{App>/edit}" maxLength="10"/>
+			<Input valueHelpOnly="true" showValueHelp="true" required="true" value="{CostCenter>/Csks/prctr}" editable="{App>/edit}" maxLength="10"
+				valueHelpRequest=".onValueHelpRequested">
+				<customData>
+					<core:CustomData key="title" value="Profit Center"></core:CustomData>
+					<core:CustomData key="table" value="vw_cepct"></core:CustomData>
+					<core:CustomData key="inputKey" value="prctr"></core:CustomData>
+					<core:CustomData key="inputText" value="prctr"></core:CustomData>
+					<core:CustomData key="prctr" value="Profit Center"></core:CustomData>
+					<core:CustomData key="ktext" value="Name"></core:CustomData>
+					<core:CustomData key="ltext" value="Medium Text"></core:CustomData>
+				</customData>
+			</Input>
 			<Label text="Logical System"/>
-			<Input editable="false" value="{CostCenter>/Cskt/logsystem}" maxLength="10"/>
+			<Input editable="false" value="{CostCenter>/Csks/logsystem}" maxLength="10"/>
 			<core:Title text="Administrative Data"/>
-			<Label text="New Cost Center"/>
-			<Input valueHelpOnly="true" showValueHelp="true" value="" editable="{App>/edit}" maxLength="10"/>
-			<Label text="User Responsible"/>
+			<!--<Label text="New Cost Center"/>
+			<Input valueHelpOnly="true" showValueHelp="true" value="" editable="{App>/edit}" maxLength="10" valueHelpRequest=".onValueHelpRequested">
+				<customData>
+					<core:CustomData key="title" value="Cost Center"></core:CustomData>
+					<core:CustomData key="table" value="vw_cskt"></core:CustomData>
+					<core:CustomData key="inputKey" value="kostl"></core:CustomData>
+					<core:CustomData key="inputText" value="kostl"></core:CustomData>
+					<core:CustomData key="kostl" value="Cost Center"></core:CustomData>
+					<core:CustomData key="ktext" value="Name"></core:CustomData>
+					<core:CustomData key="ltext" value="Medium Text"></core:CustomData>
+				</customData>
+			</Input>-->
+			<Label text="User Responsible" required="true"/>
 			<Input required="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequested" valueHelpOnly="true"
-				value="{CostCenter>/Cskt/verak_user}" editable="{App>/edit}" maxLength="12">
+				value="{CostCenter>/Csks/verak_user}" editable="{App>/edit}" maxLength="12">
 				<customData>
 					<core:CustomData key="title" value="User Responsible"></core:CustomData>
 					<core:CustomData key="table" value="USER_ADDRP"></core:CustomData>
@@ -63,21 +84,24 @@
 					<core:CustomData key="name_TEXT" value="Description"></core:CustomData>
 				</customData>
 			</Input>
-			<Label text=" Person Responsible"/>
-			<Input required="true" value="{CostCenter>/Cskt/verak}" editable="{App>/edit}" maxLength="20"/>
+			<Label text=" Person Responsible" required="true"/>
+			<Input required="true" value="{CostCenter>/Csks/verak}" editable="{App>/edit}" maxLength="20"/>
 			<core:Title text="Audit Information"/>
 			<Label text="Created On/By"/>
-			<Input editable="false" value="{CostCenter>/Cskt/ersad}/{CostCenter>/Cskt/usnam}" maxLength="12"/>
+			<Input editable="false" value="{CostCenter>/Csks/ersad}/{CostCenter>/Csks/usnam}" maxLength="12"/>
 			<Label text="Changed On/By"/>
 			<Input editable="false" value=""/>
 			<Label text="SAP Hierarchy"/>
-			<Input value="{CostCenter>/Cskt/zsap_hier}" editable="{App>/edit}"/>
+			<Input value="{CostCenter>/Csks/zsap_hier}" editable="{App>/edit}"/>
 			<Label text="Hyperion Hierarchy"/>
-			<Input value="{CostCenter>/Cskt/zhyp_hier}" editable="{App>/edit}"/>
+			<Input value="{CostCenter>/Csks/zhyp_hier}" editable="{App>/edit}"/>
 			<Label text="Business Unit (Old/New)"/>
-			<Input showValueHelp="true" valueHelpOnly="true" value="{CostCenter>/Cskt/zbus_unit}" editable="{App>/edit}"/>
+			<ComboBox selectedKey="{CostCenter>/Csks/zbus_unit}" editable="{App>/edit}">
+				<core:Item key = "NEW BU" text="NEW BU"/>
+				<core:Item key = "EXIST BU" text="EXIST BU"/>
+			</ComboBox>	
 			<Label text="Department (Hyperion)"/>
-			<Input showValueHelp="true" valueHelpOnly="true" value="{CostCenter>/Cskt/zdept_hyp}" editable="{App>/edit}"/>
+			<ComboBox selectedKey="{CostCenter>/Csks/zdept_hyp}" editable="{App>/edit}"/>
 		</form:content>
 	</form:SimpleForm>
 </core:FragmentDefinition>

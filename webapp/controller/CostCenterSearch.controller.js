@@ -48,8 +48,10 @@ sap.ui.define([
 				hasPayload: true,
 				data: oObjectParam
 			};
-
-			this.serviceCall.handleServiceRequest(objParam).then(function (oData) {
+			
+			this.getView().setBusy(true);
+			this.serviceCall.handleServiceRequest(objParam).then(oData => {
+				this.getView().setBusy(false);
 				var aResultDataArr = oData.result.costCenterDTOs,
 					aPageJson = [];
 				oData.result.totalRecords = aResultDataArr[0].totalCount;
@@ -92,6 +94,15 @@ sap.ui.define([
 				});
 				oPopover.openBy(oButton);
 			});
+		},
+		
+		onNavtoCreateCC: function(){
+			let oAppModel = this.getModel("App"),
+				sKey = "CostCenterCreate";
+			this.clearAllButtons();
+			this.getRouter().getTargets().display(sKey);
+			oAppModel.setProperty("/appTitle", this.getText(sKey));
+			this.createCCEntity();
 		},
 
 		onPreviewCC: function (oEvent) {
