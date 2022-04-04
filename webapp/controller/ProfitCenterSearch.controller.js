@@ -93,8 +93,8 @@ sap.ui.define([
 				oPopover.openBy(oButton);
 			});
 		},
-		
-		onNavtoCreatePC: function(){
+
+		onNavtoCreatePC: function () {
 			let oAppModel = this.getModel("App"),
 				sKey = "ProfitCenterCreate";
 			this.clearAllButtons();
@@ -177,7 +177,11 @@ sap.ui.define([
 							aCepct = oItem.profitCenterCepctDTOs;
 						}
 					});
-
+					var oEnCepct = aCepct.find(oItem => {
+						return oItem.spras === "E";
+					});
+					oAppModel.setProperty("/name", oEnCepct ? oEnCepct.ktext : "");
+					oAppModel.setProperty("/text", oEnCepct ? oEnCepct.ltext : "");
 					switch (sAction) {
 					case "EDIT":
 					case "COPY":

@@ -17,9 +17,9 @@
 					<l:GridData span="XL2 L2 M3 S4"/>
 				</layoutData>
 			</Input>
-			<Input required="true" value="{ProfitCenter>/Cepct/ktext}" liveChange="onChangeName" editable="{App>/edit}"/>
+			<Input required="true" value="{App>/name}" liveChange="onChangeName" editable="{App>/edit}"/>
 			<Label text="Long Text"/>
-			<Input value="{ProfitCenter>/Cepct/ltext}" liveChange="onChangeMText" editable="{App>/edit}"/>
+			<Input value="{App>/text}" liveChange="onChangeMText" editable="{App>/edit}"/>
 			<Label text="Department"/>
 			<Input value="{ProfitCenter>/Cepc/abtei}" editable="{App>/edit}"/>
 			<Label text="Profit Ctr. Group"/>

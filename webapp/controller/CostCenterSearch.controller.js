@@ -48,7 +48,7 @@ sap.ui.define([
 				hasPayload: true,
 				data: oObjectParam
 			};
-			
+
 			this.getView().setBusy(true);
 			this.serviceCall.handleServiceRequest(objParam).then(oData => {
 				this.getView().setBusy(false);
@@ -95,8 +95,8 @@ sap.ui.define([
 				oPopover.openBy(oButton);
 			});
 		},
-		
-		onNavtoCreateCC: function(){
+
+		onNavtoCreateCC: function () {
 			let oAppModel = this.getModel("App"),
 				sKey = "CostCenterCreate";
 			this.clearAllButtons();
@@ -179,6 +179,12 @@ sap.ui.define([
 							aCskt = oItem.costCenterCsktDTOs;
 						}
 					});
+
+					var oEnCskt = aCskt.find(oItem => {
+						return oItem.spras === "E";
+					});
+					oAppModel.setProperty("/name", oEnCskt ? oEnCskt.ktext : "");
+					oAppModel.setProperty("/text", oEnCskt ? oEnCskt.ltext : "");
 					switch (sAction) {
 					case "EDIT":
 					case "COPY":

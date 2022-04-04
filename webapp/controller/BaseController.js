@@ -594,6 +594,8 @@ sap.ui.define([
 				sDate = `${oDate.getFullYear()}-${("0" + (oDate.getMonth() + 1) ).slice(-2)}-${("0" + oDate.getDate()).slice(-2)}`;
 
 			this.clearSidePanelDetails();
+			oAppModel.setProperty("/name", "");
+			oAppModel.setProperty("/text", "");
 			this.getView().setBusy(true);
 			this.createEntityId("COST_CENTRE").then(oData => {
 				var oBusinessEntity = oData.result.costCenterDTOs[0].commonEntityDTO.customBusinessDTO;
@@ -635,6 +637,8 @@ sap.ui.define([
 				sDate = `${oDate.getFullYear()}-${("0" + (oDate.getMonth() + 1) ).slice(-2)}-${("0" + oDate.getDate()).slice(-2)}`;
 
 			this.clearSidePanelDetails();
+			oAppModel.setProperty("/name", "");
+			oAppModel.setProperty("/text", "");
 			this.getView().setBusy(true);
 			this.createEntityId("PROFIT_CENTRE").then(
 				//Success Handler

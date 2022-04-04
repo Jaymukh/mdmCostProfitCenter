@@ -17,11 +17,22 @@
 					<l:GridData span="XL2 L2 M3 S4"/>
 				</layoutData>
 			</Input>
-			<Input value="" liveChange="onChangeName" editable="{App>/edit}" maxLength="20"/>
+			<Input value="{App>/name}" liveChange="onChangeName" editable="{App>/edit}" maxLength="20"/>
 			<Label text="Medium Text"/>
-			<Input value="" liveChange="onChangeMText" editable="{App>/edit}" maxLength="40"/>
+			<Input value="{App>/text}" liveChange="onChangeMText" editable="{App>/edit}" maxLength="40"/>
 			<Label text="Department"/>
 			<Input value="{CostCenter>/Csks/abtei}" editable="{App>/edit}" maxLength="12"/>
+			<Label text="Hierarchy Area" required="true"/>
+			<Input valueHelpOnly="true" showValueHelp="true" required="true" value="{CostCenter>/Csks/khinr}" editable="{App>/edit}"
+				valueHelpRequest=".onValueHelpRequested">
+				<customData>
+					<core:CustomData key="title" value="Hierarchy Area"></core:CustomData>
+					<core:CustomData key="table" value="vw_csks"></core:CustomData>
+					<core:CustomData key="inputKey" value="khinr"></core:CustomData>
+					<core:CustomData key="inputText" value="khinr"></core:CustomData>
+					<core:CustomData key="khinr" value="Hierarchy Area"></core:CustomData>
+				</customData>
+			</Input>
 			<Label text="Cost Center Category" required="true"/>
 			<ComboBox required="true" selectedKey="{CostCenter>/Csks/kosar}" items="{Dropdowns>/TKT05}" editable="{App>/edit}"
 				showSecondaryValues="true">
@@ -97,9 +108,9 @@
 			<Input value="{CostCenter>/Csks/zhyp_hier}" editable="{App>/edit}"/>
 			<Label text="Business Unit (Old/New)"/>
 			<ComboBox selectedKey="{CostCenter>/Csks/zbus_unit}" editable="{App>/edit}">
-				<core:Item key = "NEW BU" text="NEW BU"/>
-				<core:Item key = "EXIST BU" text="EXIST BU"/>
-			</ComboBox>	
+				<core:Item key="NEW BU" text="NEW BU"/>
+				<core:Item key="EXIST BU" text="EXIST BU"/>
+			</ComboBox>
 			<Label text="Department (Hyperion)"/>
 			<ComboBox selectedKey="{CostCenter>/Csks/zdept_hyp}" editable="{App>/edit}"/>
 		</form:content>

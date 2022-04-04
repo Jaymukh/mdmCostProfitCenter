@@ -125,6 +125,11 @@ sap.ui.define([
 					}
 				});
 
+				var oEnCskt = aCskt.find(oItem => {
+					return oItem.spras === "E";
+				});
+				oAppModel.setProperty("/name", oEnCskt ? oEnCskt.ktext : "");
+				oAppModel.setProperty("/text", oEnCskt ? oEnCskt.ltext : "");
 				oAppModel.setProperty("/appTitle", "Create Cost Center");
 
 				oCCModel.setData({

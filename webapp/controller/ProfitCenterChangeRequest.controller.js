@@ -58,7 +58,7 @@ sap.ui.define([
 						}
 					}
 				};
-			this.clearAllButtons();	
+			this.clearAllButtons();
 			//Get Change Request Details
 			var oParamChangeReq = {
 				url: "/mdmccpc/change-request-service/changerequests/changerequest/page",
@@ -91,7 +91,7 @@ sap.ui.define([
 					oAppModel.setProperty("/withDrawButton", true);
 				}
 			});
-			
+
 			this.getView().setBusy(true);
 			this.serviceCall.handleServiceRequest(oEntityParam).then(oData => {
 				oData.result.profitCenterDTOs.forEach(oItem => {
@@ -102,8 +102,8 @@ sap.ui.define([
 					if (oItem.hasOwnProperty("profitCenterCepctDTOs") && oItem.profitCenterCepctDTOs) {
 						aCepct = oItem.profitCenterCepctDTOs;
 					}
-					
-					if(oItem.hasOwnProperty("profitCenterCepcBukrsDTOs") && oItem.profitCenterCepcBukrsDTOs){
+
+					if (oItem.hasOwnProperty("profitCenterCepcBukrsDTOs") && oItem.profitCenterCepcBukrsDTOs) {
 						aCepcBukrs = oItem.profitCenterCepcBukrsDTOs;
 					}
 
@@ -125,15 +125,20 @@ sap.ui.define([
 
 				oAppModel.setProperty("/appTitle", "Create Cost Center");
 
+				var oEnCepct = aCepct.find(oItem => {
+					return oItem.spras === "E";
+				});
+				oAppModel.setProperty("/name", oEnCepct ? oEnCepct.ktext : "");
+				oAppModel.setProperty("/text", oEnCepct ? oEnCepct.ltext : "");
 				oPCModel.setData({
-						workflowID: sWorkFlowId,
-						ChangeRequest: oChangeRequest,
-						crID: sChangeRequest,
-						Cepc: oCepc,
-						Cepct: aCepct,
-						CepcBukrs: aCepcBukrs,
-						Cepc_bukrs: Object.assign({}, oAppModel.getProperty("/cepc_bukrs"))
-					});
+					workflowID: sWorkFlowId,
+					ChangeRequest: oChangeRequest,
+					crID: sChangeRequest,
+					Cepc: oCepc,
+					Cepct: aCepct,
+					CepcBukrs: aCepcBukrs,
+					Cepc_bukrs: Object.assign({}, oAppModel.getProperty("/cepc_bukrs"))
+				});
 				this.getRouter().getTargets().display("ProfitCenterCreate");
 				this.getView().setBusy(false);
 			}, oError => {

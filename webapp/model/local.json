@@ -14,6 +14,8 @@
 	"dateValueFormat": "yyyy-MM-dd",
 	"sidePanelSelectedPage": "",
 	"sideNavExp": false,
+	"name": "",
+	"text": "",
 	"supportedFileTypes": ["jpg", "jpeg", "png", "pdf", "msg", "eml"],
 	"changeReq": {
 		"desc": "",
